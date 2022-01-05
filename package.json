@@ -1,4 +1,28 @@
 {
   "name": "oklm",
+  "version": "0.0.1",
+  "description": "Un code sain pour un dev serein",
+  "keywords": [
+    "boilerplate",
+    "clean architecture",
+    "CQRS",
+    "event sourcing"
+  ],
+  "homepage": "https://github.com/oklmdev/oklm#readme",
+  "bugs": {
+    "url": "https://github.com/oklmdev/oklm/issues"
+  },
+  "license": "MIT",
+  "contributors": [
+    "Romain Cambonie <romain.cambonie@gmail.com> (https://github.com/romain-cambonie)",
+    "Pierre-Antoine Duchateau <> (https://github.com/paduc)",
+    "Marc Gavanier <marc.gavanier@gmail.com> (https://github.com/marc-gavanier)"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/oklmdev/oklm.git"
+  },
+  "main": "src/index.ts",
+  "scripts": {},
   "packageManager": "yarn@3.1.1"
 }
