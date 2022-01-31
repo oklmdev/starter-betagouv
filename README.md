@@ -110,7 +110,11 @@ Nous recommandons de déployer sur un [PaaS](https://fr.wikipedia.org/wiki/Platf
 
 ## Installation
 
-- Run `yarn install` to install dependencies.
+`yarn install`
+
+## Lancer en local
+
+`yarn run watch`
 
 ## Licence
 
