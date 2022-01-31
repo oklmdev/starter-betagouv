@@ -3,7 +3,7 @@
 
 > Hello !  
 >
-> Nous sommes un groupe de développeurs de [betagouv](https://beta.gouv.fr), et nous mettons notre énergie en commun pour identifier les pratiques utiles pour développer __séreinement__ des produits __durables__ (robustes et maintenables).
+> Nous sommes un groupe de développeurs de [betagouv](https://beta.gouv.fr), et nous mettons notre énergie en commun pour identifier les pratiques utiles pour développer __sereinement__ des produits __durables__ (robustes et maintenables).
 >
 > Tu trouveras ici, un chantier d'application réaliste en typescript/nodejs, mettant en oeuvres ces pratiques, ainsi que les discussions autour des différents choix que nous faisons.
 >
@@ -48,7 +48,7 @@ Mais aussi
 ### Comment est-ce que je me servirais d'oklm ?
 
 - Comme starter pour mon nouveau projet typescript/node
-- Pour avoir des exemples fonctionnels concrets de certains pratiques et d'usage de certaines libs
+- Pour avoir des exemples fonctionnels concrets de certaines pratiques et d'usage de certaines libs
 - Comme support de discussion
     - partir d'un fork pour proposer un changement, une intégration, etc.
 
