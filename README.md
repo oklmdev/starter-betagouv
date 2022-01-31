@@ -76,7 +76,7 @@ Mais aussi
 ### Languages & Frameworks
 
 - [TypeScript](https://www.typescriptlang.org/) is an open-source language which builds on JavaScript
-- [React] (mais ça pourrait être intéressant de donner des exemples de vue en Angular, Vue, Svelte, Vanilla, ...)
+- [React](https://reactjs.org/) (mais ça pourrait être intéressant de donner des exemples de vue en Angular, Vue, Svelte, Vanilla, ...)
 
 ### Tools
 
