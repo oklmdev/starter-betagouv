@@ -61,6 +61,7 @@ Mais aussi
     - mais nous visons que le "coeur" du code puisse être suffisamment stable pour être utilisé dans des situations réelles dans le futur.
 
 # Utilisation
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oklmdev/oklm/tree/master)
 
 ## Prérequis
 
@@ -108,8 +109,6 @@ Nous recommandons de déployer sur un [PaaS](https://fr.wikipedia.org/wiki/Platf
 ## Installation
 
 - Run `yarn install` to install dependencies.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oklmdev/oklm/tree/master)
 
 
 ## Licence
