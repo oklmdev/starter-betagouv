@@ -1,5 +1,5 @@
-# oklm <span style="font-size: 0.6em; opacity: 0.5;">"au calme"</span>
-*Un code sain pour un dev serein.*
+# oklm
+"au calme": *Un code sain pour un dev serein.*
 
 > Hello !  
 >
