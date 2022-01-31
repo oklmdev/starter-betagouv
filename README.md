@@ -36,6 +36,14 @@ Mais aussi
     - tests pour aider à la conception et aussi éviter les régressions
     - éventuellement, un peu de génération de code (si boilerplate répétitif)
 
+### Pourquoi adopter ces pratiques ?
+
+- Livrer vite et souvent
+- Pouvoir être responsable de la prod sans perdre sa sérennité
+- Créer un produit qui sera facile à reprendre par les contributeurs futurs
+- Un outil pour toute l'équipe
+    - l'application répond aux besoins métier et en épouse les contours
+    - le développement comme une conversation entre toutes les parties prenantes
 
 ### Comment est-ce que je me servirais d'oklm ?
 
