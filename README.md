@@ -109,6 +109,8 @@ Nous recommandons de déployer sur un [PaaS](https://fr.wikipedia.org/wiki/Platf
 
 - Run `yarn install` to install dependencies.
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oklmdev/oklm/tree/master)
+
 
 ## Licence
 
