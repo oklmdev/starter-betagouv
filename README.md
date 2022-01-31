@@ -1,42 +1,68 @@
-# oklm
-Un code sain pour un dev serein
+# oklm <span style="font-size: 0.6em; opacity: 0.5;">"au calme"</span>
+*Un code sain pour un dev serein.*
 
-[HackMD](https://hackmd.io/j6F14DDpTMG9-rEFCgc3tw)
+> Hello !  
+>
+> Nous sommes un groupe de développeurs de [betagouv](https://beta.gouv.fr), et nous mettons notre énergie en commun pour identifier les pratiques utiles pour développer __séreinement__ des produits __durables__ (robustes et maintenables).
+>
+> Tu trouveras ici, un chantier d'application réaliste en typescript/nodejs, mettant en oeuvres ces pratiques, ainsi que les discussions autour des différents choix que nous faisons.
+>
+> N'hésite pas à rejoindre les discussions via une [issue](https://github.com/oklmdev/oklm/issues/new/choose) ou encore une [PR](https://github.com/oklmdev/oklm/compare) !  
+>  
+> A très vite !
+-----
 
-## Introduction
+### Quelles pratiques pour être oklm ?
 
-Boilerplate pour un produit web pour les pros du web
-
-Architecture:
-- Clean / Hexagonal Architecture
-- CQRS / Event Sourcing
-- MPA (SSR + génération d'un bundle par page interactive)
-- Monorepo simple (pas besoin de lerna/yarn workspaces en MPA)
-
-Environnement:
-- TypeScript
-- Jest
-- 
+- Découplage métier / infra
+    - *"Je change de lib sans toucher au code métier."*
+    - pour limiter notre dépendance à des libs tiers (API, base de données, ...)
+    - isoler le métier pour mieux le concevoir
+- Découplage des domaines métiers entre eux
+    - *"Je change les règles d'un contexte métier sans toucher aux autres."*
+    - séparer les responsabilités indépendantes pour mieux les concevoir
+- Découpler les données du modèle de données
+    - *"Je pousse un nouveau schéma de BDD en prod, sans le stresse de la migration."*
+    - pour se sentir libre de changer de modèle de données, même avec un système en production
 
 
-## Table of Contents
+Mais aussi
+- Ne pas être dépendant d'un framework
+    - les frameworks introduisent des patterns utiles mais au coût d'une inversion du contrôle (le framework appelle mon code, je ne peux pas le contourner)
+    - l'alternative proposée est d'introduire les patterns via des conventions, sans contraintes fortes (*ie* sans API)
+- S'outiller pour améliorer l'expérience de développement
+    - intégration continue et déploiement continu (CI/CD)
+    - analyse de code (typage, linters, autoformattage, visualisation, ...)
+    - tests pour aider à la conception et aussi éviter les régressions
+    - éventuellement, un peu de génération de code (si boilerplate répétitif)
 
-- [Install](#install)
-- [Prerequisites](#prerequisites)
-- [Built with](#built-with)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Licence](#licence)
 
-## Prerequisites
+### Comment est-ce que je me servirais d'oklm ?
 
-[Node](https://nodejs.org/)
+- Comme starter pour mon nouveau projet typescript/node
+- Pour avoir des exemples fonctionnels concrets de certains pratiques et d'usage de certaines libs
+- Comme support de discussion
+    - partir d'un fork pour proposer un changement, une intégration, etc.
+
+### Oklm n'est pas...
+
+- une solution universelle et parfaite pour tous les projets
+    - des choix ont été fait selon l'opinion des auteurs
+- un démonstrateur de technos dernier cri
+- fini et n'est pas destiné à l'être
+    - mais nous visons que le "coeur" du code puisse être suffisamment stable pour être utilisé dans des situations réelles dans le futur.
+
+# Utilisation
+
+## Prérequis
+
+[Node](https://nodejs.org/)  
 [Yarn](https://yarnpkg.com/)
 
-## Built with
+## Technos utilisées
 
 <details>
-<summary> Toggle list </summary>
+<summary> Clicker pour ouvrir </summary>
 <br>
 
 ### Languages & Frameworks
@@ -59,10 +85,14 @@ Environnement:
 
 - [Github Actions](https://docs.github.com/en/actions)
 
-#### Deploy
+#### Deploiement
+
+Nous recommandons de déployer sur un [PaaS](https://fr.wikipedia.org/wiki/Platform_as_a_service).
 
 - [Clevercloud](https://www.clever-cloud.com/)
-- exemples Terraform, Scalingo, Docker, etc.
+- [Scalingo](https://www.scalingo.com/)
+
+- A venir: exemples Terraform, Docker, etc.
 
 
 </details>
@@ -76,4 +106,5 @@ Environnement:
 
 Voir le fichier [LICENSE](./LICENSE) du dépot.
 
-## Credits
+## Notes
+[HackMD](https://hackmd.io/j6F14DDpTMG9-rEFCgc3tw)
