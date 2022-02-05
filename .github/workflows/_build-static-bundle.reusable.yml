@@ -1,0 +1,30 @@
+name: Reusable Build Static Application Workflow
+
+on:
+  workflow_call:
+    inputs:
+      build-directory-path:
+        required: true
+        type: string
+
+jobs:
+  build-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Retrieve dependencies
+        uses: actions/cache@v2
+        with:
+          key: node_modules-${{ hashFiles('yarn.lock') }}
+          path: node_modules
+
+      - name: Build files
+        run: |
+          yarn run build
+
+      - name: Upload build bundle as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-bundle
+          path: ${{ inputs.build-directory-path }}/*

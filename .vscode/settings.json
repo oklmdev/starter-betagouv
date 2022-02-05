@@ -13,6 +13,6 @@
   "prettier.configPath": ".prettierrc.json",
   "gitpod.openInStable.neverPrompt": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-"git.autofetch": false,
-"eslint.packageManager": "yarn"
+  "git.autofetch": false,
+  "eslint.packageManager": "yarn"
 }

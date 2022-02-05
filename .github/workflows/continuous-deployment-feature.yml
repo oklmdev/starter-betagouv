@@ -1,0 +1,46 @@
+name: CD-Feature/Fix on clevercloud
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  dependencies:
+    uses: ./.github/workflows/_dependencies.reusable.yml
+    with:
+      node-version: '16.13.1'
+
+  build:
+    needs: dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: tsc
+
+  validation:
+    needs: dependencies
+    uses: ./.github/workflows/_validation.reusable.yml
+
+  deploy:
+    needs:
+      - build
+      - validation
+    uses: ./.github/workflows/_deploy-node-application.clevercloud.reusable.yml
+    with:
+      application-full-name: 'oklm-${GITHUB_REF##*/}'
+    secrets:
+      CLEVER_ORG_ID: ${{ secrets.CLEVER_ORG_ID }}
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+
+#  notify:
+#    needs:
+#      - deploy
+#    uses: ./.github/workflows/_notify-deployment.mattermost.reusable.yml
+#    with:
+#      application-full-name: 'oklm-${GITHUB_REF##*/}'
+#      deployed-domain: ${{ needs.deploy.outputs.deployed-domain }}
+#    secrets:
+#      MATTERMOST_NOTIFY_HOOK_URL: ${{ secrets.MATTERMOST_NOTIFY_HOOK_URL }}

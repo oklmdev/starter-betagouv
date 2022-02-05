@@ -1,0 +1,38 @@
+name: Reusable Cache Dependencies Workflow
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node ${{ inputs.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'yarn'
+
+      - name: Retrieve cached dependencies
+        id: retrieve-dependencies
+        uses: actions/cache@v2
+        with:
+          key: node_modules-${{ hashFiles('yarn.lock') }}
+          path: node_modules
+
+      - name: Install dependencies
+        if: steps.retrieve-dependencies.outputs.cache-hit == false
+        run: yarn --install-frozen-lockfile
+
+      - name: Cache dependencies if not present
+        if: steps.retrieve-dependencies.outputs.cache-hit == false
+        uses: actions/cache@v2
+        with:
+          key: node_modules.-${{ hashFiles('yarn.lock') }}
+          path: node_modules

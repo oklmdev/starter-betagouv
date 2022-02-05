@@ -37,7 +37,8 @@ module.exports = {
       rules: {
         ...require('./.eslint/eslint-test.rules'),
         ...require('./.eslint/jest-eslint.rules'),
+        ...require('./.eslint/typescript-eslint-test.rules'),
       },
-    }
-  ]
+    },
+  ],
 };

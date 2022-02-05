@@ -262,7 +262,7 @@ module.exports = {
       numbers: true,
     },
   ],
-  radix: 'error',
+  radix: 'off',
   'require-await': 'off',
   'require-unicode-regexp': 'error',
   'sort-imports': 'off',
