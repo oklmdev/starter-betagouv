@@ -24,7 +24,7 @@
   - _"Je change les règles d'un contexte métier sans toucher aux autres."_
   - séparer les responsabilités indépendantes pour mieux les concevoir
 - Découpler les données du modèle de données
-  - _"Je pousse un nouveau schéma de BDD en prod, sans le stresse de la migration."_
+  - _"Je pousse un nouveau schéma de BDD en prod, sans avoir à concevoir une migration."_
   - pour se sentir libre de changer de modèle de données, même avec un système en production
 
 Mais aussi
