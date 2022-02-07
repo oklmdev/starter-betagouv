@@ -4,7 +4,7 @@
 
 > Hello !
 >
-> Nous sommes un groupe de développeurs de [betagouv](https://beta.gouv.fr), et nous mettons notre énergie en commun pour identifier les pratiques utiles pour développer **sereinement** des produits **durables** (robustes et maintenables).
+> Nous sommes un groupe de développeurs actuellement en mission chez [betagouv](https://beta.gouv.fr), et nous mettons notre énergie en commun pour identifier les pratiques utiles pour développer **sereinement** des produits **durables** (robustes et maintenables).
 >
 > Tu trouveras ici, un chantier d'application réaliste en typescript/nodejs, mettant en oeuvres ces pratiques, ainsi que les discussions autour des différents choix que nous faisons.
 >
