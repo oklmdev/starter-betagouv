@@ -1,0 +1,92 @@
+name: Reusable NodeJS Application Clevercloud Deployer Workflow
+
+on:
+  workflow_call:
+    inputs:
+      application-full-name:
+        required: true
+        type: string
+    outputs:
+      deployed-domain:
+        description: 'The instance clevercloud url'
+        value: ${{ jobs.deploy-to-clevercloud.outputs.deployed-domain }}
+    secrets:
+      CLEVER_ORG_ID:
+        required: true
+      CLEVER_TOKEN:
+        required: true
+      CLEVER_SECRET:
+        required: true
+
+jobs:
+  release-for-clevercloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Initialise local git repository for deployment (a clevercloud deployment is a push to their origin)
+        run: |
+          git config --global init.defaultBranch master
+          git config --global user.email dummy@email.fr
+          git config --global user.name ClevercloudDeployer
+          git init .
+          git add .
+          git commit -m "Release bundle"
+
+      - name: Upload release bundle as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-bundle-for-clevercloud
+          path: ./*
+
+  deploy-to-clevercloud:
+    needs: release-for-clevercloud
+    runs-on: ubuntu-latest
+    container:
+      image: clevercloud/clever-tools
+      env:
+        CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+        CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+    outputs:
+      deployed-domain: ${{ steps.deployed-domain.outputs.domain }}
+    steps:
+      - name: Retrieve release bundle
+        uses: actions/download-artifact@v2
+        with:
+          name: release-bundle-for-clevercloud
+          path: .
+
+      - name: Try linking to an existing application
+        id: already-exist
+        continue-on-error: true
+        run: clever link ${{ inputs.application-full-name }} --org ${{ secrets.CLEVER_ORG_ID }}
+
+      - name: If no pre-existing application create it, wait for availability and link to it
+        if: steps.already-exist.outcome == 'failure'
+        run: |
+          clever create --type node ${{ inputs.application-full-name }} --alias ${{ inputs.application-full-name }} --org ${{ secrets.CLEVER_ORG_ID }} --region par
+          clever scale --flavor nano
+          sleep 10
+          clever link ${{ inputs.application-full-name }} --org ${{ secrets.CLEVER_ORG_ID }}
+
+      - name: Setup environement variables
+        if: steps.already-exist.outcome == 'failure'
+        run: clever env set NODE_ENV production
+
+
+      # Pas de meilleur moyen pour l'instant : https://github.community/t/how-to-retry-a-failed-step-in-github-actions-workflow/125880
+      - name: Deploy the linked application (attempt 1/2)
+        timeout-minutes: 3
+        continue-on-error: true
+        id: deploy-attempt-1
+        run: clever deploy --force
+      - name: Deploy the linked application (attempt 2/2)
+        timeout-minutes: 3
+        if: steps.deploy-attempt-1.outcome=='failure'
+        run: |
+          clever cancel-deploy
+          clever restart
+
+      - name: Retrieve the deployment url (without leading whitespaces)
+        id: deployed-domain
+        run: echo "::set-output name=domain::$(clever domain | xargs)"
