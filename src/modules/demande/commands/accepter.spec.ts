@@ -24,6 +24,7 @@ describe('accepter(Demande)', () => {
       expect(publishEvent).toHaveBeenCalledWith({
         ...makeDemandeAcceptée({ demandeId, acceptéeLe, acceptéePar }),
         eventId: expect.anything(),
+        occurredAt: expect.anything(),
       });
     });
   });
