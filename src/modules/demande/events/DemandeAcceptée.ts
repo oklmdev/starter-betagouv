@@ -1,4 +1,4 @@
-import { BaseDomainEvent, makeBaseDomainEvent } from '../../../archi/DomainEvent';
+import { BaseDomainEvent, makeDomainEvent } from '../../../archi/DomainEvent';
 
 export type DemandeAcceptée = BaseDomainEvent & {
   type: 'DemandeAcceptée';
@@ -9,9 +9,9 @@ export type DemandeAcceptée = BaseDomainEvent & {
   };
 };
 
-export const makeDemandeAcceptée = (payload: DemandeAcceptée['payload']): DemandeAcceptée => ({
-  ...makeBaseDomainEvent(),
-  type: 'DemandeAcceptée',
-  payload,
-  aggregateId: payload.demandeId, // aggregateId is always derived from the payload
-});
+export const makeDemandeAcceptée = (payload: DemandeAcceptée['payload']): DemandeAcceptée =>
+  makeDomainEvent({
+    type: 'DemandeAcceptée',
+    payload,
+    aggregateId: payload.demandeId, // aggregateId is always derived from the payload
+  });

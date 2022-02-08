@@ -11,14 +11,16 @@ export type BaseDomainEvent = {
   aggregateId?: string | string[];
 };
 
-const aggregateIdIfDefined = (aggregateId: AggregateId) => aggregateId ? {aggregateId} : {};
+const aggregateIdIfDefined = (aggregateId: DomainEvent['aggregateId']) => (aggregateId ? { aggregateId } : {});
 
-export const makeDomainEvent = <T extends string, P> (
-  type: T, payload: P, aggregateId: AggregateId
-): DomainEvent<T, P>  => ({
+export const makeDomainEvent = <T extends string, P>(specifics: {
+  type: T;
+  payload: P;
+  aggregateId: DomainEvent['aggregateId'];
+}): BaseDomainEvent & { type: T; payload: P } => ({
   eventId: uuid(),
   occurredAt: Date.now(),
-  type,
-  payload,
-  ...aggregateIdIfDefined(aggregateId)
+  type: specifics.type,
+  payload: specifics.payload,
+  ...aggregateIdIfDefined(specifics.aggregateId),
 });
