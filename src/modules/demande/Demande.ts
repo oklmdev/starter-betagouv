@@ -2,10 +2,11 @@
 
 import { Aggregate } from '../../archi/Aggregate';
 import { DomainEvent } from '../../archi/DomainEvent';
+import { accepter } from './commands';
 
-type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' };
+export type DemandeState = { demandeId: string; status: 'nouvelle' | 'déposée' | 'acceptée' };
 export type Demande = Aggregate & {
-  state: Readonly<DemandeState>;
+  accepter: ReturnType<typeof accepter>;
 };
 
 export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande => {
@@ -13,6 +14,7 @@ export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande
 
   // Set the initial state
   const state: DemandeState = {
+    demandeId,
     status: 'nouvelle',
   };
 
@@ -44,9 +46,7 @@ export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande
   };
 
   return {
-    id: demandeId,
-    state,
+    accepter: accepter(state, publishEvent),
     getPendingEvents: () => pendingEvents,
-    publishEvent,
   };
 };

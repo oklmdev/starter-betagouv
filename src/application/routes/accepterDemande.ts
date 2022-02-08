@@ -14,7 +14,7 @@ router.post('/accepterDemande', async (request, response) => {
     // We could call a use-case at the stage but the logic is so simple, it's not necessary, call the command via the repo
 
     await demandeRepo.transaction(demandeId, (demande) => {
-      accepter(demande, { acceptéeLe: Date.now(), acceptéePar: 'TODO: user.id' });
+      demande.accepter({ acceptéeLe: Date.now(), acceptéePar: 'TODO: user.id' });
     });
 
     response.send('OK');
