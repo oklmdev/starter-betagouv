@@ -3,15 +3,16 @@
 import { Aggregate } from '../../archi/Aggregate';
 import { DomainEvent } from '../../archi/DomainEvent';
 
+type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' };
 export type Demande = Aggregate & {
-  state: { status: 'nouvelle' | 'déposée' | 'acceptée' };
+  state: Readonly<DemandeState>;
 };
 
 export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande => {
   const pendingEvents: DomainEvent[] = [];
 
   // Set the initial state
-  const state: Demande['state'] = {
+  const state: DemandeState = {
     status: 'nouvelle',
   };
 
