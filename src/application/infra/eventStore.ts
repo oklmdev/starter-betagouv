@@ -10,9 +10,7 @@ export const transaction = async (
 ) => {
   // The queue is there to block the event store during the transaction
   return queue.push(async () => {
-    const aggregateExists = !!memory[aggregateId];
-
-    const history = aggregateExists ? memory[aggregateId] : [];
+    const history = memory[aggregateId] ?? []
 
     const newEvents = await callback(history);
 
