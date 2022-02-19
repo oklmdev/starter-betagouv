@@ -11,9 +11,14 @@ export type BaseDomainEvent = {
   aggregateId?: string | string[];
 };
 
-export const makeBaseDomainEvent = (): BaseDomainEvent => {
-  return {
-    eventId: uuid(),
-    occurredAt: Date.now(),
-  };
-};
+const aggregateIdIfDefined = (aggregateId: AggregateId) => aggregateId ? {aggregateId} : {};
+
+export const makeDomainEvent = <T extends string, P> (
+  type: T, payload: P, aggregateId: AggregateId
+): DomainEvent<T, P>  => ({
+  eventId: uuid(),
+  occurredAt: Date.now(),
+  type,
+  payload,
+  ...aggregateIdIfDefined(aggregateId)
+});
