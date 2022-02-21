@@ -1,7 +1,6 @@
 import { accepter } from '.';
-import { Demande, DemandeState } from '../Demande';
-import { AccepterNouvelleDemandeError } from '../errors';
-import { AccepterDemandeDéjàAcceptéeError } from '../errors/AccepterDemandeDéjàAcceptéeError';
+import { DemandeNonDéposéeError } from '../errors';
+import { DemandeDéjàAcceptéeError } from '../errors/DemandeDéjàAcceptéeError';
 import { makeDemandeAcceptée } from '../events';
 
 describe('accepter(Demande)', () => {
@@ -41,7 +40,7 @@ describe('accepter(Demande)', () => {
           },
           publishEvent
         )({ acceptéeLe, acceptéePar })
-      ).toThrowError(AccepterNouvelleDemandeError);
+      ).toThrowError(DemandeNonDéposéeError);
 
       expect(publishEvent).not.toBeCalled();
     });
@@ -59,7 +58,7 @@ describe('accepter(Demande)', () => {
           },
           publishEvent
         )({ acceptéeLe, acceptéePar })
-      ).toThrowError(AccepterDemandeDéjàAcceptéeError);
+      ).toThrowError(DemandeDéjàAcceptéeError);
 
       expect(publishEvent).not.toBeCalled();
     });

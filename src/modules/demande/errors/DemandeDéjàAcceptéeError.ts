@@ -1,4 +1,4 @@
-export class AccepterDemandeDéjàAcceptéeError extends Error {
+export class DemandeDéjàAcceptéeError extends Error {
   constructor() {
     super('La demande est déjà acceptée.');
   }

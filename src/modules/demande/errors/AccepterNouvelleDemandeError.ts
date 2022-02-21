@@ -1,4 +1,4 @@
-export class AccepterNouvelleDemandeError extends Error {
+export class DemandeNonDéposéeError extends Error {
   constructor() {
     super("La demande ne peut être acceptée avant d'être déposée.");
   }
