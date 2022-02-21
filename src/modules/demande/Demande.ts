@@ -2,18 +2,19 @@
 
 import { Aggregate } from '../../archi/Aggregate';
 import { DomainEvent } from '../../archi/DomainEvent';
-import { accepter } from './commands';
+import { accepter } from './actions';
 
 export type DemandeState = { demandeId: string; status: 'nouvelle' | 'déposée' | 'acceptée' };
 export type Demande = Aggregate & {
   accepter: ReturnType<typeof accepter>;
 };
 
+// TODO: mettre les parties génériques dans une méthode makeAggregate<AggregateState>(initialState, actions)
 export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande => {
   const pendingEvents: DomainEvent[] = [];
 
   // Set the initial state
-  const state: DemandeState = {
+  let state: DemandeState = {
     demandeId,
     status: 'nouvelle',
   };
@@ -21,27 +22,12 @@ export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande
   // Update the state by calling handleEvent on each event in the history
   if (history) {
     for (const event of history) {
-      handleEvent(event);
-    }
-  }
-
-  function handleEvent(event: DomainEvent) {
-    // Update the state based on the events
-
-    switch (event.type) {
-      case 'DemandeDéposée':
-        state.status = 'déposée';
-        break;
-      case 'DemandeAcceptée':
-        state.status = 'acceptée';
-        break;
-      default:
-        break;
+      state = handleEvent(state, event);
     }
   }
 
   const publishEvent = <Event extends DomainEvent>(event: Event) => {
-    handleEvent(event);
+    state = handleEvent(state, event);
     pendingEvents.push(event);
   };
 
@@ -50,3 +36,15 @@ export const makeDemande = (demandeId: string, history?: DomainEvent[]): Demande
     getPendingEvents: () => pendingEvents,
   };
 };
+
+export const handleEvent = (state: DemandeState, event: DomainEvent): DemandeState => {
+  switch (event.type) {
+      case 'DemandeDéposée':
+        return { ...state, status: 'déposée' };
+      case 'DemandeAcceptée':
+        return { ...state, status: 'acceptée' };
+      default:
+        return state
+        break;
+    }
+} 
