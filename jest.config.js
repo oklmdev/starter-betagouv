@@ -9,7 +9,7 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  testMatch: ['**/*.spec.(ts|js)'],
+  testMatch: ['**/*.(spec|integration).(ts|js)'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   testEnvironment: 'node',
 };
