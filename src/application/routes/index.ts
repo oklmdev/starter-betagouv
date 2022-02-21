@@ -1,2 +1,2 @@
-export * from './getDemandePage';
+export * from './demandePage';
 export * from './router';

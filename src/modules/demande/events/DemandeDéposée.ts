@@ -4,6 +4,8 @@ export type DemandeDéposée = BaseDomainEvent & {
   type: 'DemandeDéposée';
   payload: {
     demandeId: string;
+    type: 'réclamation';
+    justification: string;
     déposéePar: string;
     déposéeLe: number;
   };

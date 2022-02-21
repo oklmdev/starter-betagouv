@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type DemandePageProps = {
+export type DemandePageProps = {
   demande: {
     id: string;
     title: string;

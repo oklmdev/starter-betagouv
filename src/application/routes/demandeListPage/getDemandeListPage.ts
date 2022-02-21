@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server';
-import { demandeRepo } from '../infra/repositories';
-import { DemandePage } from './DemandePage';
-import { router } from './router';
+import { demandeRepo } from '../../infra/repositories';
+import { DemandeListPage } from './DemandeListPage';
+import { router } from '../router';
 
 // TODO: implementation in infra
 const getDemande = async (demandeId: string) => ({ id: demandeId, title: 'test' });
