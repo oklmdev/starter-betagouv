@@ -2,9 +2,13 @@ import ReactDOMServer from 'react-dom/server';
 import { demandeRepo } from '../../infra/repositories';
 import { DemandePage } from './DemandePage';
 import { router } from '../router';
+import { assertRole, User, UserRole, UserWithRole } from '../../../modules/authZ';
 
 // TODO: implementation in infra
 const getDemande = async (demandeId: string) => ({ id: demandeId, title: 'test' });
+
+// TODO: implementation in session middleware
+const getCurrentUser = async (): Promise<User> => ({ id: '', role: '' });
 
 router
   .route('/demande/:demandeId')
@@ -22,14 +26,13 @@ router
 
     // TODO: validation: make sure demandeId is proper
 
-    // TODO: get user from session
-    // TODO: make sure user has the rights to do this
-
     try {
-      // We could call a use-case at the stage but the logic is so simple, it's not necessary, call the command via the repo
+      const user = await getCurrentUser();
+      assertRole(user, ['administrateur', 'instructeur']);
 
+      // We could call a use-case at the stage but the logic is so simple, it's not necessary, call the command via the repo
       await demandeRepo.transaction(demandeId, (demande) => {
-        demande.accepter({ acceptéeLe: Date.now(), acceptéePar: 'TODO: user.id' });
+        demande.accepter({ acceptéeLe: Date.now(), acceptéePar: user });
       });
 
       const demande = await getDemande(demandeId);
