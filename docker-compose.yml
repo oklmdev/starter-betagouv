@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=oklm
+      - POSTGRES_PASSWORD=oklm
+      - POSTGRES_DB=oklm
+    restart: always
+    container_name: oklm_db_dev
+    ports:
+      - 5432:5432
