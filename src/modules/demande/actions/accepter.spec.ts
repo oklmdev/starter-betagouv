@@ -12,13 +12,14 @@ describe('accepter(Demande)', () => {
     const publishEvent = jest.fn();
 
     it('doit émettre un événement de type DemandeAcceptée', () => {
-      accepter(
-        {
+      accepter({
+        aggregateId: demandeId,
+        getState: () => ({
           demandeId,
           status: 'déposée',
-        },
-        publishEvent
-      )({ acceptéeLe, acceptéePar });
+        }),
+        publishEvent,
+      })({ acceptéeLe, acceptéePar });
 
       expect(publishEvent).toHaveBeenCalledWith({
         ...makeDemandeAcceptée({ demandeId, acceptéeLe, acceptéePar }),
@@ -33,13 +34,14 @@ describe('accepter(Demande)', () => {
 
     it('doit émettre une erreur', () => {
       expect(() =>
-        accepter(
-          {
+        accepter({
+          aggregateId: demandeId,
+          getState: () => ({
             demandeId,
             status: 'nouvelle',
-          },
-          publishEvent
-        )({ acceptéeLe, acceptéePar })
+          }),
+          publishEvent,
+        })({ acceptéeLe, acceptéePar })
       ).toThrowError(DemandeNonDéposéeError);
 
       expect(publishEvent).not.toBeCalled();
@@ -51,13 +53,14 @@ describe('accepter(Demande)', () => {
 
     it('doit émettre une erreur', () => {
       expect(() =>
-        accepter(
-          {
+        accepter({
+          aggregateId: demandeId,
+          getState: () => ({
             demandeId,
             status: 'acceptée',
-          },
-          publishEvent
-        )({ acceptéeLe, acceptéePar })
+          }),
+          publishEvent,
+        })({ acceptéeLe, acceptéePar })
       ).toThrowError(DemandeDéjàAcceptéeError);
 
       expect(publishEvent).not.toBeCalled();
