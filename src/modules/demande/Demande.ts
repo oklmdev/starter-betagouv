@@ -1,6 +1,6 @@
 // l'agrégat Demande
 
-import { makeAggregate } from '../../archi/Aggregate';
+import { makeAggregate } from '../../libs/makeAggregate';
 import { DomainEvent } from '../../archi/DomainEvent';
 import * as actions from './actions';
 
