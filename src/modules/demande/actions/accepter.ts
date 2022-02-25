@@ -1,25 +1,28 @@
-import { PublishEvent } from '../../../archi/Aggregate';
-import { Demande, DemandeState } from '../Demande';
-import { AccepterNouvelleDemandeError } from '../errors';
-import { AccepterDemandeDéjàAcceptéeError } from '../errors/AccepterDemandeDéjàAcceptéeError';
+import { AggregateAction } from '../../../archi/Aggregate';
+import { DemandeState } from '../Demande';
+import { DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '../errors';
 import { makeDemandeAcceptée } from '../events';
 
-export const accepter =
-  ({ status, demandeId }: DemandeState, publishEvent: PublishEvent) =>
-  (args: { acceptéePar: string; acceptéeLe: number }): void => {
-    const { acceptéePar, acceptéeLe } = args;
+interface AccepterArgs {
+  acceptéePar: string;
+  acceptéeLe: number;
+}
+export const accepter: AggregateAction<DemandeState, AccepterArgs> =
+  ({ aggregateId, getState, publishEvent }) =>
+  ({ acceptéePar, acceptéeLe }): void => {
+    const { status } = getState();
 
     // First step is always validation, use the state to check the validity of the command
 
     if (status === 'nouvelle') {
-      throw new AccepterNouvelleDemandeError();
+      throw new DemandeNonDéposéeError();
     }
 
     if (status === 'acceptée') {
-      throw new AccepterDemandeDéjàAcceptéeError();
+      throw new DemandeDéjàAcceptéeError();
     }
 
     // Ok, command is legal
     // Execute the effect (ie publish the event)
-    publishEvent(makeDemandeAcceptée({ acceptéeLe, acceptéePar, demandeId }));
+    publishEvent(makeDemandeAcceptée({ acceptéeLe, acceptéePar, demandeId: aggregateId }));
   };
