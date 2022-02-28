@@ -7,3 +7,12 @@ export type Aggregate<Actions = any> = {
 } & Actions;
 
 export type AggregateId = string;
+
+export interface AggregateActionDeps<AggregateState = any> {
+  aggregateId: AggregateId;
+  getState: () => AggregateState;
+  publishEvent: PublishEvent;
+}
+export interface AggregateAction<AggregateState, ActionArgs> {
+  (deps: AggregateActionDeps<AggregateState>): (args: ActionArgs) => void;
+}

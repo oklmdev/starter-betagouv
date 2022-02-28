@@ -1,14 +1,7 @@
-import { AggregateId, PublishEvent, Aggregate } from '../archi/Aggregate';
+import { AggregateId, PublishEvent, Aggregate, AggregateAction, AggregateActionDeps } from '../archi/Aggregate';
 import { DomainEvent } from '../archi/DomainEvent';
 
-export interface AggregateActionDeps<AggregateState = any> {
-  aggregateId: AggregateId;
-  getState: () => AggregateState;
-  publishEvent: PublishEvent;
-}
-export interface AggregateAction<AggregateState, ActionArgs> {
-  (deps: AggregateActionDeps<AggregateState>): (args: ActionArgs) => void;
-}
+
 export interface MakeAggregateProps<State, Actions> {
   initialState: State;
   actions: Actions;

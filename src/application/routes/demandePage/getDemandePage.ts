@@ -4,7 +4,7 @@ import { DemandePage } from './DemandePage';
 import { router } from '../router';
 
 // TODO: implementation in infra
-const getDemande = async (demandeId: string) => ({ id: demandeId, title: 'test' });
+const getDemande = async (demandeId: string) => ({ id: demandeId, justification: 'PLOP' });
 
 router
   .route('/demande/:demandeId')
