@@ -1,5 +1,4 @@
 import db from '../../infra/db';
-import { DemandePageProps } from '../demandePage/DemandePage';
 import { DemandeListPageProps } from './DemandeListPage';
 
 

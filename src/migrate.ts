@@ -1,16 +1,8 @@
-import { getHistory, publish } from './application/infra/eventStore'
+import { getHistory } from './application/infra/eventStore'
 import { projections } from './application/infra/projections/projections'
-import { makeDemandeDéposée } from './modules/demande/events'
-import { v4 as uuid } from 'uuid'
-import { DomainEvent } from './archi/DomainEvent'
+import { seed } from './seeds'
 
-const seedEvents: DomainEvent[] = [makeDemandeDéposée({ demandeId: uuid(), type: 'réclamation', justification: 'Je ne suis pas oklm', déposéePar: uuid(), déposéeLe: Date.now()})]
 
-async function seed(){
-  for(const event of seedEvents){
-    await publish(event)
-  }
-}
 
 async function migrate(){
 

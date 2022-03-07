@@ -43,6 +43,7 @@ export const transaction = async (
     const newEvents = await callback(aggregateHistory);
 
     memory[aggregateId] = [...memory[aggregateId], ...newEvents];
+
     history.push(...newEvents)
 
     for (const event of newEvents) {
