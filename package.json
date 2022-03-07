@@ -5,7 +5,7 @@
   "keywords": [],
   "scripts": {
     "start": "nodemon dist/application/server.js",
-    "watch": "concurrently \"tsc -w\" \"yarn run start\"",
+    "watch": "tsc && concurrently \"tsc -w\" \"yarn run start\"",
     "prettier": "prettier --write . --ignore-unknown",
     "migrate": "ts-node ./src/migrate.ts",
     "test": "jest",
