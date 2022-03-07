@@ -1,3 +1,3 @@
-import { createDemandeProjection } from "./demandes";
+import { demandeProjection } from "./demandes";
 
-export const projections = [createDemandeProjection]
+export const projections = [demandeProjection]
