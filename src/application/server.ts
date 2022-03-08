@@ -19,7 +19,9 @@ app.listen(PORT, (): void => {
   console.log('Server listening to port', PORT);
   seed();
 
-  for (const projection of projections) {
-    projection.initEventBus(eventBus);
-  }
+  eventBus.subscribeAll(async (event) => {
+    for (const projection of projections) {
+      await projection.handleEvent(event);
+    }
+  });
 });

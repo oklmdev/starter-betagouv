@@ -1,12 +1,10 @@
 import { DomainEvent } from './DomainEvent';
-import { EventBus } from './EventBus';
+import { EventHandler } from './EventHandler';
 
 export interface Projection {
   requiresRebuild: () => boolean | Promise<boolean>;
 
   reset: () => unknown | Promise<unknown>;
 
-  buildFromEvent: (event: DomainEvent) => unknown | Promise<unknown>;
-
-  initEventBus: (eventBus: EventBus) => unknown;
+  handleEvent: EventHandler<DomainEvent>;
 }
