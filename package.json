@@ -7,7 +7,7 @@
     "start": "nodemon dist/application/server.js",
     "watch": "tsc && concurrently \"tsc -w\" \"yarn run start\"",
     "prettier": "prettier --write . --ignore-unknown",
-    "migrate": "ts-node ./src/migrate.ts",
+    "migrate": "ts-node ./src/application/migrate.ts",
     "test": "jest",
     "lint": "eslint -c ./eslintrc.js src",
     "db": "docker-compose down --remove-orphans && docker-compose up -d",

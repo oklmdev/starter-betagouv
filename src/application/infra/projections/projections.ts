@@ -1,3 +1,4 @@
-import { demandeProjection } from "./demandes";
+import { Projection } from '../../../archi/Projection';
+import { demandeProjection } from './demandes';
 
-export const projections = [demandeProjection]
+export const projections: Projection[] = [demandeProjection];
