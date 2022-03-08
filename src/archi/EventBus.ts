@@ -1,8 +1,8 @@
 import { DomainEvent } from './DomainEvent';
+import { EventHandler } from './EventHandler';
 
 export interface EventBus {
-  publish: (event: DomainEvent) => void | Promise<void>;
-  subscribe<Event extends DomainEvent>(type: Event['type'], callBack: EventBusCallback<Event>): void;
+  publish: (event: DomainEvent) => unknown | Promise<unknown>;
+  subscribeAll(callBack: EventHandler<DomainEvent>): unknown;
+  subscribe<Event extends DomainEvent>(type: Event['type'], callBack: EventHandler<Event>): unknown;
 }
-
-export type EventBusCallback<Event extends DomainEvent = DomainEvent> = (e: Event) => void | Promise<void>;
