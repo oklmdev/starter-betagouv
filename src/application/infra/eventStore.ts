@@ -1,57 +1,34 @@
 import { DomainEvent } from '../../archi/DomainEvent';
-import { makeQueue } from '../../libs/queue';
+import { postgres } from './db';
 import { eventBus } from './eventBus';
 
-const memory: Record<string, DomainEvent[]> = {};
-const history: DomainEvent[] = []
-const queue = makeQueue();
+const createEventsTable =
+  'CREATE TABLE IF NOT EXISTS events (id UUID PRIMARY KEY, type VARCHAR(255) NOT NULL, aggregate_ids VARCHAR(255)[], payload JSON, occurred_at TIMESTAMPTZ NOT NULL);';
 
-export const publish = (event: DomainEvent) => {
+export const initEventStore = async () => {
+  console.log('Create events table');
+  return postgres.query(createEventsTable);
+};
 
-  // The queue is there to block the event store during the transaction
-  return queue.push(async () => {
-
-    const aggregateIds = event.aggregateId
-
-    if(aggregateIds){
-      if(Array.isArray(aggregateIds)){
-        for(const aggregateId of aggregateIds){
-          memory[aggregateId] = [...memory[aggregateId] ?? [], event];
-        }
-      }
-      else{
-        console.log(memory[aggregateIds]);
-        memory[aggregateIds] = [...memory[aggregateIds] ?? [], event];
-      }
-    }
-
-    history.push(event)
-    await eventBus.publish(event);
-  });
-
-
-}
+export const publish = async (event: DomainEvent) => {
+  const { eventId, type, payload, occurredAt, aggregateId } = event;
+  await postgres.query('INSERT INTO events (id, type, aggregate_ids, payload, occurred_at) VALUES ($1, $2, $3, $4, $5)', [
+    eventId,
+    type,
+    !aggregateId || Array.isArray(aggregateId) ? aggregateId : [aggregateId],
+    payload,
+    new Date(occurredAt),
+  ]);
+  await eventBus.publish(event);
+};
 
 export const transaction = async (
   aggregateId: string,
   callback: (aggregateHistory: DomainEvent[]) => DomainEvent[] | Promise<DomainEvent[]>
 ) => {
-  // The queue is there to block the event store during the transaction
-  return queue.push(async () => {
-    const aggregateHistory = memory[aggregateId] ?? [];
-
-    const newEvents = await callback(aggregateHistory);
-
-    memory[aggregateId] = [...memory[aggregateId], ...newEvents];
-
-    history.push(...newEvents)
-
-    for (const event of newEvents) {
-      await eventBus.publish(event);
-    }
-  });
+  // Start a transaction
 };
 
-export const getHistory = () => {
-  return history
-}
+export const getHistory = async (): Promise<DomainEvent[]> => {
+  return [];
+};
