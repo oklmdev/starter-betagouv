@@ -10,4 +10,4 @@ services:
     restart: always
     container_name: oklm_db_dev
     ports:
-      - 5432:5432
+      - 5436:5432

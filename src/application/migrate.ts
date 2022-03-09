@@ -17,11 +17,9 @@ async function migrate() {
   const events = await getHistory();
   for (const event of events) {
     for (const projection of projectionsToRebuild) {
-      await projection.buildFromEvent(event);
+      await projection.handleEvent(event);
     }
   }
 }
 
-seed().then(() => {
-  migrate();
-});
+migrate();

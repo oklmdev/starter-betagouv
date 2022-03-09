@@ -10,4 +10,4 @@ services:
     restart: always
     container_name: oklm_db_tests
     ports:
-      - 5433:5432
+      - 5437:5432
