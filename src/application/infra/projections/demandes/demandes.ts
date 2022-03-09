@@ -10,6 +10,8 @@ export const demandeProjection: Projection & EventDispatcher = {
   ...makeEventDispatcher(),
 
   requiresRebuild: () => {
+    // Always rebuild for now
+    // TODO: check if the schema has changed
     return true;
   },
 
