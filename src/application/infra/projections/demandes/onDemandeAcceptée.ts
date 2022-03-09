@@ -1,5 +1,5 @@
 import { DemandeAcceptée } from '../../../../modules/demande/events';
-import { postgres } from '../../db';
+import { postgres } from '../../postgres';
 import { demandeProjection } from './demandes';
 
 demandeProjection.on<DemandeAcceptée>('DemandeAcceptée', ({ payload: { demandeId, acceptéePar, acceptéeLe } }) => {

@@ -61,7 +61,7 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     });
   });
 
-  describe('when the db fails to persist the events', () => {
+  describe('when the db fails to persist one of the events', () => {
     const occurredAt = new Date();
     const payload = { param1: 123, param2: '123' };
     const aggregateId = 'aggregateId';
@@ -137,6 +137,32 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     it('should persist no events to db', async () => {
       const { rowCount } = await postgres.query('SELECT * FROM events');
       expect(rowCount).toEqual(0);
+    });
+  });
+
+  describe('when two transactions are open on the same aggregateId', () => {
+    const occurredAt = new Date();
+    const payload = { param1: 123, param2: '123' };
+    const aggregateId = 'aggregateId';
+
+    const pendingEvents = [{ type: 'TEST2', eventId: uuid(), aggregateId, occurredAt: occurredAt.getTime(), payload }];
+
+    const callback1 = jest.fn((events) => pendingEvents);
+    const callback2 = jest.fn((events) => []);
+
+    beforeAll(async () => {
+      await postgres.resetDatabase();
+      // @ts-ignore
+      eventBus.publish.mockClear();
+
+      const transaction1 = transaction(aggregateId, callback1);
+      const transaction2 = transaction(aggregateId, callback2);
+      await Promise.all([transaction1, transaction2]);
+    });
+
+    it('should wait for the first to finish before executing the second', async () => {
+      expect(callback1).toHaveBeenCalled();
+      expect(callback2).toHaveBeenCalledWith(pendingEvents);
     });
   });
 });

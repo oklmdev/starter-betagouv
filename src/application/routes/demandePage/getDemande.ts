@@ -1,15 +1,12 @@
-import db from '../../infra/db';
+import { postgres } from '../../infra/postgres';
 import { DemandePageProps } from './DemandePage';
 
-
 export const getDemande = async (demandeId: string): Promise<DemandePageProps['demande'] | null> => {
-  
-  const demandes = await db.query('SELECT * FROM demandes WHERE id=$1', [demandeId])
-  
-  if(!demandes.rowCount) return null;
+  const demandes = await postgres.query('SELECT * FROM demandes WHERE id=$1', [demandeId]);
 
-  const demande = demandes.rows[0]
+  if (!demandes.rowCount) return null;
 
-  return demande
+  const demande = demandes.rows[0];
 
+  return demande;
 };

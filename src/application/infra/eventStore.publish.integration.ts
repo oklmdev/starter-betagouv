@@ -1,8 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import { DomainEvent } from '../../archi/DomainEvent';
-import { postgres } from './db';
+import { postgres } from './postgres';
 import { eventBus } from './eventBus';
-import { publish } from './eventStore';
+import { Mutex, Semaphore, withTimeout } from 'async-mutex';
+import { publish, transaction } from './eventStore';
 
 describe('eventStore.publish', () => {
   describe('when the event has no aggregateId', () => {
@@ -92,10 +93,6 @@ describe('eventStore.publish', () => {
   });
 
   describe('when publishing an aggregate event while a transaction is open on that aggregate', () => {
-    beforeAll(async () => {
-      await postgres.resetDatabase();
-    });
-
-    it.todo('should wait for the transaction to finish before publishing the event');
+    it.todo('should wait for the first to finish before executing the second');
   });
 });

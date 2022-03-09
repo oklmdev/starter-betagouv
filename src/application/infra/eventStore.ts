@@ -1,6 +1,6 @@
 import { PoolClient } from 'pg';
 import { DomainEvent } from '../../archi/DomainEvent';
-import { postgres } from './db';
+import { postgres } from './postgres';
 import { eventBus } from './eventBus';
 
 const createEventsTable =
@@ -20,18 +20,43 @@ export const initEventStore = async () => {
 };
 
 export const publish = async (event: DomainEvent) => {
-  await insertEventIntoDb(event);
-  await eventBus.publish(event);
+  console.log('Publish');
+  const client = await postgres.connect();
+
+  try {
+    await client.query('BEGIN');
+
+    // TODO: instead of locking the whole table, lock a single aggregate
+    await client.query('LOCK TABLE events');
+
+    await insertEventIntoDb(event, client);
+
+    console.log('Publish done writing to db');
+    await eventBus.publish(event);
+    console.log('Publish done publishing to event bus');
+
+    await client.query('COMMIT');
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
 };
 
 export const transaction = async (
   aggregateId: string,
   callback: (aggregateHistory: DomainEvent[]) => DomainEvent[] | Promise<DomainEvent[]>
 ) => {
+  console.log('transaction');
   const client = await postgres.connect();
 
   try {
     await client.query('BEGIN');
+
+    // TODO: instead of locking the whole table, lock a single aggregate
+    await client.query('LOCK TABLE events');
+
     const { rows } = await client.query('SELECT * FROM events WHERE aggregate_ids && $1', [[aggregateId]]);
 
     const pendingEvents = await callback(rows.map(fromPersistance));
