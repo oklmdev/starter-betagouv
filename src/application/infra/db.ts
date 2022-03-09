@@ -16,9 +16,14 @@ export const postgres = {
   query: (text: string, params?: any) => {
     return pool.query(text, params);
   },
-  resetDatabase: () => {
+  resetDatabase: async () => {
     const tables = ['events', 'demandes'];
-    return Promise.all(tables.map((table) => pool.query(`TRUNCATE ${table}`)));
+    // console.log(`Resetting tables ${tables.join(', ')}`);
+    await Promise.all(tables.map((table) => pool.query(`TRUNCATE ${table}`)));
+    // console.log('Done resetting tables');
+  },
+  connect: () => {
+    return pool.connect();
   },
 };
 

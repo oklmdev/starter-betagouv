@@ -15,7 +15,7 @@ describe('eventStore.publish', () => {
     beforeAll(async () => {
       await postgres.resetDatabase();
 
-      eventBus.subscribe('TEST', fakeHandler);
+      eventBus.subscribeAll(fakeHandler);
 
       await publish(event);
     });
