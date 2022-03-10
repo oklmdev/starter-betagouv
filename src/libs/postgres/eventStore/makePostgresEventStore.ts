@@ -79,7 +79,9 @@ export const makePostgresEventStore = ({ publish, postgres }: PostgresEventStore
       }
     },
     getHistory: async (): Promise<DomainEvent[]> => {
-      return [];
+      const { rows } = await postgres.query('SELECT * FROM events ORDER BY occurred_at ASC');
+
+      return rows.map(fromPersistance);
     },
   };
 };
