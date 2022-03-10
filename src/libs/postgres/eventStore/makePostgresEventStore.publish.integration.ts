@@ -1,22 +1,20 @@
 import { v4 as uuid } from 'uuid';
-import { DomainEvent } from '../../archi/DomainEvent';
-import { postgres } from './postgres';
-import { eventBus } from './eventBus';
-import { Mutex, Semaphore, withTimeout } from 'async-mutex';
-import { publish, transaction } from './eventStore';
+import { makePostgresEventStore } from './makePostgresEventStore';
+import { postgresTest as postgres, resetDatabase } from './postgresTestInstance';
 
-describe('eventStore.publish', () => {
+describe('postgresEventStore.publish', () => {
   describe('when the event has no aggregateId', () => {
-    const fakeHandler = jest.fn((event: DomainEvent) => {});
     const eventId = uuid();
     const occurredAt = new Date();
     const payload = { param1: 123, param2: '123' };
     const event = { type: 'TEST', eventId, occurredAt: occurredAt.getTime(), payload };
 
-    beforeAll(async () => {
-      await postgres.resetDatabase();
+    const eventBusPublish = jest.fn();
 
-      eventBus.subscribeAll(fakeHandler);
+    beforeAll(async () => {
+      await resetDatabase();
+
+      const { publish } = makePostgresEventStore({ postgres, publish: eventBusPublish });
 
       await publish(event);
     });
@@ -36,13 +34,13 @@ describe('eventStore.publish', () => {
     });
 
     it('should publish the event on the event bus', () => {
-      expect(fakeHandler).toHaveBeenCalledWith(event);
+      expect(eventBusPublish).toHaveBeenCalledWith(event);
     });
   });
 
   describe('when the event has a single aggregateId', () => {
     beforeAll(async () => {
-      await postgres.resetDatabase();
+      await resetDatabase();
     });
     it('should save the event to the events table', async () => {
       const eventId = uuid();
@@ -50,6 +48,9 @@ describe('eventStore.publish', () => {
       const payload = { param1: 123, param2: '123' };
       const type = 'TEST';
       const aggregateId = 'aggregateId';
+
+      const { publish } = makePostgresEventStore({ postgres, publish: jest.fn() });
+
       await publish({ type, eventId, aggregateId, occurredAt: occurredAt.getTime(), payload });
 
       const { rows: events, rowCount: eventCount } = await postgres.query('SELECT * FROM events');
@@ -68,7 +69,7 @@ describe('eventStore.publish', () => {
 
   describe('when the event has multiple aggregateIds', () => {
     beforeAll(async () => {
-      await postgres.resetDatabase();
+      await resetDatabase();
     });
     it('should save the event to the events table', async () => {
       const eventId = uuid();
@@ -76,6 +77,9 @@ describe('eventStore.publish', () => {
       const payload = { param1: 123, param2: '123' };
       const type = 'TEST';
       const aggregateId = ['aggregateId1', 'aggregateId2'];
+
+      const { publish } = makePostgresEventStore({ postgres, publish: jest.fn() });
+
       await publish({ type, eventId, aggregateId, occurredAt: occurredAt.getTime(), payload });
 
       const { rows: events, rowCount: eventCount } = await postgres.query('SELECT * FROM events');

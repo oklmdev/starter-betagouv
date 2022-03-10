@@ -1,19 +1,17 @@
 import { v4 as uuid } from 'uuid';
-import { DomainEvent } from '../../archi/DomainEvent';
-import { postgres } from './db';
-import { eventBus } from './eventBus';
-import { insertEventIntoDb, toPersistance, transaction } from './eventStore';
+import { DomainEvent } from '../../../archi/DomainEvent';
+import { insertEventIntoDb, makePostgresEventStore, toPersistance } from './makePostgresEventStore';
+import { postgresTest as postgres, resetDatabase } from './postgresTestInstance';
 
-// TODO: use dependency injection on event store to avoid this mock
-jest.mock('./eventBus');
-
-describe('eventStore.transaction(aggregateId, callback)', () => {
+describe('postgresEventStore.transaction(aggregateId, callback)', () => {
   describe('when the aggregate has no history', () => {
     beforeAll(async () => {
-      await postgres.resetDatabase();
+      await resetDatabase();
     });
 
     it('should call the callback with an empty array', async () => {
+      const { transaction } = makePostgresEventStore({ postgres, publish: jest.fn() });
+
       const callback = jest.fn((events: DomainEvent[]) => Promise.resolve([]));
       const aggregateId = 'aggregateId';
       await transaction(aggregateId, callback);
@@ -34,13 +32,15 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
 
     const callback = jest.fn((events: DomainEvent[]) => Promise.resolve(pendingEvents));
 
+    const publish = jest.fn();
+
     beforeAll(async () => {
-      await postgres.resetDatabase();
-      // @ts-ignore
-      eventBus.publish.mockClear();
+      await resetDatabase();
+
+      const { transaction } = makePostgresEventStore({ postgres, publish });
 
       for (const event of history) {
-        await insertEventIntoDb(event);
+        await insertEventIntoDb(event, postgres);
       }
 
       await transaction(aggregateId, callback);
@@ -57,7 +57,7 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     });
 
     it('should publish the events returned by the callback', async () => {
-      expect(eventBus.publish).toHaveBeenCalledWith(pendingEvents[0]);
+      expect(publish).toHaveBeenCalledWith(pendingEvents[0]);
     });
   });
 
@@ -79,11 +79,12 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
 
     const callback = jest.fn((events: DomainEvent[]) => Promise.resolve(pendingEvents));
     const errorHandler = jest.fn();
+    const publish = jest.fn();
 
     beforeAll(async () => {
-      await postgres.resetDatabase();
-      // @ts-ignore
-      eventBus.publish.mockClear();
+      await resetDatabase();
+
+      const { transaction } = makePostgresEventStore({ postgres, publish });
 
       try {
         await transaction(aggregateId, callback);
@@ -102,7 +103,7 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     });
 
     it('should publish no events', async () => {
-      expect(eventBus.publish).not.toHaveBeenCalled();
+      expect(publish).not.toHaveBeenCalled();
     });
   });
 
@@ -116,12 +117,14 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     const callback = jest.fn((events: DomainEvent[]) => Promise.resolve(pendingEvents));
     const errorHandler = jest.fn();
 
+    const publish = jest.fn(() => {
+      throw new Error('test');
+    });
+
     beforeAll(async () => {
-      await postgres.resetDatabase();
-      // @ts-ignore
-      eventBus.publish.mockImplementationOnce(() => {
-        throw new Error('test');
-      });
+      await resetDatabase();
+
+      const { transaction } = makePostgresEventStore({ postgres, publish });
 
       try {
         await transaction(aggregateId, callback);
@@ -151,9 +154,9 @@ describe('eventStore.transaction(aggregateId, callback)', () => {
     const callback2 = jest.fn((events) => []);
 
     beforeAll(async () => {
-      await postgres.resetDatabase();
-      // @ts-ignore
-      eventBus.publish.mockClear();
+      await resetDatabase();
+
+      const { transaction } = makePostgresEventStore({ postgres, publish: jest.fn() });
 
       const transaction1 = transaction(aggregateId, callback1);
       const transaction2 = transaction(aggregateId, callback2);

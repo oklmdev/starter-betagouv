@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import { router } from './routes';
 import { seed } from './seeds';
 import { projections } from './infra/projections/projections';
-import { eventBus } from './infra/eventBus';
+import { subscribeAll } from './infra/eventBus';
 
 const PORT: number = parseInt(process.env.PORT ?? '3000');
 
@@ -19,7 +19,7 @@ app.listen(PORT, (): void => {
   console.log('Server listening to port', PORT);
   seed();
 
-  eventBus.subscribeAll(async (event) => {
+  subscribeAll(async (event) => {
     for (const projection of projections) {
       await projection.handleEvent(event);
     }

@@ -1,3 +1,3 @@
 import { makeInMemoryEventBus } from '../../libs/eventBus/InMemoryEventBus';
 
-export const eventBus = makeInMemoryEventBus();
+export const { publish, subscribe, subscribeAll } = makeInMemoryEventBus();
