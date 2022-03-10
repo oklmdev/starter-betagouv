@@ -1,9 +1,14 @@
 import { Projection } from '../archi/Projection';
-import { getHistory, initEventStore } from './infra/eventStore';
+import { getHistory, init as initEventStore } from './infra/eventStore';
 import { projections } from './infra/projections/projections';
+import { seed } from './seed';
 
 async function migrate() {
+  // Create the event store
   await initEventStore();
+
+  // Seed the history
+  await seed();
 
   // Step 1: prepare the projections (ex: create the table)
   const projectionsToRebuild: Projection[] = [];

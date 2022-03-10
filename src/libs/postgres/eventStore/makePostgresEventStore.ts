@@ -21,6 +21,7 @@ interface PostgresEventStoreDeps {
 export const makePostgresEventStore = ({ publish, postgres }: PostgresEventStoreDeps) => {
   return {
     init: () => {
+      console.log('Creating events table (postgresEventStore)');
       return postgres.query(createEventsTable);
     },
     publish: async (event: DomainEvent) => {

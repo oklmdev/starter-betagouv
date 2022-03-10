@@ -9,6 +9,8 @@ export const createDemandeProjection =
 export const demandeProjection: Projection & EventDispatcher = {
   ...makeEventDispatcher(),
 
+  name: 'demandes',
+
   requiresRebuild: () => {
     // Always rebuild for now
     // TODO: check if the schema has changed
@@ -16,7 +18,7 @@ export const demandeProjection: Projection & EventDispatcher = {
   },
 
   reset: () => {
-    console.log('Creating demandes projection');
+    console.log('Creating demandes table (demandes projection)');
     return postgres.query(createDemandeProjection);
   },
 };

@@ -9,12 +9,11 @@ export const makeInMemoryEventBus = (): EventBus => {
 
   return {
     publish: async (event: DomainEvent) => {
-      console.log('InMemoryEventBus publish', event);
       const { type } = event;
 
       const callbacksForType = _subscriptionsForType[type] || [];
       if (!callbacksForType.length && !_subscriptionsForAll.length) {
-        // console.warn({ eventtype: event.type }, `There are no subscriptions for this type : '${event.type}'`);
+        console.warn({ eventtype: event.type }, `There are no subscriptions for this type : '${event.type}'`);
         return;
       }
 

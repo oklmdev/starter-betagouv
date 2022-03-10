@@ -7,4 +7,6 @@ export interface Projection {
   reset: () => unknown | Promise<unknown>;
 
   handleEvent: EventHandler<DomainEvent>;
+
+  name: string;
 }
