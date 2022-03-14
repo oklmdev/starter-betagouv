@@ -1,28 +1,36 @@
 import { DomainEvent } from '../../archi/DomainEvent';
-import { EventBus, EventBusCallback } from '../../archi/EventBus';
+import { EventBus } from '../../archi/EventBus';
+import { EventHandler } from '../../archi/EventHandler';
 
 // en version fonction :
 export const makeInMemoryEventBus = (): EventBus => {
-  const _subscriptions: Partial<Record<DomainEvent['type'], EventBusCallback[]>> = {};
+  const _subscriptionsForType: Partial<Record<DomainEvent['type'], EventHandler[]>> = {};
+  const _subscriptionsForAll: EventHandler[] = [];
 
   return {
     publish: async (event: DomainEvent) => {
       const { type } = event;
 
-      const callbacks = _subscriptions[type];
-      if (callbacks === undefined) {
+      const callbacksForType = _subscriptionsForType[type] || [];
+      if (!callbacksForType.length && !_subscriptionsForAll.length) {
         console.warn({ eventtype: event.type }, `There are no subscriptions for this type : '${event.type}'`);
         return;
       }
 
-      await Promise.all(
-        callbacks.map(async (cb) => {
+      await Promise.all([
+        ...callbacksForType.map(async (cb) => {
           await cb(event);
-        })
-      );
+        }),
+        ..._subscriptionsForAll.map(async (cb) => {
+          await cb(event);
+        }),
+      ]);
     },
-    subscribe: async <Event extends DomainEvent>(type: Event['type'], callback: EventBusCallback<Event>) => {
-      _subscriptions[type] = [...(_subscriptions[type] || []), callback as EventBusCallback];
+    subscribeAll: (callback: EventHandler) => {
+      _subscriptionsForAll.push(callback);
+    },
+    subscribe: async <Event extends DomainEvent>(type: Event['type'], callback: EventHandler<Event>) => {
+      _subscriptionsForType[type] = [...(_subscriptionsForType[type] || []), callback as EventHandler];
     },
   };
 };

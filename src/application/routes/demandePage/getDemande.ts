@@ -1,10 +1,12 @@
+import { postgres } from '../../infra/postgres';
 import { DemandePageProps } from './DemandePage';
-import { demandes } from '../../infra/projections/demandes';
 
-export const getDemande = async (demandeId: string): Promise<DemandePageProps | null> => {
-  const demande = demandes.find(({ id }) => id === demandeId);
-  if(!demande) return null;
+export const getDemande = async (demandeId: string): Promise<DemandePageProps['demande'] | null> => {
+  const demandes = await postgres.query('SELECT * FROM demandes WHERE id=$1', [demandeId]);
 
-  return { demande, message: "Hello" }
+  if (!demandes.rowCount) return null;
 
+  const demande = { ...demandes.rows[0], acceptéeLe: Number(demandes.rows[0].acceptée_le) };
+
+  return demande;
 };
