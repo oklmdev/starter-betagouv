@@ -4,7 +4,8 @@ export type DemandePageProps = {
   demande: {
     id: string;
     justification: string;
-    status: string
+    status: string;
+    acceptéeLe?: number
   };
   message?: string;
 };
@@ -16,10 +17,12 @@ export const DemandePage = ({ demande, message }: DemandePageProps) => {
       Demande
       <div>{justification}</div>
       <div>Status: {status}</div>
-      { (true || status === 'déposée') && 
+      { (status === 'déposée') && 
       <form method='post'>
         <button type='submit'>Accepter la demande</button>
       </form>}
+      { (status === 'acceptée' && demande.acceptéeLe) && 
+      <div>Acceptée le {new Date(demande.acceptéeLe).toDateString()}</div>}
       {message && <div>{message}</div>}
     </div>
   );

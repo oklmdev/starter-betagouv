@@ -6,7 +6,7 @@ export const getDemande = async (demandeId: string): Promise<DemandePageProps['d
 
   if (!demandes.rowCount) return null;
 
-  const demande = demandes.rows[0];
+  const demande = { ...demandes.rows[0], acceptéeLe: Number(demandes.rows[0].acceptée_le) };
 
   return demande;
 };
