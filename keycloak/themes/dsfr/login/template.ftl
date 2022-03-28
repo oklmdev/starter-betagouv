@@ -16,8 +16,6 @@
 </head>
 
 <body class="${properties.kcBodyClass!}">
-
-
 <@header.main></@header.main>
 
 <div class="${properties.kcLoginClass!}">

@@ -8,7 +8,7 @@
                         <div class="fr-header__logo">
                             <a href="/" title="Accueil - [À MODIFIER | nom de l’entité (ministère , secrétariat d‘état, gouvernement)]">
                                 <p class="fr-logo">
-                                    Intitulé
+                                    Intitulé TEST
                                     <br>Officiel
                                 </p>
                             </a>
