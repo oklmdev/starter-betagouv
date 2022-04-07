@@ -1,6 +1,6 @@
 {
   "name": "oklm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Un code sain pour un dev serein",
   "keywords": [],
   "scripts": {
@@ -28,6 +28,7 @@
     "url": "https://github.com/oklmdev/oklm.git"
   },
   "main": "src/index.ts",
+  "bin": "init.js",
   "packageManager": "yarn@1.22.17",
   "dependencies": {
     "@types/express": "^4.17.13",
