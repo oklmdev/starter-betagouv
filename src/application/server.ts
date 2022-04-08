@@ -1,11 +1,11 @@
 import express, { Express } from 'express';
-import { subscribeAll } from './infra/eventBus';
-import { projections } from './infra/projections';
-import { router } from './routes';
-
-import { keycloak } from './infra/keycloak';
 import session from 'express-session';
+import { subscribeAll } from './infra/eventBus';
+import { keycloak } from './infra/keycloak/keycloak';
+import { resolveUserFromKeycloak } from './infra/keycloak/resolveUserFromKeycloak';
+import { projections } from './infra/projections';
 import { sessionStore } from './infra/session';
+import { router } from './routes';
 
 const PORT: number = parseInt(process.env.PORT ?? '3000');
 
@@ -26,6 +26,8 @@ app.use(
 );
 
 app.use(keycloak.middleware());
+
+app.use(resolveUserFromKeycloak);
 
 app.use(router);
 

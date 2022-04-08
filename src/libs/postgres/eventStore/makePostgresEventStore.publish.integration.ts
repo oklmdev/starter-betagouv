@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { makePostgresEventStore } from './makePostgresEventStore';
-import { postgresTest as postgres, resetDatabase } from './__tests__';
+import { postgresTest as postgres, resetDatabase } from '../__tests__';
 
 describe('postgresEventStore.publish', () => {
   describe('when the event has no aggregateId', () => {

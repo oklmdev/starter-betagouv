@@ -26,6 +26,8 @@ async function migrate() {
       await projection.handleEvent(event);
     }
   }
+
+  process.exit(0);
 }
 
 migrate();
