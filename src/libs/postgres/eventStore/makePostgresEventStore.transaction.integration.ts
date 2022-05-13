@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { DomainEvent } from '../../../archi/DomainEvent';
 import { insertEventIntoDb, makePostgresEventStore, toPersistance } from './makePostgresEventStore';
-import { postgresTest as postgres, resetDatabase } from './__tests__';
+import { postgresTest as postgres, resetDatabase } from '../__tests__';
 
 describe('postgresEventStore.transaction(aggregateId, callback)', () => {
   describe('when the aggregate has no history', () => {

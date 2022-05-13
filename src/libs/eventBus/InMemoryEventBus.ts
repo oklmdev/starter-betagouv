@@ -11,6 +11,8 @@ export const makeInMemoryEventBus = (): EventBus => {
     publish: async (event: DomainEvent) => {
       const { type } = event;
 
+      console.log(`Publish [${event.type}] ${JSON.stringify(event.payload)}`);
+
       const callbacksForType = _subscriptionsForType[type] || [];
       if (!callbacksForType.length && !_subscriptionsForAll.length) {
         console.warn({ eventtype: event.type }, `There are no subscriptions for this type : '${event.type}'`);

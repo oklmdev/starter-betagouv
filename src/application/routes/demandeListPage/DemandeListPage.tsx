@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export type DemandeListPageProps = {
-  demandes: { id: string, type: string, déposéeLe: number }[]
+  demandes: { id: string; type: string; déposéeLe: number }[];
 };
 
 export const DemandeListPage = ({ demandes }: DemandeListPageProps) => {
@@ -10,11 +10,13 @@ export const DemandeListPage = ({ demandes }: DemandeListPageProps) => {
       Demandes
       <div>Il y a {demandes.length} demandes en base</div>
       <ul>
-      { demandes.map(({ id, type, déposéeLe }) => 
-        <li key={`demande_${id}`}>
-          <a href={`/demande/${id}`}>{type} déposée le {new Date(déposéeLe).toString()}</a>
-        </li>
-    )}
+        {demandes.map(({ id, type, déposéeLe }) => (
+          <li key={`demande_${id}`}>
+            <a href={`/demande/${id}`}>
+              {type} déposée le {new Date(déposéeLe).toString()}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   );
