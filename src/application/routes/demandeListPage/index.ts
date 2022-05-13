@@ -1,1 +1,2 @@
-export * from './getDemandeListPage'
+export * from './getDemandeListPage';
+export * from './postDéposerDemande';

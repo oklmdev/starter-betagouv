@@ -1,10 +1,11 @@
 import { BaseDomainEvent, makeDomainEvent } from '../../../archi/DomainEvent';
+import { TypeDemande } from '../TypesDemande';
 
 export type DemandeDéposée = BaseDomainEvent & {
   type: 'DemandeDéposée';
   payload: {
     demandeId: string;
-    type: 'réclamation';
+    type: TypeDemande;
     justification: string;
     déposéePar: string;
     déposéeLe: number;

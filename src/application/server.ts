@@ -11,6 +11,14 @@ const PORT: number = parseInt(process.env.PORT ?? '3000');
 
 const app: Express = express();
 
+app.use(
+  express.urlencoded({
+    extended: false,
+    limit: '10mb',
+  })
+);
+app.use(express.json({ limit: '10mb' }));
+
 app.get('/ping', (_: express.Request, response: express.Response): void => {
   response.send('pong');
 });
