@@ -9,9 +9,12 @@
     "prettier": "prettier --write . --ignore-unknown",
     "migrate": "ts-node ./src/application/migrate.ts",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint -c ./eslintrc.js src",
     "db": "docker-compose down --remove-orphans && docker-compose up -d",
-    "db:test": "export NODE_ENV=test && export COMPOSE_PROJECT_NAME=oklm_tests && docker-compose down --remove-orphans && docker-compose -f ./docker-compose-integration.yml up -d && until docker exec oklm_db_tests pg_isready -U test -d oklm_test; do sleep 1; done && yarn migrate"
+    "db:test": "export NODE_ENV=test && export COMPOSE_PROJECT_NAME=oklm_tests && docker-compose down --remove-orphans && docker-compose -f ./docker-compose-integration.yml up -d && until docker exec oklm_db_tests pg_isready -U test -d oklm_test; do sleep 1; done && yarn migrate",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "homepage": "https://github.com/oklmdev/oklm#readme",
   "bugs": {
@@ -53,8 +56,16 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
+    "babel-loader": "^8.2.5",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^26.0.0",
