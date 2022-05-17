@@ -31,7 +31,7 @@ Mais aussi
 
 - Ne pas être dépendant d'un framework
   - les frameworks introduisent des patterns utiles mais au coût d'une inversion du contrôle (le framework appelle mon code, je ne peux pas le contourner)
-  - l'alternative proposée est d'introduire les patterns via des conventions, sans contraintes fortes (_ie_ sans API)
+  - l'alternative proposée est d'introduire les patterns via des conventions, sans contraintes fortes
 - S'outiller pour améliorer l'expérience de développement
   - intégration continue et déploiement continu (CI/CD)
   - analyse de code (typage, linters, autoformattage, visualisation, ...)
