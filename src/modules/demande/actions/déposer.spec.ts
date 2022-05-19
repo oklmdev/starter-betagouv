@@ -1,3 +1,6 @@
+import { Epoch, getEpoch, NonEmptyishString } from '../../../libs/typeguards';
+import { makeFakeUser } from '../../../__test__/fakeUser';
+import { Demandeur } from '../../authZ';
 import { DemandeDéjàDéposéeError } from '../errors';
 import { makeDemandeDéposée } from '../events';
 import { déposer } from './déposer';
@@ -5,9 +8,9 @@ import { déposer } from './déposer';
 describe('déposer(Demande)', () => {
   const demandeId = 'demande123';
   const type = 'réclamation' as 'réclamation';
-  const justification = 'justification';
-  const déposéePar = 'déposéePar';
-  const déposéeLe = 12345;
+  const justification = 'justification' as NonEmptyishString;
+  const déposéePar = makeFakeUser() as Demandeur;
+  const déposéeLe = 12345 as Epoch;
 
   describe('Quand la demande est nouvelle', () => {
     const publishEvent = jest.fn();
@@ -23,7 +26,7 @@ describe('déposer(Demande)', () => {
       })({ type, justification, déposéePar, déposéeLe });
 
       expect(publishEvent).toHaveBeenCalledWith({
-        ...makeDemandeDéposée({ demandeId, type, justification, déposéePar, déposéeLe }),
+        ...makeDemandeDéposée({ demandeId, type, justification, déposéePar: déposéePar.id, déposéeLe }),
         eventId: expect.anything(),
         occurredAt: expect.anything(),
       });
