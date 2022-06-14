@@ -12,7 +12,7 @@ export type DemandeDéposée = BaseDomainEvent & {
   };
 };
 
-export const makeDemandeDéposée = (payload: DemandeDéposée['payload']): DemandeDéposée =>
+export const DemandeDéposée = (payload: DemandeDéposée['payload']): DemandeDéposée =>
   makeDomainEvent({
     type: 'DemandeDéposée',
     payload,

@@ -3,7 +3,7 @@ import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
 import { Demandeur } from '../../authZ';
 import type { DemandeState } from '../Demande';
 import { DemandeDéjàDéposéeError } from '../errors';
-import { makeDemandeDéposée } from '../events';
+import { DemandeDéposée } from '../events';
 import { TypeDemande } from '../TypesDemande';
 
 interface DéposerArgs {
@@ -24,5 +24,5 @@ export const déposer: AggregateAction<DemandeState, DéposerArgs> =
       throw new DemandeDéjàDéposéeError();
     }
 
-    publishEvent(makeDemandeDéposée({ demandeId: aggregateId, type, justification, déposéeLe, déposéePar: demandeurId }));
+    publishEvent(DemandeDéposée({ demandeId: aggregateId, type, justification, déposéeLe, déposéePar: demandeurId }));
   };

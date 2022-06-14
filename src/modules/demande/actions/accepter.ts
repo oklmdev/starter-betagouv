@@ -1,7 +1,7 @@
 import { AggregateAction } from '../../../archi/Aggregate';
 import type { DemandeState } from '../Demande';
 import { DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '../errors';
-import { makeDemandeAcceptée } from '../events';
+import { DemandeAcceptée } from '../events';
 
 interface AccepterArgs {
   acceptéePar: string;
@@ -24,5 +24,5 @@ export const accepter: AggregateAction<DemandeState, AccepterArgs> =
 
     // Ok, command is legal
     // Execute the effect (ie publish the event)
-    publishEvent(makeDemandeAcceptée({ acceptéeLe, acceptéePar, demandeId: aggregateId }));
+    publishEvent(DemandeAcceptée({ acceptéeLe, acceptéePar, demandeId: aggregateId }));
   };

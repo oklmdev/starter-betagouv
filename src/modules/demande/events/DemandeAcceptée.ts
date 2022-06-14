@@ -9,7 +9,7 @@ export type DemandeAcceptée = BaseDomainEvent & {
   };
 };
 
-export const makeDemandeAcceptée = (payload: DemandeAcceptée['payload']): DemandeAcceptée =>
+export const DemandeAcceptée = (payload: DemandeAcceptée['payload']): DemandeAcceptée =>
   makeDomainEvent({
     type: 'DemandeAcceptée',
     payload,

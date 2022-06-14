@@ -2,7 +2,7 @@ import { Epoch, getEpoch, NonEmptyishString } from '../../../libs/typeguards';
 import { makeFakeUser } from '../../../__test__/fakeUser';
 import { Demandeur } from '../../authZ';
 import { DemandeDéjàDéposéeError } from '../errors';
-import { makeDemandeDéposée } from '../events';
+import { DemandeDéposée } from '../events';
 import { déposer } from './déposer';
 
 describe('déposer(Demande)', () => {
@@ -26,7 +26,7 @@ describe('déposer(Demande)', () => {
       })({ type, justification, déposéePar, déposéeLe });
 
       expect(publishEvent).toHaveBeenCalledWith({
-        ...makeDemandeDéposée({ demandeId, type, justification, déposéePar: déposéePar.id, déposéeLe }),
+        ...DemandeDéposée({ demandeId, type, justification, déposéePar: déposéePar.id, déposéeLe }),
         eventId: expect.anything(),
         occurredAt: expect.anything(),
       });

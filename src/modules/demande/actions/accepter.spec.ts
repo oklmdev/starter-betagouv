@@ -1,7 +1,7 @@
 import { accepter } from '.';
 import { DemandeNonDéposéeError } from '../errors';
 import { DemandeDéjàAcceptéeError } from '../errors/DemandeDéjàAcceptéeError';
-import { makeDemandeAcceptée } from '../events';
+import { DemandeAcceptée } from '../events';
 
 describe('accepter(Demande)', () => {
   const acceptéeLe = 123456;
@@ -22,7 +22,7 @@ describe('accepter(Demande)', () => {
       })({ acceptéeLe, acceptéePar });
 
       expect(publishEvent).toHaveBeenCalledWith({
-        ...makeDemandeAcceptée({ demandeId, acceptéeLe, acceptéePar }),
+        ...DemandeAcceptée({ demandeId, acceptéeLe, acceptéePar }),
         eventId: expect.anything(),
         occurredAt: expect.anything(),
       });
