@@ -1,6 +1,6 @@
 import { Pool, PoolClient } from 'pg';
-import { DomainEvent } from '../../archi/DomainEvent';
-import { EventBus } from '../../archi/EventBus';
+import { DomainEvent } from '../../types/DomainEvent';
+import { EventBus } from '../../types/EventBus';
 
 const createEventsTable =
   'CREATE TABLE IF NOT EXISTS events (id UUID PRIMARY KEY, type VARCHAR(255) NOT NULL, aggregate_ids VARCHAR(255)[], payload JSON, occurred_at TIMESTAMPTZ NOT NULL);';

@@ -1,14 +1,10 @@
 // l'agrégat Demande
 
-import { makeAggregate } from '../../libs/makeAggregate';
-import { DomainEvent } from '../../libs/archi/DomainEvent';
+import { makeAggregate } from '../../libs/eventSourcing/makeAggregate';
+import { DomainEvent } from '../../libs/eventSourcing/types/DomainEvent';
 import * as actions from './actions';
 
 export type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' };
-
-export const makeDemande = makeAggregate({ initialState: { status: 'nouvelle' }, updateState, actions });
-
-export type Demande = ReturnType<typeof makeDemande>;
 
 export function updateState(state: DemandeState, event: DomainEvent): DemandeState {
   switch (event.type) {
@@ -21,11 +17,6 @@ export function updateState(state: DemandeState, event: DomainEvent): DemandeSta
   }
 }
 
-type A = {
-  param1: string;
-  param2?: string;
-};
+export const Demande = makeAggregate({ initialState: { status: 'nouvelle' }, updateState, actions });
 
-const a: A = {
-  param1: 'qsdqsd',
-};
+export type Demande = ReturnType<typeof Demande>;

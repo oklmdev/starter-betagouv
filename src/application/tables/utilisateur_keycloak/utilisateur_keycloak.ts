@@ -1,4 +1,4 @@
-import { makeProjectionTable } from '../../../libs/makeProjectionTable';
+import { makeProjectionTable } from '../../../libs/eventSourcing/makeProjectionTable';
 import { postgres } from '../../infra/postgres';
 
 const deleteUtilisateurKeycloakTable = 'DROP TABLE IF EXISTS utilisateur_keycloak;';

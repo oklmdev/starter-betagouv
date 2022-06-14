@@ -1,5 +1,5 @@
-import { AggregateId, PublishEvent, Aggregate, AggregateAction, AggregateActionDeps } from './archi/Aggregate';
-import { DomainEvent } from './archi/DomainEvent';
+import { AggregateId, PublishEvent, Aggregate, AggregateAction, AggregateActionDeps } from './types/Aggregate';
+import { DomainEvent } from './types/DomainEvent';
 
 export interface MakeAggregateProps<State, Actions> {
   initialState: State;

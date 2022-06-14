@@ -1,5 +1,4 @@
 import { DomainEvent } from './DomainEvent';
-import { EventBus } from './EventBus';
 import { EventHandler } from './EventHandler';
 
 export interface EventDispatcher {

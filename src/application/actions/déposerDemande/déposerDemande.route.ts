@@ -1,14 +1,12 @@
-import ReactDOMServer from 'react-dom/server';
 import z from 'zod';
 import { responseAsHtml } from '../../../libs/responseAsHtml';
 import { getEpoch, zNonEmptyishString } from '../../../libs/typeguards';
 import { isDemandeur } from '../../../modules/authZ';
-import { makeDemande } from '../../../modules/demande/Demande';
+import { Demande } from '../../../modules/demande/Demande';
 import { DemandeDéjàDéposéeError } from '../../../modules/demande/errors';
 import { typesDemandes } from '../../../modules/demande/TypesDemande';
 import { keycloak } from '../../infra/keycloak/keycloak';
-import { demandeRepo } from '../../infra/repositories';
-import { transaction } from '../../infra/transaction';
+import { transaction } from '../../infra/eventStore';
 import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';
 import { getDemandeList } from '../../pages/demandeList/getDemandeList.query';
 import { router } from '../../router';
@@ -33,8 +31,10 @@ router.route('/demandes').post(keycloak.protect(), async (request, response) => 
       throw new Error('Réservé aux demandeurs');
     }
 
-    await transaction(makeDemande, demandeId, (demande) => {
+    await transaction(demandeId, (events) => {
+      const demande = Demande(demandeId, events);
       demande.déposer({ type, justification, déposéeLe: getEpoch(new Date()), déposéePar: user });
+      return demande.getPendingEvents();
     });
   } catch (error) {
     if (error instanceof DemandeDéjàDéposéeError) {

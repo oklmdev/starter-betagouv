@@ -1,6 +1,5 @@
-import { makeDemande } from '../../../modules/demande/Demande';
-import { demandeRepo } from '../../infra/repositories';
-import { transaction } from '../../infra/transaction';
+import { Demande } from '../../../modules/demande/Demande';
+import { transaction } from '../../infra/eventStore';
 import { returnDemandePage } from '../../pages/demandeDetails';
 import { router } from '../../router';
 
@@ -17,8 +16,10 @@ router.route('/demande/:demandeId').post(async (request, response) => {
   try {
     // We could call a use-case at the stage but the logic is so simple, it's not necessary, call the command via the repo
 
-    await transaction(makeDemande, demandeId, (demande) => {
+    await transaction(demandeId, (events) => {
+      const demande = Demande(demandeId, events);
       demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.user.id });
+      return demande.getPendingEvents();
     });
 
     return returnDemandePage(demandeId, response, 'Demande acceptée');

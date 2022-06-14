@@ -1,5 +1,5 @@
-import { makeAggregate } from '../../libs/makeAggregate';
-import { DomainEvent } from '../../libs/archi/DomainEvent';
+import { makeAggregate } from '../../libs/eventSourcing/makeAggregate';
+import { DomainEvent } from '../../libs/eventSourcing/types/DomainEvent';
 import * as actions from './actions';
 
 export type IdentitéKeycloakState = { estInscrit: boolean };

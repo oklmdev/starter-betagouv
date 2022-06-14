@@ -1,12 +1,11 @@
-import { EventDispatcher } from './archi/EventDispatcher';
-import { Projection } from './archi/Projection';
+import { ProjectionTable } from './types/Projection';
 import { makeEventDispatcher } from './makeEventDispatcher';
 
 export function makeProjectionTable(args: {
-  name: Projection['name'];
-  requiresRebuild?: Projection['requiresRebuild'];
-  reset: Projection['reset'];
-}): Projection & EventDispatcher {
+  name: ProjectionTable['name'];
+  reset: ProjectionTable['reset'];
+  requiresRebuild?: ProjectionTable['requiresRebuild'];
+}): ProjectionTable {
   const { name, requiresRebuild, reset } = args;
 
   const { on, handleEvent } = makeEventDispatcher();

@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import session from 'express-session';
-import { subscribeAll } from './infra/eventBus';
+import { eventBus } from './infra/eventBus';
 import { keycloak } from './infra/keycloak/keycloak';
 import { resolveUserFromKeycloak } from './infra/keycloak/resolveUserFromKeycloak';
 import { tables } from './tables';
@@ -43,9 +43,9 @@ app.listen(PORT, (): void => {
   // eslint-disable-next-line no-console
   console.log('Server listening to port', PORT);
 
-  subscribeAll(async (event) => {
-    for (const projection of tables) {
-      await projection.handleEvent(event);
+  eventBus.subscribeAll(async (event) => {
+    for (const projectionTable of tables) {
+      await projectionTable.handleEvent(event);
     }
   });
 });
