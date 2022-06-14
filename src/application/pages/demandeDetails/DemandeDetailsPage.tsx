@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type DemandePageProps = {
+export type DemandeDetailsPageProps = {
   demande: {
     id: string;
     justification: string;
@@ -10,7 +10,7 @@ export type DemandePageProps = {
   message?: string;
 };
 
-export const DemandePage = ({ demande, message }: DemandePageProps) => {
+export const DemandeDetailsPage = ({ demande, message }: DemandeDetailsPageProps) => {
   const { justification, id, status } = demande;
   return (
     <div>

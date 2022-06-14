@@ -1,14 +1,17 @@
 import ReactDOMServer from 'react-dom/server';
 import z from 'zod';
+import { responseAsHtml } from '../../../libs/responseAsHtml';
 import { getEpoch, zNonEmptyishString } from '../../../libs/typeguards';
 import { isDemandeur } from '../../../modules/authZ';
+import { makeDemande } from '../../../modules/demande/Demande';
 import { DemandeDéjàDéposéeError } from '../../../modules/demande/errors';
 import { typesDemandes } from '../../../modules/demande/TypesDemande';
 import { keycloak } from '../../infra/keycloak/keycloak';
 import { demandeRepo } from '../../infra/repositories';
-import { router } from '../router';
-import { DemandeListPage } from './DemandeListPage';
-import { getDemandeList } from './getDemandeList';
+import { transaction } from '../../infra/transaction';
+import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';
+import { getDemandeList } from '../../pages/demandeList/getDemandeList.query';
+import { router } from '../../router';
 
 router.route('/demandes').post(keycloak.protect(), async (request, response) => {
   console.log(`POST on /demandes`);
@@ -30,7 +33,7 @@ router.route('/demandes').post(keycloak.protect(), async (request, response) => 
       throw new Error('Réservé aux demandeurs');
     }
 
-    await demandeRepo.transaction(demandeId, (demande) => {
+    await transaction(makeDemande, demandeId, (demande) => {
       demande.déposer({ type, justification, déposéeLe: getEpoch(new Date()), déposéePar: user });
     });
   } catch (error) {
@@ -41,5 +44,5 @@ router.route('/demandes').post(keycloak.protect(), async (request, response) => 
 
   const demandes = await getDemandeList();
 
-  response.send(ReactDOMServer.renderToString(DemandeListPage(demandes)));
+  responseAsHtml(response, DemandeListPage(demandes));
 });

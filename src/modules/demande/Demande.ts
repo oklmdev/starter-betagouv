@@ -20,3 +20,12 @@ export function updateState(state: DemandeState, event: DomainEvent): DemandeSta
       return state;
   }
 }
+
+type A = {
+  param1: string;
+  param2?: string;
+};
+
+const a: A = {
+  param1: 'qsdqsd',
+};

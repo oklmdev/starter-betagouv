@@ -4,7 +4,7 @@
   "description": "Un code sain pour un dev serein",
   "keywords": [],
   "scripts": {
-    "start": "nodemon dist/application/server.js",
+    "start": "nodemon dist/application/index.js",
     "watch": "tsc && concurrently \"tsc -w\" \"yarn run start\"",
     "prettier": "prettier --write . --ignore-unknown",
     "migrate": "ts-node ./src/application/migrate.ts",

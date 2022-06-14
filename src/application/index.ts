@@ -5,7 +5,7 @@ import { keycloak } from './infra/keycloak/keycloak';
 import { resolveUserFromKeycloak } from './infra/keycloak/resolveUserFromKeycloak';
 import { projections } from './infra/projections';
 import { sessionStore } from './infra/session';
-import { router } from './routes';
+import { router } from './router';
 
 const PORT: number = parseInt(process.env.PORT ?? '3000');
 
