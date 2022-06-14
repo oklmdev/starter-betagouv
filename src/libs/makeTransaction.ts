@@ -1,5 +1,5 @@
-import { Aggregate } from '../archi/Aggregate';
-import { DomainEvent } from '../archi/DomainEvent';
+import { Aggregate } from './archi/Aggregate';
+import { DomainEvent } from './archi/DomainEvent';
 
 type EventStoreTransaction = (
   aggregateId: string,

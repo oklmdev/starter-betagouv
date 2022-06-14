@@ -1,5 +1,5 @@
 import { getHistory, publish } from './infra/eventStore';
-import { DomainEvent } from '../archi/DomainEvent';
+import { DomainEvent } from '../libs/archi/DomainEvent';
 import { DemandeDéposée } from '../modules/demande/events';
 import { v4 as uuid } from 'uuid';
 

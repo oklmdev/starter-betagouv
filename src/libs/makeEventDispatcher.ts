@@ -1,6 +1,6 @@
-import { DomainEvent } from '../archi/DomainEvent';
-import { EventDispatcher } from '../archi/EventDispatcher';
-import { EventHandler } from '../archi/EventHandler';
+import { DomainEvent } from './archi/DomainEvent';
+import { EventDispatcher } from './archi/EventDispatcher';
+import { EventHandler } from './archi/EventHandler';
 
 export const makeEventDispatcher = (): EventDispatcher => {
   const handlersByType: Record<string, EventHandler<any>> = {};

@@ -1,6 +1,6 @@
-import { DomainEvent } from '../../archi/DomainEvent';
-import { EventBus } from '../../archi/EventBus';
-import { EventHandler } from '../../archi/EventHandler';
+import { DomainEvent } from '../archi/DomainEvent';
+import { EventBus } from '../archi/EventBus';
+import { EventHandler } from '../archi/EventHandler';
 
 // en version fonction :
 export const makeInMemoryEventBus = (): EventBus => {

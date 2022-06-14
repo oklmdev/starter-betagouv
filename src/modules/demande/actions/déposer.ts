@@ -1,4 +1,4 @@
-import { AggregateAction } from '../../../archi/Aggregate';
+import { AggregateAction } from '../../../libs/archi/Aggregate';
 import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
 import { Demandeur } from '../../authZ';
 import type { DemandeState } from '../Demande';

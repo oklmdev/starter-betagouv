@@ -1,7 +1,7 @@
 // l'agrégat Demande
 
 import { makeAggregate } from '../../libs/makeAggregate';
-import { DomainEvent } from '../../archi/DomainEvent';
+import { DomainEvent } from '../../libs/archi/DomainEvent';
 import * as actions from './actions';
 
 export type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' };

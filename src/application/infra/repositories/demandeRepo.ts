@@ -1,4 +1,4 @@
-import { Repository } from '../../../archi/Repository';
+import { Repository } from '../../../libs/archi/Repository';
 import { Demande, makeDemande } from '../../../modules/demande/Demande';
 import { transaction as eventStoreTransaction } from '../eventStore';
 

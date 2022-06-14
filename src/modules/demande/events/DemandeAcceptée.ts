@@ -1,4 +1,4 @@
-import { BaseDomainEvent, makeDomainEvent } from '../../../archi/DomainEvent';
+import { BaseDomainEvent, makeDomainEvent } from '../../../libs/archi/DomainEvent';
 
 export type DemandeAcceptée = BaseDomainEvent & {
   type: 'DemandeAcceptée';

@@ -1,4 +1,4 @@
-import { AggregateAction } from '../../../archi/Aggregate';
+import { AggregateAction } from '../../../libs/archi/Aggregate';
 import type { DemandeState } from '../Demande';
 import { DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '../errors';
 import { DemandeAcceptée } from '../events';

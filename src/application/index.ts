@@ -3,7 +3,7 @@ import session from 'express-session';
 import { subscribeAll } from './infra/eventBus';
 import { keycloak } from './infra/keycloak/keycloak';
 import { resolveUserFromKeycloak } from './infra/keycloak/resolveUserFromKeycloak';
-import { projections } from './infra/projections';
+import { tables } from './tables';
 import { sessionStore } from './infra/session';
 import { router } from './router';
 
@@ -44,7 +44,7 @@ app.listen(PORT, (): void => {
   console.log('Server listening to port', PORT);
 
   subscribeAll(async (event) => {
-    for (const projection of projections) {
+    for (const projection of tables) {
       await projection.handleEvent(event);
     }
   });

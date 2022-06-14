@@ -1,4 +1,4 @@
-import { AggregateAction } from '../../../archi/Aggregate';
+import { AggregateAction } from '../../../libs/archi/Aggregate';
 import { UtilisateurDéjàInscritError } from '../errors';
 import { makeUtilisateurInscritViaKeycloak } from '../events';
 

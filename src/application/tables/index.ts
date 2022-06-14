@@ -1,3 +1,3 @@
 export * from './demandes';
-export * from './projections';
+export * from './tables';
 export * from './utilisateur_keycloak';
