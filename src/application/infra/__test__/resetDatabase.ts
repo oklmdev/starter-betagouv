@@ -1,16 +1,16 @@
 import { postgres } from '../postgres';
-import { projections } from '../projections';
+import { tables } from '../../tables';
 
 export const resetDatabase = async () => {
-  const tables = projections.map((p) => p.name);
+  const tableNames = tables.map((p) => p.name);
 
   const client = await postgres.connect();
 
   try {
     await client.query('BEGIN');
 
-    for (const table of tables) {
-      await client.query(`TRUNCATE ${table}`);
+    for (const tableName of tableNames) {
+      await client.query(`TRUNCATE ${tableName}`);
     }
 
     await client.query('COMMIT');

@@ -1,6 +1,6 @@
-import { Projection } from '../archi/Projection';
+import { ProjectionTable } from '../libs/eventSourcing/types/Projection';
 import { getHistory, init as initEventStore } from './infra/eventStore';
-import { projections } from './infra/projections/projections';
+import { tables } from './tables/tables';
 import { seed } from './seed';
 
 async function migrate() {
@@ -11,8 +11,8 @@ async function migrate() {
   await seed();
 
   // Step 1: prepare the projections (ex: create the table)
-  const projectionsToRebuild: Projection[] = [];
-  for (const projection of projections) {
+  const projectionsToRebuild: ProjectionTable[] = [];
+  for (const projection of tables) {
     if (await projection.requiresRebuild()) {
       await projection.reset();
       projectionsToRebuild.push(projection);

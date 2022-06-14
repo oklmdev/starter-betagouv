@@ -26,6 +26,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
       id: uuid(),
       keycloakId,
     };
+
     await registerNewUserFromKeycloak(newUser);
     console.log(`Registered as new user from keycloak and setting request.user=${JSON.stringify(newUser, null, 2)}`);
     request.user = newUser;

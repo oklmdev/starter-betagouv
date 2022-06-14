@@ -1,7 +1,7 @@
 declare module Express {
   // eslint-disable-next-line
-  interface Request {
-    user: { id: string };
+  export interface Request {
+    user: { id: string; role: string };
     kauth: any;
   }
 }
