@@ -1,6 +1,4 @@
-import { accepter } from '.';
-import { DemandeNonDéposéeError } from '../errors';
-import { DemandeDéjàAcceptéeError } from '../errors/DemandeDéjàAcceptéeError';
+import { accepter, DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '.';
 import { DemandeAcceptée } from '../events';
 
 describe('accepter(Demande)', () => {

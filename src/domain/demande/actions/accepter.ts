@@ -1,6 +1,5 @@
 import { AggregateAction } from '../../../libs/eventSourcing/types/Aggregate';
 import type { DemandeState } from '../Demande';
-import { DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '../errors';
 import { DemandeAcceptée } from '../events';
 
 interface AccepterArgs {
@@ -26,3 +25,15 @@ export const accepter: AggregateAction<DemandeState, AccepterArgs> =
     // Execute the effect (ie publish the event)
     publishEvent(DemandeAcceptée({ acceptéeLe, acceptéePar, demandeId: aggregateId }));
   };
+
+export class DemandeNonDéposéeError extends Error {
+  constructor() {
+    super("La demande ne peut être acceptée avant d'être déposée.");
+  }
+}
+
+export class DemandeDéjàAcceptéeError extends Error {
+  constructor() {
+    super('La demande est déjà acceptée.');
+  }
+}

@@ -2,11 +2,11 @@
 
 import { makeAggregate } from '../../libs/eventSourcing/makeAggregate';
 import { DomainEvent } from '../../libs/eventSourcing/types/DomainEvent';
-import * as actions from './actions';
+import { accepter, déposer } from './actions';
 
 export type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' };
 
-export function updateState(state: DemandeState, event: DomainEvent): DemandeState {
+export function buildState(state: DemandeState, event: DomainEvent): DemandeState {
   switch (event.type) {
     case 'DemandeDéposée':
       return { ...state, status: 'déposée' };
@@ -17,6 +17,8 @@ export function updateState(state: DemandeState, event: DomainEvent): DemandeSta
   }
 }
 
-export const Demande = makeAggregate({ initialState: { status: 'nouvelle' }, updateState, actions });
-
-export type Demande = ReturnType<typeof Demande>;
+export const makeDemande = makeAggregate({
+  initialState: { status: 'nouvelle' },
+  buildState,
+  actions: { accepter, déposer },
+});

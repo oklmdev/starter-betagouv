@@ -1,4 +1,4 @@
-import { Demande } from '../../../modules/demande/Demande';
+import { makeDemande } from '../../../domain/demande/Demande';
 import { transaction } from '../../infra/eventStore';
 import { returnDemandePage } from '../../pages/demandeDetails';
 import { router } from '../../router';
@@ -17,7 +17,7 @@ router.route('/demande/:demandeId').post(async (request, response) => {
     // We could call a use-case at the stage but the logic is so simple, it's not necessary, call the command via the repo
 
     await transaction(demandeId, (events) => {
-      const demande = Demande(demandeId, events);
+      const demande = makeDemande(demandeId, events);
       demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.user.id });
       return demande.getPendingEvents();
     });

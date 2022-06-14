@@ -2,7 +2,6 @@ import { AggregateAction } from '../../../libs/eventSourcing/types/Aggregate';
 import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
 import { Demandeur } from '../../authZ';
 import type { DemandeState } from '../Demande';
-import { DemandeDéjàDéposéeError } from '../errors';
 import { DemandeDéposée } from '../events';
 import { TypeDemande } from '../TypesDemande';
 
@@ -26,3 +25,9 @@ export const déposer: AggregateAction<DemandeState, DéposerArgs> =
 
     publishEvent(DemandeDéposée({ demandeId: aggregateId, type, justification, déposéeLe, déposéePar: demandeurId }));
   };
+
+export class DemandeDéjàDéposéeError extends Error {
+  constructor() {
+    super('Une demande avec cet id a déjà été déposée.');
+  }
+}

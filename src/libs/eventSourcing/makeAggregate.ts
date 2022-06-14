@@ -4,13 +4,13 @@ import { DomainEvent } from './types/DomainEvent';
 export interface MakeAggregateProps<State, Actions> {
   initialState: State;
   actions: Actions;
-  updateState: (state: State, event: DomainEvent) => State;
+  buildState: (state: State, event: DomainEvent) => State;
 }
 export const makeAggregate =
   <AggregateState, Actions extends Record<string, AggregateAction<AggregateState, any>>>({
     initialState,
     actions,
-    updateState,
+    buildState,
   }: MakeAggregateProps<AggregateState, Actions>) =>
   (aggregateId: AggregateId, history?: DomainEvent[]): Aggregate<ExtractActions<Actions>> => {
     const pendingEvents: DomainEvent[] = [];
@@ -21,12 +21,12 @@ export const makeAggregate =
     // Update the state by calling updateState on each event in the history
     if (history) {
       for (const event of history) {
-        state = updateState(state, event);
+        state = buildState(state, event);
       }
     }
 
     const publishEvent = <Event extends DomainEvent>(event: Event) => {
-      state = updateState(state, event);
+      state = buildState(state, event);
       pendingEvents.push(event);
     };
 

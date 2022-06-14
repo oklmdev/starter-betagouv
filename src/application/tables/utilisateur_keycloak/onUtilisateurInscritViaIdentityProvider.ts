@@ -1,4 +1,4 @@
-import { UtilisateurInscritViaKeycloak } from '../../../modules/identitéKeycloak';
+import { UtilisateurInscritViaKeycloak } from '../../../domain/identitéKeycloak';
 import { postgres } from '../../infra/postgres';
 import { utilisateurKeycloakTable } from './utilisateur_keycloak';
 

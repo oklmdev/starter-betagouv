@@ -1,15 +1,15 @@
 import z from 'zod';
 import { responseAsHtml } from '../../../libs/responseAsHtml';
 import { getEpoch, zNonEmptyishString } from '../../../libs/typeguards';
-import { isDemandeur } from '../../../modules/authZ';
-import { Demande } from '../../../modules/demande/Demande';
-import { DemandeDéjàDéposéeError } from '../../../modules/demande/errors';
-import { typesDemandes } from '../../../modules/demande/TypesDemande';
+import { isDemandeur } from '../../../domain/authZ';
+import { makeDemande } from '../../../domain/demande/Demande';
+import { typesDemandes } from '../../../domain/demande/TypesDemande';
 import { keycloak } from '../../infra/keycloak/keycloak';
 import { transaction } from '../../infra/eventStore';
 import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';
 import { getDemandeList } from '../../pages/demandeList/getDemandeList.query';
 import { router } from '../../router';
+import { DemandeDéjàDéposéeError } from '../../../domain/demande/actions';
 
 router.route('/demandes').post(keycloak.protect(), async (request, response) => {
   console.log(`POST on /demandes`);
@@ -32,7 +32,7 @@ router.route('/demandes').post(keycloak.protect(), async (request, response) => 
     }
 
     await transaction(demandeId, (events) => {
-      const demande = Demande(demandeId, events);
+      const demande = makeDemande(demandeId, events);
       demande.déposer({ type, justification, déposéeLe: getEpoch(new Date()), déposéePar: user });
       return demande.getPendingEvents();
     });

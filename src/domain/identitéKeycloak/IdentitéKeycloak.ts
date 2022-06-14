@@ -1,14 +1,16 @@
 import { makeAggregate } from '../../libs/eventSourcing/makeAggregate';
 import { DomainEvent } from '../../libs/eventSourcing/types/DomainEvent';
-import * as actions from './actions';
+import { inscrireUtilisateur } from './actions';
 
 export type IdentitéKeycloakState = { estInscrit: boolean };
 
-export const makeIdentitéKeycloak = makeAggregate({ initialState: { estInscrit: false }, updateState, actions });
+export const makeIdentitéKeycloak = makeAggregate({
+  initialState: { estInscrit: false },
+  buildState,
+  actions: { inscrireUtilisateur },
+});
 
-export type IdentitéKeycloak = ReturnType<typeof makeIdentitéKeycloak>;
-
-export function updateState(state: IdentitéKeycloakState, event: DomainEvent): IdentitéKeycloakState {
+export function buildState(state: IdentitéKeycloakState, event: DomainEvent): IdentitéKeycloakState {
   switch (event.type) {
     case 'UtilisateurInscritViaKeycloak':
       return { ...state, estInscrit: true };

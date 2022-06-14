@@ -1,4 +1,4 @@
-import { makeIdentitéKeycloak } from '../../../modules/identitéKeycloak';
+import { makeIdentitéKeycloak } from '../../../domain/identitéKeycloak';
 import { transaction } from '../eventStore';
 
 interface NewUserFromKeycloakArgs {

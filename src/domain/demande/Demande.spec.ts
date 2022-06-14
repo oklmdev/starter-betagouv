@@ -1,4 +1,4 @@
-import { DemandeState, updateState } from './Demande';
+import { DemandeState, buildState } from './Demande';
 import { DemandeAcceptée, DemandeDéposée } from './events';
 
 const demandeId = '';
@@ -10,7 +10,7 @@ const initialState: DemandeState = {
 describe('Demande', () => {
   describe('quand il reçoit un événement DemandeAcceptée', () => {
     it('doit retourner un status accepté', () => {
-      expect(updateState(initialState, DemandeAcceptée({ demandeId, acceptéeLe: 123, acceptéePar: '' }))).toEqual({
+      expect(buildState(initialState, DemandeAcceptée({ demandeId, acceptéeLe: 123, acceptéePar: '' }))).toEqual({
         status: 'acceptée',
       });
     });
@@ -19,7 +19,7 @@ describe('Demande', () => {
   describe('quand il reçoit un événement DemandeDéposée', () => {
     it('doit retourner un status déposée', () => {
       expect(
-        updateState(
+        buildState(
           initialState,
           DemandeDéposée({ demandeId, type: 'réclamation', justification: '', déposéeLe: 123, déposéePar: '' })
         )
