@@ -2,11 +2,18 @@ import { postgres } from '../../infra/postgres';
 import { DemandeDetailsPageProps } from './DemandeDetailsPage';
 
 export const getDemande = async (demandeId: string): Promise<DemandeDetailsPageProps['demande'] | null> => {
-  const demandes = await postgres.query('SELECT * FROM demandes WHERE id=$1', [demandeId]);
+  const { rows, rowCount } = await postgres.query('SELECT * FROM demandes WHERE id=$1', [demandeId]);
 
-  if (!demandes.rowCount) return null;
+  if (!rowCount) return null;
 
-  const demande = { ...demandes.rows[0], acceptéeLe: Number(demandes.rows[0].acceptée_le) };
+  const demande = rows[0];
 
-  return demande;
+  const { id, justification, status, acceptée_le } = demande;
+
+  return {
+    id,
+    justification,
+    status,
+    acceptéeLe: Number(acceptée_le),
+  };
 };
