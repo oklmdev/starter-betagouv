@@ -1,9 +1,9 @@
 import { makeDemande } from '../../../domain/demande/Demande';
 import { transaction } from '../../dependencies/eventStore';
 import { returnDemandePage } from '../../pages/demandeDetails';
-import { router } from '../../router';
+import { actionsRouter } from '../actionsRouter';
 
-router.route('/demande/:demandeId').post(async (request, response) => {
+actionsRouter.route('/demande/:demandeId').post(async (request, response) => {
   const { demandeId } = request.params;
 
   console.log(`POST on /demande/${demandeId}`);

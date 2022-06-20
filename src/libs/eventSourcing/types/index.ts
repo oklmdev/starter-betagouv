@@ -4,4 +4,3 @@ export * from './EventBus';
 export * from './EventDispatcher';
 export * from './EventHandler';
 export * from './Projection';
-export * from './Repository';

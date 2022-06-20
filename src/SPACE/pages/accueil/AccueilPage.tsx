@@ -1,12 +1,8 @@
 import { Row, Card, CardTitle, CardDescription, CardImage, Col, Button } from '@dataesr/react-dsfr';
 import { Layout } from '../_components/layout/Layout';
-import './style.css';
-
 import * as React from 'react';
 
-export type AccueilPageProps = {};
-
-export const AccueilPage = ({}: AccueilPageProps) => {
+export const AccueilPage = () => {
   return (
     <Layout>
       <section className='section-blue section-main'>
@@ -22,7 +18,7 @@ export const AccueilPage = ({}: AccueilPageProps) => {
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <div className='home-hero-anim'>
-                <img src={require('../components/images/flame-meeting-in-space.png')} className='hero-anim-background' alt='' />
+                <img src={'images/flame-meeting-in-space.png'} className='hero-anim-background' alt='' />
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
     const userId = await getUserIdByKeycloakId(keycloakId);
 
     if (userId) {
-      request.user = { id: userId };
+      request.user = { id: userId, role: 'administrateur' };
       request.session.user = request.user;
       console.log(`resolveUserFromKeycloak found ${userId}`);
       return next();
@@ -25,6 +25,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
     const newUser = {
       id: uuid(),
       keycloakId,
+      role: 'administrateur' as 'administrateur',
     };
 
     await registerNewUserFromKeycloak(newUser);
