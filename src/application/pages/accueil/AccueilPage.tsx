@@ -17,6 +17,7 @@ import {
   CardDescription,
   CardImage,
   Col,
+  Button
 } from '@dataesr/react-dsfr';
 import './style.css';
 
@@ -34,6 +35,25 @@ export const AccueilPage = ({ }: AccueilPageProps) => {
           <Service title='S.P.A.C.E' description="Service Protection de l'Accès à la Célérité dans l'Espace" />
         </HeaderBody>
       </Header>
+      <section className="section-blue section-main">
+        <div className="fr-container">
+          <div className="fr-grid-row fr-grid-row--gutters fr-py-6w">
+            <div className="fr-col fr-col-12 fr-col-md-6">
+              <h1>La célérité c'est bien mais avec modération</h1>
+              <div className='button'>
+                <Button 
+                  secondary
+                  title="title">Découvrir le programme
+                </Button>
+              </div>
+            </div>
+            <div className="fr-col fr-col-12 fr-col-md-6">
+              <div className="home-hero-anim">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
         <span style={{ fontSize: "30px", fontWeight: "bold" }}> À la une </span> <span className='actu' style={{ cursor: "pointer" }}>Toutes les actualités ➝ </span>
       </div>
