@@ -9,6 +9,10 @@
   border-radius: 10px;
 }
 
+.section-container{
+  margin-left: 20px
+}
+
 .section-main {
   width: 100%;
   overflow: hidden;
@@ -28,4 +32,12 @@
 .button {
   max-width: fit-content;
   background-color: white;
+}
+.home-hero-anim{
+  margin-left: 80px;
+  position: relative;
+}
+.hero-anim-background{
+      width: 60%;
+      height: 60%;
 }

@@ -12,6 +12,9 @@ import {
   FooterPartnersLogo,
   FooterBottom,
   FooterCopy,
+  ToolItemGroup,
+  ToolItem,
+  Tool,
 } from '@dataesr/react-dsfr';
 
 import './style.css';
@@ -23,6 +26,13 @@ export function Layout(props: { children: React.ReactNode }) {
         <HeaderBody>
           <Logo splitCharacter={10}>Ministère de la sécurité intergalactique </Logo>
           <Service title='S.P.A.C.E' description="Service Protection de l'Accès à la Célérité dans l'Espace" />
+          <Tool>
+            <ToolItemGroup>
+              <ToolItem icon='ri-lock-line' link='/path'>
+                Connexion
+              </ToolItem>
+            </ToolItemGroup>
+          </Tool>
         </HeaderBody>
       </Header>
       <div style={{ padding: '30px 0' }}>{props.children}</div>
