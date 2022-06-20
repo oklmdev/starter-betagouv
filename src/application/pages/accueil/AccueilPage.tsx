@@ -5,24 +5,27 @@ import {
   Header,
   Logo,
   Footer,
-  FooterTopCategory,
   FooterLink,
-  FooterTop,
-  FooterBody,
-  FooterOperator,
-  FooterBodyItem,
   FooterPartners,
   FooterPartnersTitle,
   FooterPartnersLogo,
   FooterBottom,
   FooterCopy,
+  Row,
+  Card,
+  CardTitle,
+  CardDescription,
+  CardImage,
+  Col,
 } from '@dataesr/react-dsfr';
+import './style.css';
+
 import * as React from 'react';
 
 export type AccueilPageProps = {};
 
-export const AccueilPage = ({}: AccueilPageProps) => {
-  const path = '/myPath';
+export const AccueilPage = ({ }: AccueilPageProps) => {
+
   return (
     <Container>
       <Header>
@@ -31,10 +34,49 @@ export const AccueilPage = ({}: AccueilPageProps) => {
           <Service title='S.P.A.C.E' description="Service Protection de l'Accès à la Célérité dans l'Espace" />
         </HeaderBody>
       </Header>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
+        <span style={{ fontSize: "30px", fontWeight: "bold" }}> À la une </span> <span className='actu' style={{ cursor: "pointer" }}>Toutes les actualités ➝ </span>
+      </div>
+      <div>
+        <Row>
+          <Col>
+            <Card href="/">
+              <CardImage alt="alternative" src="http://fakeimg.pl/300/" />
+              <CardTitle>
+                Une publicité visant à heurter la sensiblité des plus jeunes
+              </CardTitle>
+              <CardDescription>
+                La nouvelle campagne publicitaire dénoncant les courses entre la terre et la lune est en ligne et fait parler d'elle. Les nouveaux arrêtés de la commission intergalactique vont être mise en place début 2872.
+              </CardDescription>
+            </Card>
+          </Col>
+          <Col>
+            <Card href="/">
+              <CardTitle>
+                Tout savoir sur le nouveau système de point du permis intergalactique
+              </CardTitle>
+              <CardDescription>
+                Suite à une recrudescence des infractions comises par les utilisateurs des voies céleste, le gouvernement français a décidé pour l'univers d'un nouveau permis de conduire commun, que vous soyez humanoïdes ou non.
+              </CardDescription>
+            </Card>
+          </Col>
+          <Col>
+            <Card href="/">
+              <CardImage alt="alternative" src="http://fakeimg.pl/300/" />
+              <CardTitle>
+                Création d'une nouvelle voie rapide reliant Mars et Saturne
+              </CardTitle>
+              <CardDescription>
+                Grace à la coopération entre le C.A.S.M (Comité d'Accueil Sympathique de Mars) et le régime démocratique de Saturne, une nouvelle voie rapide de 1 199 millions de km à été mise en place afin d'effectuer le trajet en seulement 26 années.
+              </CardDescription>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+
+
       <Footer>
-        <FooterBody description=''>
-          <Logo>Ministère de la sécurité intergalactique </Logo>
-        </FooterBody>
+
         <FooterPartners>
           <FooterPartnersTitle>Nos partenaires</FooterPartnersTitle>
 
@@ -49,12 +91,12 @@ export const AccueilPage = ({}: AccueilPageProps) => {
             imageAlt='Logo 2'
           />
         </FooterPartners>
-        <FooterBottom>
-          <FooterLink href='/'>Footer Link</FooterLink>
-          <FooterLink href='/'>Footer Link</FooterLink>
-          <FooterLink href='/'>Footer Link</FooterLink>
-          <FooterLink href='/'>Footer Link</FooterLink>
-          <FooterLink href='/'>Footer Link</FooterLink>
+        <FooterBottom >
+          <FooterLink href='/'>Nasa</FooterLink>
+          <FooterLink href='/'>StarLink</FooterLink>
+          <FooterLink href='/'>ESA</FooterLink>
+          <FooterLink href='/'>Roscosmos</FooterLink>
+          <FooterLink href='/'>Space X</FooterLink>
           <FooterCopy>licence etalab-2.0</FooterCopy>
         </FooterBottom>
       </Footer>

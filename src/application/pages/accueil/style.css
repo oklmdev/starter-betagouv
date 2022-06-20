@@ -1,0 +1,10 @@
+.actu {
+  margin-bottom: 30px;
+  padding: 4px;
+}
+
+.actu:hover {
+
+  background-color: rgb(240, 238, 238);
+  border-radius: 10px;
+}
