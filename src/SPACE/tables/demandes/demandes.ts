@@ -1,5 +1,5 @@
 import { makeProjectionTable } from '../../../libs/eventSourcing/makeProjectionTable';
-import { postgres } from '../../infra/postgres';
+import { postgres } from '../../dependencies/postgres';
 
 const deleteDemandeTable = 'DROP TABLE IF EXISTS demandes;';
 

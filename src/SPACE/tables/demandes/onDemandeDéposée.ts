@@ -1,5 +1,5 @@
 import { DemandeDéposée } from '../../../domain/demande/events';
-import { postgres } from '../../infra/postgres';
+import { postgres } from '../../dependencies/postgres';
 import { demandeTable } from './demandes';
 
 demandeTable.on<DemandeDéposée>('DemandeDéposée', ({ payload: { demandeId, type, justification, déposéePar, déposéeLe } }) => {

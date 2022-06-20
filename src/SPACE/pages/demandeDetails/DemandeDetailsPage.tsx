@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Layout } from '../components/layout/Layout';
+import { Layout } from '../_components/layout/Layout';
 
 import { Highlight, Button } from '@dataesr/react-dsfr';
 

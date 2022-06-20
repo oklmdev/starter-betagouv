@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { Layout } from '../components/layout/Layout';
+import { Layout } from '../_components/layout/Layout';
 
 import { Table, TextInput, Button } from '@dataesr/react-dsfr';
 

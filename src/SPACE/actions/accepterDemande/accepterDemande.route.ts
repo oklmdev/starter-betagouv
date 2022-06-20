@@ -1,5 +1,5 @@
 import { makeDemande } from '../../../domain/demande/Demande';
-import { transaction } from '../../infra/eventStore';
+import { transaction } from '../../dependencies/eventStore';
 import { returnDemandePage } from '../../pages/demandeDetails';
 import { router } from '../../router';
 

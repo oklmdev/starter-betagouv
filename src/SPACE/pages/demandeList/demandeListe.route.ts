@@ -1,6 +1,6 @@
 import ReactDOMServer from 'react-dom/server';
 import { responseAsHtml } from '../../../libs/responseAsHtml';
-import { keycloak } from '../../infra/keycloak/keycloak';
+import { keycloak } from '../../dependencies/keycloak/keycloak';
 import { router } from '../../router';
 import { DemandeListPage } from './DemandeListPage';
 import { getDemandeList } from './getDemandeList.query';

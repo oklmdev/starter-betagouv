@@ -1,5 +1,5 @@
 import { ProjectionTable } from '../libs/eventSourcing/types/Projection';
-import { getHistory, init as initEventStore } from './infra/eventStore';
+import { getHistory, init as initEventStore } from './dependencies/eventStore';
 import { tables } from './tables/tables';
 import { seed } from './seed';
 

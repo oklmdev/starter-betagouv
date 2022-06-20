@@ -1,4 +1,4 @@
-import { getHistory, publish } from './infra/eventStore';
+import { getHistory, publish } from './dependencies/eventStore';
 import { DomainEvent } from '../libs/eventSourcing/types/DomainEvent';
 import { DemandeDéposée } from '../domain/demande/events';
 import { v4 as uuid } from 'uuid';

@@ -1,4 +1,4 @@
-import { postgres } from '../../infra/postgres';
+import { postgres } from '../../dependencies/postgres';
 import { DemandeListPageProps } from './DemandeListPage';
 
 export const getDemandeList = async (): Promise<DemandeListPageProps> => {

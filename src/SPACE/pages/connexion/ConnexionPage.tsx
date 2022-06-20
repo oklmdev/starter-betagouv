@@ -1,4 +1,4 @@
-import { Layout } from '../components/layout/Layout';
+import { Layout } from '../_components/layout/Layout';
 import { TextInput, Button } from '@dataesr/react-dsfr';
 import './style.css';
 

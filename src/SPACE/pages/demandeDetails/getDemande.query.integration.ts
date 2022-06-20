@@ -1,6 +1,6 @@
 import { getUuid } from '../../../libs/getUuid';
-import { postgres } from '../../infra/postgres';
-import { resetDatabase } from '../../infra/__test__/resetDatabase';
+import { postgres } from '../../dependencies/postgres';
+import { resetDatabase } from '../../dependencies/__test__/resetDatabase';
 import { getDemande } from './getDemande.query';
 
 describe('getDemande', () => {

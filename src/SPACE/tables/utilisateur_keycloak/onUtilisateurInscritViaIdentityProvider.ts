@@ -1,5 +1,5 @@
 import { UtilisateurInscritViaKeycloak } from '../../../domain/identitéKeycloak';
-import { postgres } from '../../infra/postgres';
+import { postgres } from '../../dependencies/postgres';
 import { utilisateurKeycloakTable } from './utilisateur_keycloak';
 
 utilisateurKeycloakTable.on<UtilisateurInscritViaKeycloak>('UtilisateurInscritViaKeycloak', ({ payload }) => {

@@ -1,5 +1,5 @@
 import { makeProjectionTable } from '../../../libs/eventSourcing/makeProjectionTable';
-import { postgres } from '../../infra/postgres';
+import { postgres } from '../../dependencies/postgres';
 
 const deleteUtilisateurKeycloakTable = 'DROP TABLE IF EXISTS utilisateur_keycloak;';
 const createUtilisateurKeycloakTable = 'CREATE TABLE utilisateur_keycloak (id UUID PRIMARY KEY, keycloak_id VARCHAR(36));';
