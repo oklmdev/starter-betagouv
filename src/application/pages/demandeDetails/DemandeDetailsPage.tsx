@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Layout } from '../components/layout/Layout';
 
 export type DemandeDetailsPageProps = {
   demande: {
@@ -13,7 +14,7 @@ export type DemandeDetailsPageProps = {
 export const DemandeDetailsPage = ({ demande, message }: DemandeDetailsPageProps) => {
   const { justification, id, status } = demande;
   return (
-    <div>
+    <Layout>
       Demande
       <div>{justification}</div>
       <div>Status: {status}</div>
@@ -24,6 +25,6 @@ export const DemandeDetailsPage = ({ demande, message }: DemandeDetailsPageProps
       )}
       {status === 'acceptée' && demande.acceptéeLe && <div>Acceptée le {new Date(demande.acceptéeLe).toDateString()}</div>}
       {message && <div>{message}</div>}
-    </div>
+    </Layout>
   );
 };
