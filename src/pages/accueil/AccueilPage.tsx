@@ -17,8 +17,8 @@ export const AccueilPage = () => {
               </div>
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
-              <div className='home-hero-anim'>
-                <img src={'images/pas-si-vite.svg'} className='hero-anim-background' alt='' />
+              <div style={{ marginLeft: 80, position: 'relative' }}>
+                <img src={'images/pas-si-vite.svg'} style={{ width: '90%', height: '90%' }} alt='' />
               </div>
             </div>
           </div>
