@@ -9,7 +9,5 @@ pageRouter.route('/demandes').get(keycloak.protect(), async (request, response) 
 
   const demandes = await getDemandeList();
 
-  // response.send(`<pre>${JSON.stringify(request.kauth?.grant?.access_token, null, 2)}</pre>`);
-
-  responseAsHtml(response, DemandeListPage(demandes));
+  responseAsHtml(request, response, DemandeListPage({ demandes }));
 });

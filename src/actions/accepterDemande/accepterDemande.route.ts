@@ -22,13 +22,13 @@ actionsRouter.route('/demande/:demandeId').post(async (request, response) => {
       return demande.getPendingEvents();
     });
 
-    return returnDemandePage(demandeId, response, 'Demande acceptée');
+    return returnDemandePage(demandeId, request, response, 'Demande acceptée');
   } catch (error) {
     if (error instanceof Error) {
       // Potentially do something different based on the exact error class
-      return returnDemandePage(demandeId, response, error.message);
+      return returnDemandePage(demandeId, request, response, error.message);
     }
 
-    return returnDemandePage(demandeId, response, `La demande n'a pas pu être acceptée: erreur système.`);
+    return returnDemandePage(demandeId, request, response, `La demande n'a pas pu être acceptée: erreur système.`);
   }
 });

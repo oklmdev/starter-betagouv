@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Container,
   HeaderBody,
@@ -16,13 +16,21 @@ import {
   ToolItem,
   Tool,
 } from '@dataesr/react-dsfr';
+import { SessionContext } from '../SessionContext';
 
-export function Layout(props: { children: React.ReactNode }) {
+export type LayoutProps = {
+  children: React.ReactNode;
+};
+
+export function Layout({ children }: LayoutProps) {
+  const { isLoggedIn } = useContext(SessionContext);
+
   return (
     <html>
       <head>
+        <link href='https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css' rel='stylesheet' />
         <link href='style.css' rel='stylesheet' />
-        <link href='https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.6.0/dist/dsfr.min.css' rel='stylesheet' />
+        <link href='https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.5.1/dist/dsfr.min.css' rel='stylesheet' />
       </head>
       <body>
         <Header>
@@ -31,15 +39,21 @@ export function Layout(props: { children: React.ReactNode }) {
             <Service title='S.P.A.C.E' description="Service Protection de l'Accès à la Célérité dans l'Espace" />
             <Tool>
               <ToolItemGroup>
-                <ToolItem icon='ri-lock-line' link='/path'>
-                  Connexion
-                </ToolItem>
+                {isLoggedIn ? (
+                  <ToolItem icon='ri-logout-box-line' link='/logout'>
+                    Déconnexion
+                  </ToolItem>
+                ) : (
+                  <ToolItem icon='ri-lock-line' link='/demandes'>
+                    Connexion
+                  </ToolItem>
+                )}
               </ToolItemGroup>
             </Tool>
           </HeaderBody>
         </Header>
         <Container>
-          <div style={{ padding: '30px 0' }}>{props.children}</div>
+          <div style={{ padding: '30px 0' }}>{children}</div>
         </Container>
         <Footer>
           <FooterPartners>

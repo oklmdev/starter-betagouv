@@ -44,5 +44,5 @@ actionsRouter.route('/demandes').post(keycloak.protect(), async (request, respon
 
   const demandes = await getDemandeList();
 
-  responseAsHtml(response, DemandeListPage(demandes));
+  responseAsHtml(request, response, DemandeListPage({ demandes }));
 });

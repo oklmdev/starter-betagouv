@@ -1,12 +1,10 @@
 import { postgres } from '../../dependencies/postgres';
 import { DemandeListPageProps } from './DemandeListPage';
 
-export const getDemandeList = async (): Promise<DemandeListPageProps> => {
+export const getDemandeList = async (): Promise<DemandeListPageProps['demandes']> => {
   const demandes = await postgres.query('SELECT * FROM demandes');
 
-  if (!demandes.rowCount) return { demandes: [] };
+  if (!demandes.rowCount) return [];
 
-  return {
-    demandes: demandes.rows.map(({ id, type, déposée_le }) => ({ id, type, déposéeLe: Number(déposée_le) })),
-  };
+  return demandes.rows.map(({ id, type, déposée_le }) => ({ id, type, déposéeLe: Number(déposée_le) }));
 };
