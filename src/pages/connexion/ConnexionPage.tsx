@@ -8,13 +8,13 @@ export type ConnexionPageProps = {};
 export const ConnexionPage = ({}: ConnexionPageProps) => {
   return (
     <Layout>
-      <div>
-        <form method='post' className='connexion-form'>
-          <div className='connexion-inputs'>
+      <div style={{ maxWidth: 500, margin: '0 auto' }}>
+        <form method='post'>
+          <div>
             <TextInput label='Email' />
             <TextInput label='Mot de passe' />
             <Button submit> Se Connecter</Button> <br />
-            <span className='mdp'> Mot de passe oublié ?</span>
+            <div style={{ marginTop: 10 }}> Mot de passe oublié ?</div>
           </div>
         </form>
       </div>
