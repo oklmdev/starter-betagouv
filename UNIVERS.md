@@ -1,8 +1,13 @@
-# SPACE: Service Protection de l'Accès à la Célérité dans l'Espace
+# S.P.A.C.E.: Service Protection de l'Accès à la Célérité dans l'Espace
+
+> _Ceci est la description des besoins d'un faux produit betagouv. Nous cherchons des idées réalistes de besoins mais dans un univers imaginaire. Toutes les idées sont les bienvenues !_
+>
+> _Ce document évolue donc au fur et à mesure que nous inventons des besoins correspondants aux concepts techniques que nous voulons illustrer. Ceci n'est pas conforme à la méthodologie betagouv. ;)_
 
 ## Contexte
 
-Depuis l'année 3012, pour des raisons d'ordre public, il est formellement interdit de voler à plus que c (la vitesse de la lumière).
+Depuis l'année 3012, et la découverte de la finitude de la quantité de mouvement dans l'univers, nous traitons la célérité comme un bien commun à partager.
+Pour des raisons d'ordre public, il est formellement interdit de voler à plus que c (la vitesse de la lumière).
 Des capteurs spatio-temporels, permettent de détecter les contravenants. Ceux-ci reçoivent un courrier papier par La Poste avec le nombre de points intergalactiques perdus.
 
 ## Objet
