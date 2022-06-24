@@ -5,10 +5,10 @@
 tasks:
   - name: Oklm
     init: |
-    yarn
-    yarn db
-    yarn migrate
-  - command: yarn watch
+      yarn
+      yarn db
+      yarn migrate
+  command: yarn watch
   
 vscode:
   extensions:
