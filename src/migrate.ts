@@ -1,5 +1,6 @@
 import { ProjectionTable } from './libs/eventSourcing/types/Projection';
 import { getHistory, init as initEventStore } from './dependencies/eventStore';
+import { SEED } from './dependencies/env';
 import { tables } from './tables/tables';
 import { seed } from './seed';
 
@@ -7,8 +8,10 @@ async function migrate() {
   // Create the event store
   await initEventStore();
 
-  // Seed the history
-  await seed();
+  if (SEED) {
+    // Seed the history
+    await seed();
+  }
 
   // Step 1: prepare the projections (ex: create the table)
   const projectionsToRebuild: ProjectionTable[] = [];
