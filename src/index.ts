@@ -2,12 +2,11 @@ import express, { Express } from 'express';
 import session from 'express-session';
 import path from 'node:path';
 import { eventBus } from './dependencies/eventBus';
-import { keycloak } from './dependencies/keycloak/keycloak';
-import { resolveUserFromKeycloak } from './dependencies/keycloak/resolveUserFromKeycloak';
 import { tables } from './tables';
 import { sessionStore } from './dependencies/session';
 import { pageRouter } from './pages';
 import { actionsRouter } from './actions';
+import { registerAuth } from './dependencies/authn';
 
 const PORT: number = parseInt(process.env.PORT ?? '3000');
 
@@ -35,9 +34,7 @@ app.use(
   })
 );
 
-app.use(keycloak.middleware());
-
-app.use(resolveUserFromKeycloak);
+registerAuth(app);
 
 app.use(pageRouter);
 app.use(actionsRouter);
