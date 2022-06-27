@@ -16,7 +16,7 @@ const aggregateIdIfDefined = (aggregateId: DomainEvent['aggregateId']) => (aggre
 export const makeDomainEvent = <T extends string, P>(specifics: {
   type: T;
   payload: P;
-  aggregateId: DomainEvent['aggregateId'];
+  aggregateId?: DomainEvent['aggregateId'];
 }): BaseDomainEvent & { type: T; payload: P } => ({
   eventId: uuid(),
   occurredAt: Date.now(),

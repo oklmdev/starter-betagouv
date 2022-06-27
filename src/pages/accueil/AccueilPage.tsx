@@ -1,4 +1,4 @@
-import { Row, Card, CardTitle, CardDescription, CardImage, Col, Button } from '@dataesr/react-dsfr';
+import { Row, Card, CardTitle, CardDescription, CardImage, Col, Button, Link } from '@dataesr/react-dsfr';
 import { Layout } from '../_components/layout/Layout';
 import * as React from 'react';
 
@@ -11,9 +11,7 @@ export const AccueilPage = () => {
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <h1>La célérité c'est bien mais avec modération</h1>
               <div className='button'>
-                <Button secondary title='title'>
-                  Découvrir le programme
-                </Button>
+                <a href='/login.html'>Me connecter</a>
               </div>
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
