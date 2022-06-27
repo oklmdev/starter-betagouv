@@ -3,7 +3,33 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: npm install
+  - before: |
+      cp .env.template .env
+      gp open BIENVENUE_GITPOD.md
+  - name: Dependencies et Launch
+    init: |
+      yarn
+      yarn db
+      yarn migrate
+      yarn watch
+    openMode: split-right
+
+ports:
+  - name: Application
+    port: 3000
+    onOpen: open-preview
+    visibility: public
+  - name: Storybook
+    port: 6006
+    onOpen: open-preview
+    visibility: public
+  - name: Dev DB
+    port: 5436
+    onOpen: ignore
+  - name: Test DB
+    port: 5437
+    onOpen: ignore
+
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
