@@ -7,9 +7,11 @@ const throwIfUndefined = (variableName: string) => {
   return value;
 };
 
-export const KEYCLOAK_SERVER = throwIfUndefined('KEYCLOAK_SERVER');
-export const KEYCLOAK_USER_CLIENT_ID = throwIfUndefined('KEYCLOAK_USER_CLIENT_ID');
-export const KEYCLOAK_REALM = throwIfUndefined('KEYCLOAK_REALM');
-export const KEYCLOAK_USER_CLIENT_SECRET = throwIfUndefined('KEYCLOAK_USER_CLIENT_SECRET');
+const AUTHN = process.env.AUTHN;
 
-export const SEED = process.env.SEED;
+export const USE_KEYCLOAK: boolean = AUTHN === 'keycloak';
+
+export const KEYCLOAK_SERVER = USE_KEYCLOAK && throwIfUndefined('KEYCLOAK_SERVER');
+export const KEYCLOAK_USER_CLIENT_ID = USE_KEYCLOAK && throwIfUndefined('KEYCLOAK_USER_CLIENT_ID');
+export const KEYCLOAK_REALM = USE_KEYCLOAK && throwIfUndefined('KEYCLOAK_REALM');
+export const KEYCLOAK_USER_CLIENT_SECRET = USE_KEYCLOAK && throwIfUndefined('KEYCLOAK_USER_CLIENT_SECRET');

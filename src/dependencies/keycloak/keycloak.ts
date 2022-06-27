@@ -2,6 +2,10 @@ import Keycloak from 'keycloak-connect';
 import { KEYCLOAK_REALM, KEYCLOAK_SERVER, KEYCLOAK_USER_CLIENT_ID, KEYCLOAK_USER_CLIENT_SECRET } from '../env';
 import { sessionStore } from '../session';
 
+if (!KEYCLOAK_SERVER || !KEYCLOAK_USER_CLIENT_ID || !KEYCLOAK_REALM || !KEYCLOAK_USER_CLIENT_SECRET) {
+  process.exit(1);
+}
+
 export const keycloak = new Keycloak(
   {
     store: sessionStore,
