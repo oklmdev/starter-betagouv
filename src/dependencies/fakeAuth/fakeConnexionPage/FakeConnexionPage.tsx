@@ -1,11 +1,11 @@
-import { Layout } from '../_components/layout/Layout';
+import { Layout } from '../../../pages/_components/layout/Layout';
 import { Button } from '@dataesr/react-dsfr';
-import { Role } from '../../domain/authZ';
 
 import * as React from 'react';
+import { FakeUser } from '../FakeUser';
 
 export type FakeConnexionPageProps = {
-  fakeUsers: { userId: string; nom: string; role: Role }[];
+  fakeUsers: FakeUser[];
   redirectTo?: string;
 };
 
