@@ -8,14 +8,14 @@ _C'est encore le début et il n'y a pas grand chose d'utilisable pour le moment.
 
 ## Pourquoi un starter spécial betagouv ?
 
-Il existe suffisemment de points communs entre nos projets pour que nous puissions aller plus loin que les starters génériques qui sont disponibles.
+Il existe suffisamment de points communs entre nos projets pour que nous puissions aller plus loin que les starters génériques qui sont disponibles.
 
 Points communs aux Startups d'Etat :
 
 - Une démarche exploratoire guidée par l'impact, ce qui implique,
   - Une mise en oeuvre rapide d'une première version,
   - Des mesures et des ajustements fréquents en cours de route,
-    - et donc une dette technique qui a tendance à s'assumuler...
+    - et donc une dette technique qui a tendance à s'accumuler...
   - Des phases d'accélération, où la vélocité de développement devient critique (et la dette technique se fait sentir),
 - Une équipe avec une taille restreinte
   - Intrapreneur, développeurs, chargés de déploiement, designer... travaillant main dans la main
