@@ -6,7 +6,6 @@ import { registerNewUserFromKeycloak } from './registerNewUserFromKeycloak';
 export const resolveUserFromKeycloak: RequestHandler = async (request, response, next) => {
   if (request.session.user) {
     console.log('Found user session');
-    request.user = request.session.user;
     return next();
   }
 
@@ -15,8 +14,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
     const userId = await getUserIdByKeycloakId(keycloakId);
 
     if (userId) {
-      request.user = { id: userId, role: 'administrateur' };
-      request.session.user = request.user;
+      request.session.user = { id: userId, role: 'administrateur' };
       console.log(`resolveUserFromKeycloak found ${userId}`);
       return next();
     }
@@ -29,8 +27,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
     };
 
     await registerNewUserFromKeycloak(newUser);
-    console.log(`Registered as new user from keycloak and setting request.user=${JSON.stringify(newUser, null, 2)}`);
-    request.user = newUser;
+    console.log(`Registered as new user from keycloak and setting request.session.user=${JSON.stringify(newUser, null, 2)}`);
     request.session.user = newUser;
   }
 

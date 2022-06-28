@@ -2,11 +2,11 @@
 - [ ] Fake registerAuth
   - [x] Nouvel événement FauxUtilisateurInscrit
   - [x] Seed : rajouter des faux utilisateurs (FauxUtilisateurInscrit)
-  - [ ] Récupérer liste des utilisateurs de la base (pour les injecter dans le sélecteur)
+  - [x] Récupérer liste des utilisateurs de la base (pour les injecter dans le sélecteur)
     - [x] Table faux_utilisateurs (id, nom, role)
     - [x] Lors d'un FauxUtilisateurInscrit ajouter une ligne dans faux_utilisateur
-  - [ ] GET /login.html => récupérer faux utilisateurs, afficher sélecteur d'utilisateur et bouton Se connecter
-  - [ ] POST /login.html => request.session.user = { id, email, role, etc.}
-- [ ] fake requireAuth
-  - [ ] rediriger vers login.html si pas de request.session.user
-  - [ ] inclure un redirectTo avec la page initialement demandée
+  - [x] GET /login.html => récupérer faux utilisateurs, afficher sélecteur d'utilisateur et bouton Se connecter
+  - [x] POST /login.html => request.session.user = { id, role }
+- [x] fake requireAuth
+  - [x] rediriger vers login.html si pas de request.session.user
+  - [x] inclure un redirectTo avec la page initialement demandée

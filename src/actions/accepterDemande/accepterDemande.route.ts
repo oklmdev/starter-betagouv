@@ -19,7 +19,7 @@ actionsRouter.route('/demande/:demandeId').post(requireAuth(), async (request, r
 
     await transaction(demandeId, (events) => {
       const demande = makeDemande(demandeId, events);
-      demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.user.id });
+      demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.session.user!.id });
       return demande.getPendingEvents();
     });
 

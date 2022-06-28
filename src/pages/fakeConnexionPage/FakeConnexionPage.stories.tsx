@@ -9,8 +9,13 @@ export const Basique = () => (
     fakeUsers={[
       {
         userId: '123',
-        role: 'Adminstrateur',
+        role: 'administrateur',
         nom: 'Peter',
+      },
+      {
+        userId: '234',
+        role: 'demandeur',
+        nom: 'Jacques',
       },
     ]}
   />

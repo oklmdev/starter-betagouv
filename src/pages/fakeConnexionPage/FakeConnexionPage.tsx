@@ -1,30 +1,38 @@
 import { Layout } from '../_components/layout/Layout';
 import { Button } from '@dataesr/react-dsfr';
+import { Role } from '../../domain/authZ';
 
 import * as React from 'react';
 
 export type FakeConnexionPageProps = {
-  fakeUsers: { userId: string; nom: string; role: string }[];
+  fakeUsers: { userId: string; nom: string; role: Role }[];
+  redirectTo?: string;
 };
 
-export const FakeConnexionPage = ({ fakeUsers }: FakeConnexionPageProps) => {
+export const FakeConnexionPage = ({ fakeUsers, redirectTo }: FakeConnexionPageProps) => {
   return (
     <Layout>
       <div style={{ maxWidth: 500, margin: '0 auto' }}>
         <form method='post'>
-          Login de demo
+          {!!redirectTo && <input type='hidden' name='redirectTo' value={redirectTo} />}
+          Login de demo (vous serez redirigés vers {redirectTo})
           <div>
             <div style={{ marginBottom: 20, marginTop: 20 }}>
               <div className='fr-select-group'>
-                <select className='fr-select' id='select' name='select'>
+                <select className='fr-select' id='select' name='userId'>
                   <option selected disabled hidden>
                     Selectionnez un identifiant
                   </option>
+
+                  {fakeUsers.map(({ userId, role, nom }) => (
+                    <option key={userId} value={userId}>
+                      {nom} ({role})
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <Button submit> Se Connecter</Button> <br />
-            <div style={{ marginTop: 10 }}> Mot de passe oublié ?</div>
           </div>
         </form>
       </div>
