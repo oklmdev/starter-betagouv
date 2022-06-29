@@ -1,6 +1,6 @@
 # Starter Betagouv
 
-Vous trouverez ici un chantier ouvert de starter pour démarrer des nouveaux projets betagouv en typescript/node.
+Vous trouverez ici un chantier ouvert de "starter" pour démarrer des nouveaux projets betagouv en Typescript/Node.
 
 En développant des produits au sein de betagouv, nous nous sommes rendus compte que nous recodions les mêmes briques / intégrations pour chaque produit. Et si nous mutualisions ?
 
@@ -12,19 +12,19 @@ Il existe suffisamment de points communs entre nos projets pour que nous puissio
 
 Points communs aux Startups d'Etat :
 
-- Une démarche exploratoire guidée par l'impact, ce qui implique,
+- Une démarche exploratoire guidée par l'impact, ce qui implique:
   - Une mise en oeuvre rapide d'une première version,
   - Des mesures et des ajustements fréquents en cours de route,
     - et donc une dette technique qui a tendance à s'accumuler...
   - Des phases d'accélération, où la vélocité de développement devient critique (et la dette technique se fait sentir),
 - Une équipe avec une taille restreinte
-  - Intrapreneur, développeurs, chargés de déploiement, designer... travaillant main dans la main
+  - Intrapreneur, développeurs, chargés de déploiement, designers... travaillant main dans la main
   - Des développeurs avec des responsabilités larges (application, data, déploiement, sécurité...)
 - Un produit qui fait le lien entre des usagers et l'administration
 - Un service qui s'intègre avec d'autres startups betagouv ou des services de l'administration
-- [Des](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/bienvenue/embarquement-dev) [standards](https://doc.incubateur.net/communaute/gerer-sa-startup-detat-ou-de-territoires-au-quotidien/je-fais-des-choix-technologique/standards-de-qualite-beta.gouv.fr) de développement, d'accessibilité, et de sécurité.
-  - Hébergement sur des infrastructures FR ou EU
-  - Transparence (open source)
+- Des [standards](https://doc.incubateur.net/communaute/gerer-sa-startup-detat-ou-de-territoires-au-quotidien/je-fais-des-choix-technologique/standards-de-qualite-beta.gouv.fr) [de développement](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/bienvenue/embarquement-dev), d'accessibilité, et de sécurité.
+  - Hébergement sur des infrastructures FR ou EU (problématiques RGPD)
+  - Transparence & participation ouverte (open source)
 - ...
 
 Nous pensons que chaque équipe souhaite développer **sereinement** des produits **durables** (robustes et maintenables) et **évolutifs**.
@@ -35,12 +35,12 @@ Nous pensons que chaque équipe souhaite développer **sereinement** des produit
   - Authentification
     - intégration Keycloak
     - FranceConnect, ProConnect, AgentConnect, ...
-    - par lien magiques
+    - lien magiques
   - Gestion des droits par role/ressources et zones à accès restreint
   - Envoi de mails
   - Gestion de fichiers
   - Import/export de données
-  - Génération de PDF
+  - Génération de PDF / Excel
   - ...
 - Des briques spécifiques betagouv
   - DSFR
@@ -49,7 +49,7 @@ Nous pensons que chaque équipe souhaite développer **sereinement** des produit
   - ...
 - Tout ce qu'il faut pour déployer régulièrement et sereinement
   - CI/CD
-    - exemple de déploiement sur Clever Cloud ou Scalingo
+    - exemple de déploiement sur les PAAS Clever Cloud ou Scalingo
   - Tests automatisés avec Jest
   - Storybook
   - ...
