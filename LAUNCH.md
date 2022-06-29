@@ -3,6 +3,7 @@
 ## Lancer l'application en local
 
 ```
+cp .env.template .env
 yarn
 yarn db             # lance la base postgres via docker
 yarn migrate        # crée les tables de données

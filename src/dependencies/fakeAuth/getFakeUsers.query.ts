@@ -2,7 +2,7 @@ import { postgres } from '../postgres';
 import { FakeUser } from './FakeUser';
 
 export const getFakeUsers = async (): Promise<FakeUser[]> => {
-  const fakeUsers = await postgres.query('SELECT * FROM faux_utilisateur');
+  const { rows } = await postgres.query("SELECT * FROM events WHERE type = 'FauxUtilisateurInscrit'");
 
-  return fakeUsers.rows.map(({ id, role, nom }) => ({ userId: id, role, nom }));
+  return rows.map(({ payload: { userId, role, nom } }) => ({ userId, role, nom }));
 };
