@@ -104,10 +104,10 @@ Depuis peu, Pierre-Antoine et Clément consacrent quelques heures chaque jour po
 ### Next up
 
 - [ ] Inscription d'un usager
-- [ ] fausse authentification (pour les dev/démo) _[en cours](https://github.com/oklmdev/starter-betagouv/tree/fakeAuth)_
 
 ### Juin 2022
 
+- [x] fausse authentification (pour les dev/démo)
 - [x] Page d'accueil de SPACE
 - [x] Simplification de l'arborescence (il y a encore de la marge !)
 - [x] thème DSFR via [react-dsfr](https://github.com/dataesr/react-dsfr) (merci à eux !)
