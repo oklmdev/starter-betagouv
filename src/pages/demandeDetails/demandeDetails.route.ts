@@ -3,8 +3,9 @@ import { responseAsHtml } from '../../libs/responseAsHtml';
 import { pageRouter } from '../pageRouter';
 import { DemandeDetailsPage } from './DemandeDetailsPage';
 import { getDemande } from './getDemande.query';
+import { requireAuth } from '../../dependencies/authn';
 
-pageRouter.route('/demande/:demandeId').get(async (request, response) => {
+pageRouter.route('/demande/:demandeId').get(requireAuth(), async (request, response) => {
   const { demandeId } = request.params;
   console.log(`GET on /demande/${demandeId}`);
   return returnDemandePage(demandeId, request, response);

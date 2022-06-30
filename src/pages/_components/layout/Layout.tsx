@@ -44,7 +44,7 @@ export function Layout({ children }: LayoutProps) {
                     Déconnexion
                   </ToolItem>
                 ) : (
-                  <ToolItem icon='ri-lock-line' link='/demandes'>
+                  <ToolItem icon='ri-lock-line' link='/login.html'>
                     Connexion
                   </ToolItem>
                 )}

@@ -2,8 +2,9 @@ import { makeDemande } from '../../domain/demande/Demande';
 import { transaction } from '../../dependencies/eventStore';
 import { returnDemandePage } from '../../pages/demandeDetails';
 import { actionsRouter } from '../actionsRouter';
+import { requireAuth } from '../../dependencies/authn';
 
-actionsRouter.route('/demande/:demandeId').post(async (request, response) => {
+actionsRouter.route('/demande/:demandeId').post(requireAuth(), async (request, response) => {
   const { demandeId } = request.params;
 
   console.log(`POST on /demande/${demandeId}`);
@@ -18,7 +19,7 @@ actionsRouter.route('/demande/:demandeId').post(async (request, response) => {
 
     await transaction(demandeId, (events) => {
       const demande = makeDemande(demandeId, events);
-      demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.user.id });
+      demande.accepter({ acceptéeLe: Date.now(), acceptéePar: request.session.user!.id });
       return demande.getPendingEvents();
     });
 

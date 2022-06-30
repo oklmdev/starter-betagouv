@@ -16,7 +16,7 @@ export function responseAsHtml(request: Request, response: Response, element: JS
 
   response.send(
     ReactDOMServer.renderToString(
-      React.createElement(SessionContext.Provider, { value: { isLoggedIn: !!request.user } }, element)
+      React.createElement(SessionContext.Provider, { value: { isLoggedIn: !!request.session.user } }, element)
     )
   );
 }

@@ -6,12 +6,12 @@ import { typesDemandes } from '../../domain/demande/TypesDemande';
 import { responseAsHtml } from '../../libs/responseAsHtml';
 import { getEpoch, zNonEmptyishString } from '../../libs/typeguards';
 import { transaction } from '../../dependencies/eventStore';
-import { keycloak } from '../../dependencies/keycloak/keycloak';
 import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';
 import { getDemandeList } from '../../pages/demandeList/getDemandeList.query';
 import { actionsRouter } from '../actionsRouter';
+import { requireAuth } from '../../dependencies/authn';
 
-actionsRouter.route('/demandes').post(keycloak.protect(), async (request, response) => {
+actionsRouter.route('/demandes').post(requireAuth(), async (request, response) => {
   console.log(`POST on /demandes`);
 
   const { demandeId, type, justification } = z

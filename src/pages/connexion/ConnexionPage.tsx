@@ -3,13 +3,12 @@ import { TextInput, Button } from '@dataesr/react-dsfr';
 
 import * as React from 'react';
 
-export type ConnexionPageProps = {};
-
-export const ConnexionPage = ({}: ConnexionPageProps) => {
+export const ConnexionPage = () => {
   return (
     <Layout>
       <div style={{ maxWidth: 500, margin: '0 auto' }}>
         <form method='post'>
+          Login de demo
           <div>
             <TextInput label='Email' />
             <TextInput label='Mot de passe' />

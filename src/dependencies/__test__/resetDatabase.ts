@@ -12,6 +12,7 @@ export const resetDatabase = async () => {
     for (const tableName of tableNames) {
       await client.query(`TRUNCATE ${tableName}`);
     }
+    await client.query(`TRUNCATE events`);
 
     await client.query('COMMIT');
   } catch (error) {
