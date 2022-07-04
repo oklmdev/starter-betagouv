@@ -9,16 +9,16 @@ export const InscriptionPage = () => {
     <Layout>
       <div style={{ maxWidth: 500, margin: '0 auto' }}>
         <form method='post'>
-          <input type='hidden' name='userId' value={uuid()} />
+          <input type='hidden' name='demandeurId' value={uuid()} />
           <div>
             <label>
               Nom et Prénom :
-              <input type='text' className='fr-input' id='username' name='username' required />
+              <input type='text' className='fr-input' name='nomComplet' required />
             </label>
             <div style={{ marginTop: '30px', marginBottom: '30px' }}>
               <label>
                 Email :
-                <input type='email' className='fr-input' id='email' name='email' required />
+                <input type='email' className='fr-input' name='email' required />
               </label>
             </div>
             <Button submit> S'inscrire </Button> <br />
