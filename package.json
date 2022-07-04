@@ -14,7 +14,8 @@
     "db": "docker-compose down --remove-orphans && docker-compose up -d",
     "db:test": "export NODE_ENV=test && export COMPOSE_PROJECT_NAME=oklm_tests && docker-compose down --remove-orphans && docker-compose -f ./docker-compose-integration.yml up -d && until docker exec oklm_db_tests pg_isready -U test -d oklm_test; do sleep 1; done && yarn migrate",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "cypress:open": "cypress open"
   },
   "homepage": "https://github.com/oklmdev/oklm#readme",
   "bugs": {
@@ -69,6 +70,7 @@
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "babel-loader": "^8.2.5",
+    "cypress": "^10.3.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^26.0.0",
