@@ -8,10 +8,11 @@ import { TextInput } from '../_components/TextInput';
 export type InscriptionPageProps = {
   nomComplet?: string;
   email?: string;
-  errors?: { nomComplet?: string };
+  errors?: { nomComplet?: string; email?: string };
 };
 
 export const InscriptionPage = ({ errors, nomComplet, email }: InscriptionPageProps) => {
+  console.log(errors);
   return (
     <Layout>
       <div style={{ maxWidth: 500, margin: '0 auto' }}>
@@ -21,10 +22,7 @@ export const InscriptionPage = ({ errors, nomComplet, email }: InscriptionPagePr
           <div>
             <TextInput error={errors?.nomComplet} name='nomComplet' defaultValue={nomComplet} label='Nom et prénom' />
             <div style={{ marginTop: '30px', marginBottom: '30px' }}>
-              <label>
-                Email :
-                <input type='text' className='fr-input' name='email' required defaultValue={email} />
-              </label>
+              <TextInput error={errors?.email} name='email' required defaultValue={email} label='Email' />
             </div>
             <Button submit> S'inscrire </Button> <br />
           </div>

@@ -6,4 +6,8 @@ export default { title: "Page d'inscription", component: InscriptionPage };
 
 export const Basique = () => <InscriptionPage />;
 
-export const Error = () => <InscriptionPage errors={{ nomComplet: 'Votre nom doit avoir plus de 2 caractères' }} />;
+export const Error = () => (
+  <InscriptionPage
+    errors={{ nomComplet: 'Votre nom doit avoir plus de 2 caractères', email: 'Votre email doit être valide' }}
+  />
+);

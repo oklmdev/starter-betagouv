@@ -25,11 +25,18 @@ actionsRouter.route('/inscription.html').post(async (request, response) => {
   } catch (error) {
     const { nomComplet, email } = request.body;
     if (error instanceof ZodError) {
-      console.log(error.issues);
+      const myErrors = {};
+      error.issues.forEach((issue) => (myErrors[`${issue.path[0]}`] = issue.message));
+
       return responseAsHtml(
         request,
         response,
-        InscriptionPage({ errors: error.issues.map((issue) => ({ message: issue.message })), nomComplet, email })
+
+        InscriptionPage({
+          errors: myErrors,
+          nomComplet,
+          email,
+        })
       );
     }
     /*  return responseAsHtml(request, response, InscriptionPage({ error: "Une erreur s'est produite", nomComplet, email })); */
