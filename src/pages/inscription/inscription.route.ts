@@ -5,5 +5,5 @@ import { InscriptionPage } from './InscriptionPage';
 pageRouter.route('/inscription.html').get(async (request, response) => {
   console.log(`GET on /inscription`);
 
-  responseAsHtml(request, response, InscriptionPage());
+  responseAsHtml(request, response, InscriptionPage({}));
 });

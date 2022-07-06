@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+require('express-async-errors');
 import session from 'express-session';
 import path from 'node:path';
 import { eventBus } from './dependencies/eventBus';
