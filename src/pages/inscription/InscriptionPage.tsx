@@ -1,5 +1,5 @@
 import { Layout } from '../_components/layout/Layout';
-import { Button, Alert } from '@dataesr/react-dsfr';
+import { Button } from '@dataesr/react-dsfr';
 import { v4 as uuid } from 'uuid';
 
 import * as React from 'react';
@@ -12,7 +12,6 @@ export type InscriptionPageProps = {
 };
 
 export const InscriptionPage = ({ errors, nomComplet, email }: InscriptionPageProps) => {
-  console.log(errors);
   return (
     <Layout>
       <div style={{ maxWidth: 500, margin: '0 auto' }}>

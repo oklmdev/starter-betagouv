@@ -8,13 +8,14 @@ export type TextInputProps = {
   type?: 'text' | 'email';
 } & React.HTMLProps<HTMLInputElement>;
 
-export const TextInput = ({ name, error, label, defaultValue, type = 'text' }: TextInputProps) => {
+export const TextInput = ({ name, error, label, defaultValue, type = 'text', ...props }: TextInputProps) => {
   return (
     <div className={`fr-input-group ${!!error && 'fr-input-group--error'}`}>
       <label className='fr-label' htmlFor={name}>
         {label}
       </label>
       <input
+        {...props}
         aria-describedby=''
         type={type}
         className={`fr-input ${!!error && 'fr-input--error'}`}
