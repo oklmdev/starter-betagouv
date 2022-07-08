@@ -2,7 +2,7 @@ import z, { ZodError } from 'zod';
 import { publish } from '../../dependencies/eventStore';
 import { actionsRouter } from '../actionsRouter';
 import { DemandeurInscrit } from '../../domain/DemandeurInscrit';
-import { createUserCredentials } from '../../dependencies/authn';
+import { createUserCredentials, isUserIdAvailable } from '../../dependencies/authn';
 import { responseAsHtml } from '../../libs/responseAsHtml';
 import { InscriptionPage } from '../../pages/inscription/InscriptionPage';
 
@@ -18,10 +18,12 @@ actionsRouter.route('/inscription.html').post(async (request, response) => {
         email: z.string().email('Vous devez donner une adresse mail valide'),
       })
       .parse(request.body);
-
-    await publish(DemandeurInscrit({ demandeurId, nomComplet, email }));
-    await createUserCredentials({ userId: demandeurId, nom: nomComplet, role: 'demandeur' });
-    response.redirect('/');
+    console.log(await isUserIdAvailable(demandeurId), 'demandeurID');
+    if (!(await isUserIdAvailable(demandeurId))) {
+      await publish(DemandeurInscrit({ demandeurId, nomComplet, email }));
+      await createUserCredentials({ userId: demandeurId, nom: nomComplet, role: 'demandeur' });
+      response.redirect('/');
+    } else response.redirect('./');
   } catch (error) {
     const { nomComplet, email } = request.body;
     if (error instanceof ZodError) {
