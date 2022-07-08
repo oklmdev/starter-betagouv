@@ -18,7 +18,6 @@ actionsRouter.route('/inscription.html').post(async (request, response) => {
         email: z.string().email('Vous devez donner une adresse mail valide'),
       })
       .parse(request.body);
-    console.log(await isUserIdAvailable(demandeurId), 'demandeurID');
     if (!(await isUserIdAvailable(demandeurId))) {
       await publish(DemandeurInscrit({ demandeurId, nomComplet, email }));
       await createUserCredentials({ userId: demandeurId, nom: nomComplet, role: 'demandeur' });
