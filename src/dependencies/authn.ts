@@ -6,7 +6,7 @@ import { fakeProtect } from './fakeAuth/fakeProtect';
 import { keycloak, resolveUserFromKeycloak } from './keycloak';
 import { FauxUtilisateurInscrit } from '../domain/FauxUtilisateurInscrit';
 import { Role } from '../domain/authZ/Roles';
-import { getUserId } from '../pages/inscription/getUserId.query';
+import { isFauxUtilisateurIdAvailable } from './fakeAuth/isFauxUtilisateurIdAvailable.query';
 
 export const registerAuth = (app: Express) => {
   if (USE_KEYCLOAK && keycloak) {
@@ -41,5 +41,5 @@ export const isUserIdAvailable = async (userId: string) => {
     return;
     //ToDo Appeler KeyCloak
   }
-  return await getUserId(userId);
+  return await isFauxUtilisateurIdAvailable(userId);
 };
