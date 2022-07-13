@@ -2,6 +2,8 @@ import { getUserIdByKeycloakId } from './getUserIdByKeycloakId';
 import { v4 as uuid } from 'uuid';
 import { postgres } from '../postgres';
 import { resetDatabase } from '../__test__/resetDatabase';
+import { publish } from '../eventStore';
+import { UtilisateurInscritViaKeycloak } from '../../domain/identitéKeycloak';
 
 describe('getUserIdByKeycloakId', () => {
   const keycloakId = uuid();
@@ -12,7 +14,7 @@ describe('getUserIdByKeycloakId', () => {
     beforeAll(async () => {
       await resetDatabase();
 
-      await postgres.query('INSERT INTO utilisateur_keycloak VALUES ($1, $2)', [userId, keycloakId]);
+      await publish(UtilisateurInscritViaKeycloak({ userId, keycloakId }));
     });
 
     it('should return the userId for this line', async () => {

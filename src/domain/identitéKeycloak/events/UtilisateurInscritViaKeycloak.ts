@@ -8,7 +8,7 @@ export type UtilisateurInscritViaKeycloak = BaseDomainEvent & {
   };
 };
 
-export const makeUtilisateurInscritViaKeycloak = (
+export const UtilisateurInscritViaKeycloak = (
   payload: UtilisateurInscritViaKeycloak['payload']
 ): UtilisateurInscritViaKeycloak =>
   makeDomainEvent({
