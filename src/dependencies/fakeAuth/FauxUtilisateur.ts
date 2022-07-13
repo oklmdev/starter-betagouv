@@ -1,6 +1,6 @@
 import { Role } from '../../domain/authZ';
 
-export type FakeUser = {
+export type FauxUtilisateur = {
   userId: string;
   nom: string;
   role: Role;

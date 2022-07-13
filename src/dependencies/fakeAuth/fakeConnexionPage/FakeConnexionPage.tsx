@@ -2,10 +2,10 @@ import { Layout } from '../../../pages/_components/layout/Layout';
 import { Button } from '@dataesr/react-dsfr';
 
 import * as React from 'react';
-import { FakeUser } from '../FakeUser';
+import { FauxUtilisateur } from '../FauxUtilisateur';
 
 export type FakeConnexionPageProps = {
-  fakeUsers: FakeUser[];
+  fakeUsers: FauxUtilisateur[];
   redirectTo?: string;
 };
 

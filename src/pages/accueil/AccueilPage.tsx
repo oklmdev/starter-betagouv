@@ -13,6 +13,9 @@ export const AccueilPage = () => {
               <div className='button'>
                 <a href='/login.html'>Me connecter</a>
               </div>
+              <div className='button'>
+                <a href='/inscription.html'>M'inscrire</a>
+              </div>
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <div style={{ marginLeft: 80, position: 'relative' }}>

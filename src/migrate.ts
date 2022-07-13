@@ -8,7 +8,7 @@ async function migrate() {
   // Create the event store
   await initEventStore();
 
-  if (SEED) {
+  if (SEED && process.env.NODE_ENV !== 'test') {
     // Seed the history
     await seed();
   }

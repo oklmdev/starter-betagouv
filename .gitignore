@@ -105,3 +105,6 @@ dist
 
 # Intellij project config files
 .idea/
+
+
+package-lock.json
