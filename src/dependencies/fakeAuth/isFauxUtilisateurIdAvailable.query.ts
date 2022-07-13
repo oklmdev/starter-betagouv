@@ -6,5 +6,5 @@ export const isFauxUtilisateurIdAvailable = async (userId: string): Promise<Bool
     [userId]
   );
 
-  return rows.length > 0;
+  return rows.length === 0;
 };

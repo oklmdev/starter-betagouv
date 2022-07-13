@@ -38,8 +38,8 @@ export const createUserCredentials = (args: { userId: string; nom: string; role:
 
 export const isUserIdAvailable = async (userId: string) => {
   if (USE_KEYCLOAK && keycloak) {
-    return;
-    //ToDo Appeler KeyCloak
+    return true;
+    //TODO: vérifier dans notre événements UtilisateurInscritViaKeycloak s'il y a deja ce userId
   }
-  return await isFauxUtilisateurIdAvailable(userId);
+  return isFauxUtilisateurIdAvailable(userId);
 };
