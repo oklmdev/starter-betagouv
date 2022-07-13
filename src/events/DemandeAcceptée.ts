@@ -1,4 +1,4 @@
-import { BaseDomainEvent, makeDomainEvent } from '../../../libs/eventSourcing/types/DomainEvent';
+import { BaseDomainEvent, makeDomainEvent } from '../libs/eventSourcing/types/DomainEvent';
 
 export type DemandeAcceptée = BaseDomainEvent & {
   type: 'DemandeAcceptée';
