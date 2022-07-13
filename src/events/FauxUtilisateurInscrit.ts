@@ -1,5 +1,5 @@
 import { BaseDomainEvent, makeDomainEvent } from '../libs/eventSourcing/types/DomainEvent';
-import { Role } from './authZ';
+import { Role } from '../domain/Roles';
 
 export type FauxUtilisateurInscrit = BaseDomainEvent & {
   type: 'FauxUtilisateurInscrit';
