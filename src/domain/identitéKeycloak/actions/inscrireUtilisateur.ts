@@ -1,5 +1,5 @@
 import { AggregateAction } from '../../../libs/eventSourcing/types/Aggregate';
-import { makeUtilisateurInscritViaKeycloak } from '../events';
+import { UtilisateurInscritViaKeycloak } from '../events';
 
 import type { IdentitéKeycloakState } from '../IdentitéKeycloak';
 
@@ -16,7 +16,7 @@ export const inscrireUtilisateur: AggregateAction<IdentitéKeycloakState, Inscri
       throw new UtilisateurDéjàInscritError();
     }
 
-    publishEvent(makeUtilisateurInscritViaKeycloak({ userId, keycloakId }));
+    publishEvent(UtilisateurInscritViaKeycloak({ userId, keycloakId }));
   };
 
 export class UtilisateurDéjàInscritError extends Error {
