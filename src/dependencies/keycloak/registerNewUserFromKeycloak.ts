@@ -1,4 +1,4 @@
-import { makeIdentitéKeycloak } from '../../domain/identitéKeycloak';
+import { UtilisateurInscritViaKeycloak } from '../../domain/identitéKeycloak';
 import { transaction } from '../eventStore';
 
 interface NewUserFromKeycloakArgs {
@@ -7,8 +7,10 @@ interface NewUserFromKeycloakArgs {
 }
 export async function registerNewUserFromKeycloak({ id, keycloakId }: NewUserFromKeycloakArgs): Promise<void> {
   await transaction(keycloakId, (historique) => {
-    const identitéKeycloak = makeIdentitéKeycloak(keycloakId, historique);
-    identitéKeycloak.inscrireUtilisateur({ userId: id, keycloakId });
-    return identitéKeycloak.getPendingEvents();
+    if (historique.length) {
+      throw new Error('Un utilisateur existe déjà avec cet identifiant.');
+    }
+
+    return [UtilisateurInscritViaKeycloak({ userId: id, keycloakId })];
   });
 }
