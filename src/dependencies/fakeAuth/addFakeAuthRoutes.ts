@@ -2,7 +2,7 @@ import { Express } from 'express';
 import asyncHandler from '../../libs/asyncHandler';
 import { responseAsHtml } from '../../libs/responseAsHtml';
 import { FakeConnexionPage } from './fakeConnexionPage';
-import { getFakeUsers } from './getFakeUsers.query';
+import { getFakeUsers } from './getFauxUtilisateurs.query';
 
 export const addFakeAuthRoutes = (app: Express) => {
   app.get(
