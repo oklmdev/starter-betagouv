@@ -2,12 +2,12 @@ import express, { Express } from 'express';
 require('express-async-errors');
 import session from 'express-session';
 import path from 'node:path';
-import { eventBus } from './dependencies/eventBus';
 import { tables } from './tables';
 import { sessionStore } from './dependencies/session';
 import { pageRouter } from './pages';
 import { actionsRouter } from './actions';
 import { registerAuth } from './dependencies/authn';
+import { subscribeAll } from './dependencies/eventStore';
 
 const PORT: number = parseInt(process.env.PORT ?? '3000');
 
@@ -40,15 +40,13 @@ registerAuth(app);
 app.use(pageRouter);
 app.use(actionsRouter);
 
-const assetPath = path.join(__dirname, 'assets');
-console.log(assetPath);
-app.use(express.static(assetPath));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 app.listen(PORT, (): void => {
   // eslint-disable-next-line no-console
   console.log('Server listening to port', PORT);
 
-  eventBus.subscribeAll(async (event) => {
+  subscribeAll(async (event) => {
     for (const projectionTable of tables) {
       await projectionTable.handleEvent(event);
     }

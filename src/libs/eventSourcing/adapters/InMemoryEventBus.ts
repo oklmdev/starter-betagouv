@@ -15,7 +15,6 @@ export const makeInMemoryEventBus = (): EventBus => {
 
       const callbacksForType = _subscriptionsForType[type] || [];
       if (!callbacksForType.length && !_subscriptionsForAll.length) {
-        console.warn({ eventtype: event.type }, `There are no subscriptions for this type : '${event.type}'`);
         return;
       }
 
