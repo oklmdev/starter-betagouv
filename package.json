@@ -11,8 +11,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint -c ./eslintrc.js src",
-    "db": "docker-compose down --remove-orphans && docker-compose up -d",
-    "db:test": "export NODE_ENV=test && export COMPOSE_PROJECT_NAME=oklm_tests && docker-compose down --remove-orphans && docker-compose -f ./docker-compose-integration.yml up -d && until docker exec oklm_db_tests pg_isready -U test -d oklm_test; do sleep 1; done && yarn migrate",
+    "db": "docker compose down --remove-orphans && docker compose up -d",
+    "db:test": "export NODE_ENV=test && export COMPOSE_PROJECT_NAME=oklm_tests && docker compose down --remove-orphans && docker compose -f ./docker-compose-integration.yml up -d && until docker exec oklm_db_tests pg_isready -U test -d oklm_test; do sleep 1; done && yarn migrate",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
