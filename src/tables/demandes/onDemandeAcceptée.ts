@@ -1,4 +1,4 @@
-import { DemandeAcceptée } from '../../domain/demande/events';
+import { DemandeAcceptée } from '../../events';
 import { postgres } from '../../dependencies/postgres';
 import { demandeTable } from './demandes';
 

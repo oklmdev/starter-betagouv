@@ -1,7 +1,7 @@
 import { isFauxUtilisateurIdAvailable } from './isFauxUtilisateurIdAvailable.query';
 import { publish } from '../eventStore';
 import { resetDatabase } from '../__test__/resetDatabase';
-import { FauxUtilisateurInscrit } from '../../events/FauxUtilisateurInscrit';
+import { FauxUtilisateurInscrit } from '../../events';
 
 describe('isFauxUtilisateurIdAvailable', () => {
   it('doit retourner true si userId est libre, false si userId est pris', async () => {

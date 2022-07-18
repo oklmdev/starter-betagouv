@@ -1,8 +1,8 @@
-import { Epoch, getEpoch, NonEmptyishString } from '../../../libs/typeguards';
+import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
 import { makeFakeUser } from '../../../__test__/fakeUser';
-import { Demandeur } from '../../authZ';
-import { DemandeDéposée } from '../events';
 import { DemandeDéjàDéposéeError, déposer } from './déposer';
+import {Demandeur} from '../../Roles';
+import {DemandeDéposée} from '../../../events';
 
 describe('déposer(Demande)', () => {
   const demandeId = 'demande123';

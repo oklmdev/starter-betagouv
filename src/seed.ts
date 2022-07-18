@@ -1,8 +1,7 @@
 import { getHistory, publish } from './dependencies/eventStore';
 import { DomainEvent } from './libs/eventSourcing/types/DomainEvent';
-import { DemandeDéposée } from './domain/demande/events';
+import { DemandeDéposée, FauxUtilisateurInscrit } from './events';
 import { v4 as uuid } from 'uuid';
-import { FauxUtilisateurInscrit } from './domain/FauxUtilisateurInscrit';
 
 const demandeurId = uuid();
 const administrateurId = uuid();

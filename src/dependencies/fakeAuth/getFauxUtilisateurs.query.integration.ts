@@ -1,7 +1,7 @@
 import { resetDatabase } from '../__test__/resetDatabase';
 import { getFakeUsers } from './getFauxUtilisateurs.query';
 import { publish } from '../eventStore';
-import { FauxUtilisateurInscrit } from '../../events/FauxUtilisateurInscrit';
+import { FauxUtilisateurInscrit } from '../../events';
 
 describe('getFauxUtilisateurs', () => {
   it('doit retourner une liste de faux utilisateur inscrit', async () => {

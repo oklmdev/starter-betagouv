@@ -1,5 +1,5 @@
 import { DemandeState, buildState } from './Demande';
-import { DemandeAcceptée, DemandeDéposée } from './events';
+import { DemandeAcceptée, DemandeDéposée } from '../../events';
 
 const demandeId = '';
 

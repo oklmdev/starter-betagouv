@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { DomainEvent } from '../../types/DomainEvent';
+import { DomainEvent } from '../../types';
 import { insertEventIntoDb, makePostgresEventStore, toPersistance } from './makePostgresEventStore';
 import { postgresTest as postgres, resetDatabase } from './__tests__';
 
