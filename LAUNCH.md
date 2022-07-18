@@ -18,12 +18,13 @@ open http://localhost:3000
 yarn db:test        # lance la base postgres de test via docker
 yarn test:watch     # lance les tests en mode watch
 
-open http://localhost:6006
 ```
 
-## Travailler sur le vues avec storybook
+## Travailler sur les vues avec storybook
 
 ```
+node -v             # Node devrait être en version 16 (lts)
+
 yarn storybook
 
 open http://localhost:6006
