@@ -1,5 +1,5 @@
-import { UtilisateurInscritViaKeycloak } from '../../domain/identitéKeycloak';
 import { transaction } from '../eventStore';
+import { UtilisateurInscritViaKeycloak } from '../../events';
 
 interface NewUserFromKeycloakArgs {
   id: string;

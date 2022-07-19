@@ -1,5 +1,4 @@
 import z from 'zod';
-import { isDemandeur } from '../../domain/authZ';
 import { DemandeDéjàDéposéeError } from '../../domain/demande/actions';
 import { makeDemande } from '../../domain/demande/Demande';
 import { typesDemandes } from '../../domain/demande/TypesDemande';
@@ -10,6 +9,7 @@ import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';
 import { getDemandeList } from '../../pages/demandeList/getDemandeList.query';
 import { actionsRouter } from '../actionsRouter';
 import { requireAuth } from '../../dependencies/authn';
+import { isDemandeur } from '../../domain/Roles';
 
 actionsRouter.route('/demandes').post(requireAuth(), async (request, response) => {
   console.log(`POST on /demandes`);

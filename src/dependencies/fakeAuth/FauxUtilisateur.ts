@@ -1,4 +1,4 @@
-import { Role } from '../../domain/authZ';
+import { Role } from '../../domain/Roles';
 
 export type FauxUtilisateur = {
   userId: string;

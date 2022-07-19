@@ -1,9 +1,9 @@
-import { AggregateAction } from '../../../libs/eventSourcing/types/Aggregate';
+import { AggregateAction } from '../../../libs/eventSourcing';
 import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
-import { Demandeur } from '../../authZ';
 import type { DemandeState } from '../Demande';
-import { DemandeDéposée } from '../events';
 import { TypeDemande } from '../TypesDemande';
+import { DemandeDéposée } from '../../../events';
+import { Demandeur } from '../../Roles';
 
 interface DéposerArgs {
   type: TypeDemande;

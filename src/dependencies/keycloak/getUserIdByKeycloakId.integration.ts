@@ -1,9 +1,8 @@
 import { getUserIdByKeycloakId } from './getUserIdByKeycloakId';
 import { v4 as uuid } from 'uuid';
-import { postgres } from '../postgres';
 import { resetDatabase } from '../__test__/resetDatabase';
 import { publish } from '../eventStore';
-import { UtilisateurInscritViaKeycloak } from '../../domain/identitéKeycloak';
+import { UtilisateurInscritViaKeycloak } from '../../events';
 
 describe('getUserIdByKeycloakId', () => {
   const keycloakId = uuid();

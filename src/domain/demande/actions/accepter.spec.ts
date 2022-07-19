@@ -1,5 +1,5 @@
 import { accepter, DemandeNonDéposéeError, DemandeDéjàAcceptéeError } from '.';
-import { DemandeAcceptée } from '../events';
+import { DemandeAcceptée } from '../../../events';
 
 describe('accepter(Demande)', () => {
   const acceptéeLe = 123456;

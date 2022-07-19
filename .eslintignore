@@ -4,3 +4,4 @@ eslintrc.js
 .idea/
 .vscode/
 .git/
+cypress
