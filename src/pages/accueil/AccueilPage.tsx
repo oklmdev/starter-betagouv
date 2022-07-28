@@ -1,5 +1,5 @@
-import { Row, Card, CardTitle, CardDescription, CardImage, Col, Button, Link } from '@dataesr/react-dsfr';
-import { Layout } from '../_components/layout/Layout';
+import { Row, Card, CardTitle, CardDescription, CardImage, Col } from '@dataesr/react-dsfr';
+import { AccueilLinks, Layout } from '../_components';
 import * as React from 'react';
 import { withBrowserBundle } from '../../libs/ssr';
 
@@ -11,12 +11,7 @@ export const AccueilPage = withBrowserBundle(() => {
           <div className='fr-grid-row fr-grid-row--gutters fr-py-6w'>
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <h1>La célérité c'est bien mais avec modération</h1>
-              <div className='button'>
-                <a href='/login.html'>Me connecter</a>
-              </div>
-              <div className='button'>
-                <a href='/inscription.html'>M'inscrire</a>
-              </div>
+              <AccueilLinks></AccueilLinks>
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <div style={{ marginLeft: 80, position: 'relative' }}>
