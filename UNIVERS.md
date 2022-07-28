@@ -8,7 +8,7 @@
 
 Depuis l'année 3012, et la découverte de la finitude de la quantité de mouvement dans l'univers, nous traitons la célérité comme un bien commun à partager.
 Pour des raisons d'ordre public, il est formellement interdit de voler à plus que c (la vitesse de la lumière).
-Des capteurs spatio-temporels, permettent de détecter les contravenants. Ceux-ci reçoivent un courrier papier par La Poste avec le nombre de points intergalactiques perdus.
+Des capteurs spatio-temporels, permettent de détecter les contrevenants. Ceux-ci reçoivent un courrier papier par La Poste avec le nombre de points intergalactiques perdus.
 
 ## Objet
 
