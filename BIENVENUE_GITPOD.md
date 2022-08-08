@@ -17,10 +17,15 @@ Le cas que nous allons mettre en place est celui de la rétractation d'une deman
 - Le contrevenant doit être authentifié pour rétracter une demande
 - Seule une demande déposée peut-être rétractée
 
-### Domain
+### Procédure
+- Créer le use-case
+
+- On s'attends à c eque la rétractation soit disponible dans les actions possible de l'aggrégat, on modifie donc le test sur l'aggrégat.
+
+
 
 - Ouvrir le fichier [Demande.spec.ts](./src/domain/demande/Demande.spec.ts) dans le dossier `src/domain`
-- Ajouer la suite de test `quand il reçoit un événement DemandeRétractée` :
+- Ajouter la suite de test `quand il reçoit un événement DemandeRétractée` :
   ```typescript
   describe('quand il reçoit un événement DemandeRétractée', () => {
     it('doit retourner un status rétractée', () => {
@@ -36,9 +41,52 @@ Le cas que nous allons mettre en place est celui de la rétractation d'une deman
   });
   ```
 - Nous devons maintenant créer l'événement `DemandeRétractée`
-
-### Évènement
-
-### Page
-
-### Table
+- Dans le dossier `events` ajouter le fichier `DemandeRétractée.ts`, et y ajouter ce contenu :
+  ```typescript
+  import { BaseDomainEvent, makeDomainEvent } from '../libs/eventSourcing';
+  
+  export type DemandeRétractée = BaseDomainEvent & {
+    type: 'DemandeRétractée';
+    payload: {};
+  };
+  
+  export const DemandeRétractée = (payload: DemandeRétractée['payload']): DemandeRétractée =>
+  makeDomainEvent({
+    type: 'DemandeRétractée',
+    payload
+  });
+  ```
+- Ajouter `export * from './DemandeRétractée';` dans [events/index.ts](./src/events/index.ts)
+- Dans le fichier [Demande.spec.ts](./src/domain/demande/Demande.spec.ts) dans le dossier `src/domain`, importer `DemandeRétractée` (`from '../../events';`), puis ajouter le payload `{}` attendu par `DemandeRétractée()`
+- Le test ne passe pas, car le statut n'a pas été changé : `nouvelle` alors que le test s'attend à recevoir `rétractée`, il faut donc implémenter ce comportement dans [Demande.ts](./src/domain/demande/Demande.ts) dans le même dossier que le test :
+  - Ajouter la valeur de `statuts` `rétractée` dans le type `DemandeState`
+  - Ajouter le case `DemandeRétractée` :
+    ```typescript
+    case 'DemandeRétractée':
+      return { ...state, status: 'rétractée' };
+    ```
+  - Voici l'état final du fichier [Demande.ts](./src/domain/demande/Demande.ts) :
+    ```typescript
+        import { makeAggregate } from '../../libs/eventSourcing/makeAggregate';
+        import { DomainEvent } from '../../libs/eventSourcing/types/DomainEvent';
+        import { accepter, déposer } from './actions';
+        export type DemandeState = { status: 'nouvelle' | 'déposée' | 'acceptée' | 'rétractée' };
+        export function buildState(state: DemandeState, event: DomainEvent): DemandeState {
+          switch (event.type) {
+            case 'DemandeDéposée':
+              return { ...state, status: 'déposée' };
+            case 'DemandeAcceptée':
+              return { ...state, status: 'acceptée' };
+            case 'DemandeRétractée':
+              return { ...state, status: 'rétractée' };
+            default:
+              return state;
+        }
+      }
+      export const makeDemande = makeAggregate({
+        initialState: { status: 'nouvelle' },
+        buildState,
+        actions: { accepter, déposer },
+      });
+    ```
+  - Le test devrait maintenant passer.
