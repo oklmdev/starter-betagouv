@@ -18,11 +18,10 @@ Le cas que nous allons mettre en place est celui de la rétractation d'une deman
 - Seule une demande déposée peut-être rétractée
 
 ### Procédure
-- Créer le use-case
-
-- On s'attends à c eque la rétractation soit disponible dans les actions possible de l'aggrégat, on modifie donc le test sur l'aggrégat.
-
-
+// TODO On refactorise et makeAggregate.ts (pour comprendre)
+// TODO Créer le test sur makeDemande
+// TODO Créer l'action `rétracterDemande`
+// TODO "On s'attends à ce que la rétractation soit disponible dans les actions possible de l'aggrégat, on modifie donc le test sur l'aggrégat."
 
 - Ouvrir le fichier [Demande.spec.ts](./src/domain/demande/Demande.spec.ts) dans le dossier `src/domain`
 - Ajouter la suite de test `quand il reçoit un événement DemandeRétractée` :

@@ -8,6 +8,8 @@ const initialState: DemandeState = {
 };
 
 describe('Demande', () => {
+  it('doit donner accès aux actions `accepter` et `déposer`', (): void => {});
+
   describe('quand il reçoit un événement DemandeAcceptée', () => {
     it('doit retourner un status accepté', () => {
       expect(buildState(initialState, DemandeAcceptée({ demandeId, acceptéeLe: 123, acceptéePar: '' }))).toEqual({
