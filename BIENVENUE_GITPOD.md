@@ -4,9 +4,35 @@ Vous trouverez sur votre droite l'application qui tourne, jouez avec !
 
 Vous pouvez aussi voir le code et le changer, les changements seront répercutés en direct. Par exemple, changer le slogan de la page d'accueil en ouvrant [src/pages/accueil/AccueilPage.tsx](./src/pages/accueil/AccueilPage.tsx).
 
-## Tutoriel
+## Tutoriels
 
-Afin de vous familiariser avec le code en place, nous vous proposons de vous accompagner dans l'ajout d'une nouvelle fonctionnalité.
+Afin de vous familiariser avec le code en place, nous vous proposons de vous accompagner dans l'ajout d'une nouvelle fonctionnalité simple au travers d'une série de tutoriels.
+
+L'objectif est de permettre à un demandeur d'envoyer un message au support, il est décrit par l'id de l'envoyeur et son contenu et persistés dans la bdd
+
+### Étape 1
+
+On crée la vue pour le formulaire d'envoi du message avec storybook
+Thèmes :
+- pas de règle métier pour l'instant (pas de contraintes)
+
+On crée la vue sur
+  
+### Étape 2
+
+On envoie le contenu du formulaire sur l'action `EnvoyerMessage`
+Thèmes :
+- récupérer les données d'un formulaire
+
+### Étape 3
+
+- Tuto 3 : On persiste le contenu dans la base de donnée sous la forme d'un évènement
+Thèmes :
+- persistance simple
+
+## Tutoriel avancé
+
+Afin de vous familiariser avec le code en place, nous vous proposons de vous accompagner dans l'ajout d'une nouvelle fonctionnalité avancée.
 
 ### Specs
 
@@ -17,8 +43,8 @@ Le cas que nous allons mettre en place est celui de la rétractation d'une deman
 - Le contrevenant doit être authentifié pour rétracter une demande
 - Seule une demande déposée peut-être rétractée
 
-### Procédure
-// TODO On refactorise et makeAggregate.ts (pour comprendre)
+### Procédure pour rajouter une action sur un aggrégat 
+On commence par créer l'action de rétractation.
 // TODO Créer le test sur makeDemande
 // TODO Créer l'action `rétracterDemande`
 // TODO "On s'attends à ce que la rétractation soit disponible dans les actions possible de l'aggrégat, on modifie donc le test sur l'aggrégat."
