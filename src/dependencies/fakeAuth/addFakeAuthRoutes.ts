@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { FakeConnexionPage } from './fakeConnexionPage';
 import { getFakeUsers } from './getFauxUtilisateurs.query';
 

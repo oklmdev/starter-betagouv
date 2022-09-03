@@ -2,7 +2,7 @@ import z from 'zod';
 import { DemandeDéjàDéposéeError } from '../../domain/demande/actions';
 import { makeDemande } from '../../domain/demande/Demande';
 import { typesDemandes } from '../../domain/demande/TypesDemande';
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { getEpoch, zNonEmptyishString } from '../../libs/typeguards';
 import { transaction } from '../../dependencies/eventStore';
 import { DemandeListPage } from '../../pages/demandeList/DemandeListPage';

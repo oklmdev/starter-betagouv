@@ -1,8 +1,9 @@
 import { Row, Card, CardTitle, CardDescription, CardImage, Col, Button, Link } from '@dataesr/react-dsfr';
 import { Layout } from '../_components/layout/Layout';
 import * as React from 'react';
+import { withBrowserBundle } from '../../libs/ssr';
 
-export const AccueilPage = () => {
+export const AccueilPage = withBrowserBundle(() => {
   return (
     <Layout>
       <section className='section-blue section-main'>
@@ -19,7 +20,12 @@ export const AccueilPage = () => {
             </div>
             <div className='fr-col fr-col-12 fr-col-md-6'>
               <div style={{ marginLeft: 80, position: 'relative' }}>
-                <img src={'images/pas-si-vite.svg'} style={{ width: '90%', height: '90%' }} alt='' />
+                <img
+                  src={'images/pas-si-vite.svg'}
+                  style={{ width: '90%', height: '90%' }}
+                  alt=''
+                  onClick={() => alert('Coucou')}
+                />
               </div>
             </div>
           </div>
@@ -67,4 +73,4 @@ export const AccueilPage = () => {
       </div>
     </Layout>
   );
-};
+});

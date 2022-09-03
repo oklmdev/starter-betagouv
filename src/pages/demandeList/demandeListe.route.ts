@@ -1,5 +1,5 @@
 import { requireAuth } from '../../dependencies/authn';
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { pageRouter } from '../pageRouter';
 import { DemandeListPage } from './DemandeListPage';
 import { getDemandeList } from './getDemandeList.query';
