@@ -20,5 +20,5 @@ export function buildState(state: DemandeState, event: DomainEvent): DemandeStat
 export const makeDemande = makeAggregate({
   initialState: { status: 'nouvelle' },
   buildState,
-  actions: { accepter, déposer },
+  actions: { accepter, déposer }
 });

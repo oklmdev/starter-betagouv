@@ -9,7 +9,7 @@ export const Basique = () => (
     demande={{
       id: '123',
       justification: 'Ceci est la justification',
-      status: 'déposée',
+      status: 'déposée'
     }}
   />
 );

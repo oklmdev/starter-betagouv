@@ -12,7 +12,7 @@ export const postgresTest = new Pool({
   port: 5437,
   allowExitOnIdle: true,
   max: 10,
-  idleTimeoutMillis: 2,
+  idleTimeoutMillis: 2
 });
 
 export const resetDatabase = async () => {

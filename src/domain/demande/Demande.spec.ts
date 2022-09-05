@@ -4,14 +4,14 @@ import { DemandeAcceptée, DemandeDéposée } from '../../events';
 const demandeId = '';
 
 const initialState: DemandeState = {
-  status: 'nouvelle',
+  status: 'nouvelle'
 };
 
 describe('Demande', () => {
   describe('quand il reçoit un événement DemandeAcceptée', () => {
     it('doit retourner un status accepté', () => {
       expect(buildState(initialState, DemandeAcceptée({ demandeId, acceptéeLe: 123, acceptéePar: '' }))).toEqual({
-        status: 'acceptée',
+        status: 'acceptée'
       });
     });
   });
@@ -24,7 +24,7 @@ describe('Demande', () => {
           DemandeDéposée({ demandeId, type: 'réclamation', justification: '', déposéeLe: 123, déposéePar: '' })
         )
       ).toEqual({
-        status: 'déposée',
+        status: 'déposée'
       });
     });
   });

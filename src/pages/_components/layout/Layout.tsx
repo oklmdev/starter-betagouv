@@ -14,7 +14,7 @@ import {
   FooterCopy,
   ToolItemGroup,
   ToolItem,
-  Tool,
+  Tool
 } from '@dataesr/react-dsfr';
 import { SessionContext } from '../SessionContext';
 

@@ -10,7 +10,7 @@ export const makeAggregate =
   <AggregateState, Actions extends Record<string, AggregateAction<AggregateState, any>>>({
     initialState,
     actions,
-    buildState,
+    buildState
   }: MakeAggregateProps<AggregateState, Actions>) =>
   (aggregateId: AggregateId, history?: DomainEvent[]): Aggregate<ExtractActions<Actions>> => {
     const pendingEvents: DomainEvent[] = [];
@@ -34,7 +34,7 @@ export const makeAggregate =
 
     return {
       ...bindActions({ aggregateId, getState, publishEvent }, actions),
-      getPendingEvents: () => pendingEvents,
+      getPendingEvents: () => pendingEvents
     };
   };
 

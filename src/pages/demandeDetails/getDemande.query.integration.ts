@@ -22,7 +22,7 @@ describe('getDemande', () => {
           justification,
           status,
           déposée_le,
-          déposée_par,
+          déposée_par
         ]);
       });
 
@@ -32,7 +32,7 @@ describe('getDemande', () => {
         expect(demande).toMatchObject({
           id: demandeId,
           justification,
-          status,
+          status
         });
       });
     });
@@ -50,7 +50,7 @@ describe('getDemande', () => {
           status,
           déposée_le,
           déposée_par,
-          acceptéeLe,
+          acceptéeLe
         ]);
       });
 
@@ -61,7 +61,7 @@ describe('getDemande', () => {
           id: demandeId,
           justification,
           status,
-          acceptéeLe,
+          acceptéeLe
         });
       });
     });

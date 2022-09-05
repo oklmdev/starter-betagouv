@@ -13,5 +13,5 @@ export const demandeTable = makeProjectionTable({
     console.log('Creating demandes table (demandes projection)');
     await postgres.query(deleteDemandeTable);
     await postgres.query(createDemandeTable);
-  },
+  }
 });

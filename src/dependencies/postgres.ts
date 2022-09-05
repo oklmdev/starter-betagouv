@@ -7,7 +7,7 @@ const testConfig = {
   port: 5437,
   allowExitOnIdle: true,
   max: 10,
-  idleTimeoutMillis: 2,
+  idleTimeoutMillis: 2
 };
 
 const devConfig = {
@@ -15,7 +15,7 @@ const devConfig = {
   host: 'localhost',
   database: 'oklm',
   password: 'oklm',
-  port: 5436,
+  port: 5436
 };
 
 export const postgres = new Pool(process.env.NODE_ENV === 'test' ? testConfig : devConfig);

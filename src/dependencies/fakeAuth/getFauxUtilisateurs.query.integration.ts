@@ -15,7 +15,7 @@ describe('getFauxUtilisateurs', () => {
     expect(result).toEqual(
       expect.arrayContaining([
         { userId: '123', nom: 'Pierre', role: 'administrateur' },
-        { userId: '345', nom: 'Jacques', role: 'demandeur' },
+        { userId: '345', nom: 'Jacques', role: 'demandeur' }
       ])
     );
   });

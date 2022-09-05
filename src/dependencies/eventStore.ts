@@ -8,5 +8,5 @@ export const { subscribeAll } = eventBus;
 
 export const { publish, transaction, init, getHistory } = makePostgresEventStore({
   postgres,
-  publish: eventBus.publish.bind(eventBus),
+  publish: eventBus.publish.bind(eventBus)
 });

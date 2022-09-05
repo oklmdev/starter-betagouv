@@ -22,5 +22,5 @@ export const makeDomainEvent = <T extends string, P>(specifics: {
   occurredAt: Date.now(),
   type: specifics.type,
   payload: specifics.payload,
-  ...aggregateIdIfDefined(specifics.aggregateId),
+  ...aggregateIdIfDefined(specifics.aggregateId)
 });

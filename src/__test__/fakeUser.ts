@@ -5,6 +5,6 @@ export const makeFakeUser = (overrides?: Partial<User>): User => {
   return {
     id: getUuid(),
     role: 'demandeur',
-    ...overrides,
+    ...overrides
   };
 };

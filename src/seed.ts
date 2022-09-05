@@ -10,12 +10,12 @@ const seedEvents: DomainEvent[] = [
   FauxUtilisateurInscrit({
     userId: demandeurId,
     role: 'demandeur',
-    nom: 'Demandeur Lamda',
+    nom: 'Demandeur Lamda'
   }),
   FauxUtilisateurInscrit({
     userId: administrateurId,
     role: 'administrateur',
-    nom: 'Administrateur Lamda',
+    nom: 'Administrateur Lamda'
   }),
 
   DemandeDéposée({
@@ -23,8 +23,8 @@ const seedEvents: DomainEvent[] = [
     type: 'réclamation',
     justification: 'Je ne suis pas oklm',
     déposéePar: demandeurId,
-    déposéeLe: Date.now(),
-  }),
+    déposéeLe: Date.now()
+  })
 ];
 
 export async function seed() {

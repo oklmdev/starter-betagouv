@@ -9,7 +9,7 @@ export const keycloak =
   KEYCLOAK_USER_CLIENT_SECRET &&
   new Keycloak(
     {
-      store: sessionStore,
+      store: sessionStore
     },
     {
       'confidential-port': 0,
@@ -20,7 +20,7 @@ export const keycloak =
       realm: KEYCLOAK_REALM,
       // @ts-ignore
       credentials: {
-        secret: KEYCLOAK_USER_CLIENT_SECRET,
-      },
+        secret: KEYCLOAK_USER_CLIENT_SECRET
+      }
     }
   );

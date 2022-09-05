@@ -73,8 +73,8 @@ describe('postgresEventStore.transaction(aggregateId, callback)', () => {
         eventId: uuid(),
         aggregateId: 'x'.repeat(256), // TOO LONG, WILL FAIL
         occurredAt: occurredAt.getTime(),
-        payload,
-      },
+        payload
+      }
     ];
 
     const callback = jest.fn((events: DomainEvent[]) => Promise.resolve(pendingEvents));

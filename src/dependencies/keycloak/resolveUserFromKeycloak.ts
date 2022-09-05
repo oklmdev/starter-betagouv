@@ -23,7 +23,7 @@ export const resolveUserFromKeycloak: RequestHandler = async (request, response,
     const newUser = {
       id: uuid(),
       keycloakId,
-      role: 'administrateur' as 'administrateur',
+      role: 'administrateur' as 'administrateur'
     };
 
     await registerNewUserFromKeycloak(newUser);

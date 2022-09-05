@@ -15,6 +15,6 @@ export function makeProjectionTable(args: {
     handleEvent,
     name,
     reset,
-    requiresRebuild: requiresRebuild ? requiresRebuild : () => true,
+    requiresRebuild: requiresRebuild ? requiresRebuild : () => true
   };
 }

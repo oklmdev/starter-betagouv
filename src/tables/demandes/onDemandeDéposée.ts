@@ -9,6 +9,6 @@ demandeTable.on<DemandeDéposée>('DemandeDéposée', ({ payload: { demandeId, t
     justification,
     'déposée',
     déposéeLe,
-    déposéePar,
+    déposéePar
   ]);
 });

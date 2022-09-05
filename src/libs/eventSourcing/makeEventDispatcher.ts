@@ -22,6 +22,6 @@ export const makeEventDispatcher = (): EventDispatcher => {
       return handler;
     },
 
-    handleEvent,
+    handleEvent
   };
 };
