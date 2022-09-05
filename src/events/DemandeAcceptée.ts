@@ -13,5 +13,5 @@ export const DemandeAcceptée = (payload: DemandeAcceptée['payload']): DemandeA
   makeDomainEvent({
     type: 'DemandeAcceptée',
     payload,
-    aggregateId: payload.demandeId, // aggregateId is always derived from the payload
+    aggregateId: payload.demandeId // aggregateId is always derived from the payload
   });

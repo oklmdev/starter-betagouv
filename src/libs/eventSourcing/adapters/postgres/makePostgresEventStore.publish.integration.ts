@@ -29,7 +29,7 @@ describe('postgresEventStore.publish', () => {
         type: 'TEST',
         occurred_at: occurredAt,
         payload,
-        aggregate_ids: null,
+        aggregate_ids: null
       });
     });
 
@@ -62,7 +62,7 @@ describe('postgresEventStore.publish', () => {
         type,
         occurred_at: occurredAt,
         payload,
-        aggregate_ids: [aggregateId],
+        aggregate_ids: [aggregateId]
       });
     });
   });
@@ -91,7 +91,7 @@ describe('postgresEventStore.publish', () => {
         type,
         occurred_at: occurredAt,
         payload,
-        aggregate_ids: aggregateId,
+        aggregate_ids: aggregateId
       });
     });
   });

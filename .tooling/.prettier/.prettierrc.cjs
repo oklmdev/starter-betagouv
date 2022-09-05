@@ -1,4 +1,4 @@
-{
+module.exports = {
   "printWidth": 128,
   "tabWidth": 2,
   "useTabs": false,
@@ -6,7 +6,7 @@
   "singleQuote": true,
   "quoteProps": "as-needed",
   "jsxSingleQuote": true,
-  "trailingComma": "es5",
+  "trailingComma": "none",
   "bracketSpacing": true,
   "bracketSameLine": true,
   "arrowParens": "always",

@@ -14,7 +14,7 @@ actionsRouter.route('/inscription.html').post(async (request, response) => {
       .object({
         demandeurId: z.string().uuid(),
         nomComplet: z.string().min(2, 'Votre nom complet doit avoir plus de 2 caractères'),
-        email: z.string().email('Vous devez donner une adresse mail valide'),
+        email: z.string().email('Vous devez donner une adresse mail valide')
       })
       .parse(request.body);
 
@@ -38,7 +38,7 @@ actionsRouter.route('/inscription.html').post(async (request, response) => {
         InscriptionPage({
           errors: myErrors,
           nomComplet,
-          email,
+          email
         })
       );
     }

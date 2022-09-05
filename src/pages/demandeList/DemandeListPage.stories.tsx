@@ -13,8 +13,8 @@ export const NonVide = () => (
       {
         id: '123',
         type: 'réclamation',
-        déposéeLe: new Date().getTime(),
-      },
+        déposéeLe: new Date().getTime()
+      }
     ]}
   />
 );

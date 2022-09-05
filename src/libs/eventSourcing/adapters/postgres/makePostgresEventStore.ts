@@ -82,7 +82,7 @@ export const makePostgresEventStore = ({ publish, postgres }: PostgresEventStore
       const { rows } = await postgres.query('SELECT * FROM events ORDER BY occurred_at ASC');
 
       return rows.map(fromPersistance);
-    },
+    }
   };
 };
 
@@ -93,7 +93,7 @@ export function toPersistance(event: DomainEvent): PersistedEvent {
     type,
     aggregate_ids: aggregateId ? (Array.isArray(aggregateId) ? aggregateId : [aggregateId]) : null,
     payload,
-    occurred_at: new Date(occurredAt),
+    occurred_at: new Date(occurredAt)
   };
 }
 
@@ -108,7 +108,7 @@ export function fromPersistance(row: PersistedEvent): DomainEvent {
     type,
     payload,
     ...aggregateId,
-    occurredAt: occurred_at.getTime(),
+    occurredAt: occurred_at.getTime()
   };
 }
 
@@ -119,6 +119,6 @@ export async function insertEventIntoDb(event: DomainEvent, client: Pool | PoolC
     type,
     aggregate_ids,
     payload,
-    occurred_at,
+    occurred_at
   ]);
 }

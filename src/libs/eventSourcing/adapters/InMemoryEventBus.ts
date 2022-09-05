@@ -24,7 +24,7 @@ export const makeInMemoryEventBus = (): EventBus => {
         }),
         ..._subscriptionsForAll.map(async (cb) => {
           await cb(event);
-        }),
+        })
       ]);
     },
     subscribeAll: (callback: EventHandler) => {
@@ -32,6 +32,6 @@ export const makeInMemoryEventBus = (): EventBus => {
     },
     subscribe: async <Event extends DomainEvent>(type: Event['type'], callback: EventHandler<Event>) => {
       _subscriptionsForType[type] = [...(_subscriptionsForType[type] || []), callback as EventHandler];
-    },
+    }
   };
 };

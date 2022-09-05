@@ -14,15 +14,15 @@ describe('accepter(Demande)', () => {
         aggregateId: demandeId,
         getState: () => ({
           demandeId,
-          status: 'déposée',
+          status: 'déposée'
         }),
-        publishEvent,
+        publishEvent
       })({ acceptéeLe, acceptéePar });
 
       expect(publishEvent).toHaveBeenCalledWith({
         ...DemandeAcceptée({ demandeId, acceptéeLe, acceptéePar }),
         eventId: expect.anything(),
-        occurredAt: expect.anything(),
+        occurredAt: expect.anything()
       });
     });
   });
@@ -36,9 +36,9 @@ describe('accepter(Demande)', () => {
           aggregateId: demandeId,
           getState: () => ({
             demandeId,
-            status: 'nouvelle',
+            status: 'nouvelle'
           }),
-          publishEvent,
+          publishEvent
         })({ acceptéeLe, acceptéePar })
       ).toThrowError(DemandeNonDéposéeError);
 
@@ -55,9 +55,9 @@ describe('accepter(Demande)', () => {
           aggregateId: demandeId,
           getState: () => ({
             demandeId,
-            status: 'acceptée',
+            status: 'acceptée'
           }),
-          publishEvent,
+          publishEvent
         })({ acceptéeLe, acceptéePar })
       ).toThrowError(DemandeDéjàAcceptéeError);
 

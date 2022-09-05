@@ -14,6 +14,6 @@ export const getDemande = async (demandeId: string): Promise<DemandeDetailsPageP
     id,
     justification,
     status,
-    acceptéeLe: Number(acceptée_le),
+    acceptéeLe: Number(acceptée_le)
   };
 };

@@ -10,13 +10,13 @@ export const Basique = () => (
       {
         userId: '123',
         role: 'administrateur',
-        nom: 'Peter',
+        nom: 'Peter'
       },
       {
         userId: '234',
         role: 'demandeur',
-        nom: 'Jacques',
-      },
+        nom: 'Jacques'
+      }
     ]}
   />
 );

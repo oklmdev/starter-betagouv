@@ -1,8 +1,8 @@
 import { Epoch, NonEmptyishString } from '../../../libs/typeguards';
 import { makeFakeUser } from '../../../__test__/fakeUser';
 import { DemandeDéjàDéposéeError, déposer } from './déposer';
-import {Demandeur} from '../../Roles';
-import {DemandeDéposée} from '../../../events';
+import { Demandeur } from '../../Roles';
+import { DemandeDéposée } from '../../../events';
 
 describe('déposer(Demande)', () => {
   const demandeId = 'demande123';
@@ -19,15 +19,15 @@ describe('déposer(Demande)', () => {
         aggregateId: demandeId,
         getState: () => ({
           demandeId,
-          status: 'nouvelle',
+          status: 'nouvelle'
         }),
-        publishEvent,
+        publishEvent
       })({ type, justification, déposéePar, déposéeLe });
 
       expect(publishEvent).toHaveBeenCalledWith({
         ...DemandeDéposée({ demandeId, type, justification, déposéePar: déposéePar.id, déposéeLe }),
         eventId: expect.anything(),
-        occurredAt: expect.anything(),
+        occurredAt: expect.anything()
       });
     });
   });
@@ -41,9 +41,9 @@ describe('déposer(Demande)', () => {
           aggregateId: demandeId,
           getState: () => ({
             demandeId,
-            status: 'déposée',
+            status: 'déposée'
           }),
-          publishEvent,
+          publishEvent
         })({ type, justification, déposéePar, déposéeLe })
       ).toThrowError(DemandeDéjàDéposéeError);
     });

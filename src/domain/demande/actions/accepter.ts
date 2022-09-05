@@ -1,6 +1,6 @@
 import { AggregateAction } from '../../../libs/eventSourcing';
 import type { DemandeState } from '../Demande';
-import {DemandeAcceptée} from '../../../events';
+import { DemandeAcceptée } from '../../../events';
 
 interface AccepterArgs {
   acceptéePar: string;

@@ -16,7 +16,7 @@ const app: Express = express();
 app.use(
   express.urlencoded({
     extended: false,
-    limit: '10mb',
+    limit: '10mb'
   })
 );
 app.use(express.json({ limit: '10mb' }));
@@ -31,7 +31,7 @@ app.use(
     store: sessionStore,
     resave: false,
     proxy: true,
-    saveUninitialized: false,
+    saveUninitialized: false
   })
 );
 

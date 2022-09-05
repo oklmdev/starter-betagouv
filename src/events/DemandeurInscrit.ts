@@ -12,5 +12,5 @@ export type DemandeurInscrit = BaseDomainEvent & {
 export const DemandeurInscrit = (payload: DemandeurInscrit['payload']): DemandeurInscrit =>
   makeDomainEvent({
     type: 'DemandeurInscrit',
-    payload,
+    payload
   });

@@ -1,5 +1,0 @@
-.git/
-coverage/
-dist/
-node_modules/
-tsconfig.json

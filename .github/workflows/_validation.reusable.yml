@@ -1,0 +1,54 @@
+# Abstract
+# This workflow check if all the validation check are valid in parallel
+# A validation check is a project command that execute successfully (process exit with 0)
+
+# Current limitation : this run the 'lint', 'prettier', 'test' package.json commands.
+
+# Note: this workflow default input node-version will be updated following the node version LTS.
+
+# TODO Improve with the capacity to run an arbitrary matrix
+
+name: zReusable Validation Matrix Workflow
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: false
+        type: string
+        default: 'lts/*'
+      package-manager:
+        required: false
+        type: string
+        default: 'yarn'
+      package-manager-dependencies-command:
+        required: false
+        type: string
+        default: 'yarn install --frozen-lockfile'
+
+jobs:
+  validation:
+    name: ' '
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        command: [lint, "prettier:check", "test:unit"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ needs.dynamic-variables.outputs.node-version }}
+          cache: ${{ needs.dynamic-variables.outputs.package-manager }}
+
+      - name: Install dependencies (prefer frozen)
+        run: ${{ inputs.package-manager-dependencies-command }}
+
+      - name: ${{matrix.command}}
+        env:
+          COMMAND: ${{matrix.command}}
+        run: ${{ inputs.package-manager }} $COMMAND

@@ -14,5 +14,5 @@ export const UtilisateurInscritViaKeycloak = (
   makeDomainEvent({
     type: 'UtilisateurInscritViaKeycloak',
     payload,
-    aggregateId: payload.keycloakId, // aggregateId is always derived from the payload
+    aggregateId: payload.keycloakId // aggregateId is always derived from the payload
   });

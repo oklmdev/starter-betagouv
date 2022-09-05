@@ -10,7 +10,7 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.configPath": ".prettierrc.json",
+  "prettier.configPath": ".tooling/.prettier/.prettierrc.cjs",
   "gitpod.openInStable.neverPrompt": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": false,

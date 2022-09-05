@@ -18,7 +18,7 @@ actionsRouter.route('/demandes').post(requireAuth(), async (request, response) =
     .object({
       demandeId: z.string().uuid(),
       type: z.enum(typesDemandes),
-      justification: zNonEmptyishString,
+      justification: zNonEmptyishString
     })
     .parse(request.body);
 

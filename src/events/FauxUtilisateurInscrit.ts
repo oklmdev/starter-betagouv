@@ -13,5 +13,5 @@ export type FauxUtilisateurInscrit = BaseDomainEvent & {
 export const FauxUtilisateurInscrit = (payload: FauxUtilisateurInscrit['payload']): FauxUtilisateurInscrit =>
   makeDomainEvent({
     type: 'FauxUtilisateurInscrit',
-    payload,
+    payload
   });

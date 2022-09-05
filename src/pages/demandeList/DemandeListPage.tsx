@@ -7,17 +7,17 @@ import { Table, TextInput, Button } from '@dataesr/react-dsfr';
 const columns = [
   {
     name: 'type',
-    label: 'Type',
+    label: 'Type'
   },
   {
     name: 'déposéeLe',
     label: 'Déposé le',
     render: ({ déposéeLe }: DemandeListPageProps['demandes'][number]) => new Date(déposéeLe).toString(),
-    sortable: true,
+    sortable: true
   },
   {
-    render: ({ id }: DemandeListPageProps['demandes'][number]) => <a href={`/demande/${id}`}>Accéder</a>,
-  },
+    render: ({ id }: DemandeListPageProps['demandes'][number]) => <a href={`/demande/${id}`}>Accéder</a>
+  }
 ];
 
 export type DemandeListPageProps = {
