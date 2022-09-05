@@ -17,7 +17,7 @@ Mais comment implémenter une application sans schéma de base de données ? Com
 
 ---
 
-Prenons du recul: il y a une distinction à faire entre les données qui correspondent aux _faits_ (Vérité) et les données qui en sont dérivées pour les besoins de l'application, qu'on pourrait appeler _vues_.
+Prenons du recul: il y a une distinction à faire entre les données qui correspondent aux _faits_ (Vérité) et les données qui en sont dérivées pour les besoins de l'application, qu'on pourrait appeler _vues_ (nb: c'est un terme que nous retrouvons dans les bases de données mais aussi quand nous parlons UI, dans les deux cas nous avons une donnée, juste pas avec la même lisibilité)
 
 `vues = f(faits)`
 
