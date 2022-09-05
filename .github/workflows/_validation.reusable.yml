@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        command: [lint, "prettier:check", test]
+        command: [lint, "prettier:check", "test:unit"]
 
     steps:
       - name: Checkout repository
