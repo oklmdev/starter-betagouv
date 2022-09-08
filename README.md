@@ -2,7 +2,7 @@
   <img alt="logo de SPACE" src="https://github.com/oklmdev/starter-betagouv/blob/master/src/assets/images/pas-si-vite.svg" width="30%"/>
 </p>
 
-<p align="center"><i>🚀 Retirer les frictions lors du démarrage d'un projet betagouv 🚀</i></p>
+<p align="center"><i>🚀 Démarrer un projet betagouv en toute sérénité 🚀</i></p>
 
 Vous trouverez ici un chantier ouvert de "starter" pour démarrer des nouveaux projets betagouv en Typescript/Node.
 
