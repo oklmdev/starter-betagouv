@@ -1,7 +1,7 @@
 {
   "name": "starter-betagouv",
   "version": "0.0.2",
-  "description": "Un code sain pour un dev serein",
+  "description": "Démarrer un projet betagouv en toute sérénité",
   "keywords": [],
   "scripts": {
     "build": "tsc",
@@ -20,9 +20,9 @@
     "test:watch": "jest --runInBand --watch",
     "watch": "tsc && cp -r src/assets dist && concurrently \"tsc -w\" \"yarn run start\""
   },
-  "homepage": "https://github.com/oklmdev/oklm#readme",
+  "homepage": "https://github.com/oklmdev/starter-betagouv#readme",
   "bugs": {
-    "url": "https://github.com/oklmdev/oklm/issues"
+    "url": "https://github.com/oklmdev/starter-betagouv/issues"
   },
   "license": "MIT",
   "contributors": [
@@ -32,7 +32,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/oklmdev/oklm.git"
+    "url": "https://github.com/oklmdev/starter-betagouv.git"
   },
   "main": "src/index.ts",
   "bin": "init.js",
