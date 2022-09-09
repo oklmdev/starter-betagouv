@@ -82,7 +82,7 @@ type BundleInfo =
  * @returns BundleInfo
  */
 function extractBundleInfo(element: JSX.Element & { outerProps?: any; componentName?: string }): BundleInfo {
-  const shouldIncludeBrowserBundle = element.hasOwnProperty('outerProps');
+  const shouldIncludeBrowserBundle = Object.prototype.hasOwnProperty.call(element, 'outerProps');
   if (shouldIncludeBrowserBundle) {
     const { children, ...props } = element.outerProps || {};
 
