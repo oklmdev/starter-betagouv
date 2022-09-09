@@ -2,7 +2,18 @@
   <img alt="logo de SPACE" src="https://github.com/oklmdev/starter-betagouv/blob/master/src/assets/images/pas-si-vite.svg" width="30%"/>
 </p>
 
-<p align="center"><i>🚀 Démarrer un projet betagouv en toute sérénité 🚀</i></p>
+<p align="center">
+  <i>🚀 Démarrer un projet betagouv en toute sérénité 💆</i>
+  <br>
+  <br>
+  <a href="https://github.com/oklmdev/starter-betagouv/actions">
+    <img src="https://github.com/oklmdev/starter-betagouv/actions/workflows/validate.use-case.yml/badge.svg">
+  </a>
+  <a href="https://github.com/oklmdev/starter-betagouv/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/oklm">
+  </a>
+</p>
+
 
 Vous trouverez ici un chantier ouvert de "starter" pour démarrer des nouveaux projets betagouv en Typescript/Node.
 
@@ -105,9 +116,21 @@ Nous nous retrouvons un soir par semaine pour peaufiner le positionnement, avanc
 
 Depuis peu, Pierre-Antoine et Clément consacrent quelques heures chaque jour pour donner un coup de boost au projet !
 
-### Next up
+**En cours**
+- [ ] Tutoriel sur gitpod
+- [ ] Bundles navigateur
 
-- [ ] Inscription d'un usager
+### Septembre 2022
+
+- [x] CI: lancer les linter/tests/prettier à chaque push, et créer une PR
+
+### Aout 2022
+
+- [x] Vacances 🏖
+
+### Juillet 2022
+
+- [x] Inscription d'un usager
 
 ### Juin 2022
 
