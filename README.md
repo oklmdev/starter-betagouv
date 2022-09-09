@@ -160,3 +160,9 @@ Depuis peu, Pierre-Antoine et Clément consacrent quelques heures chaque jour po
 - [x] Prettier
 - [x] Eslint
 - [x] Base typescript (tsconfig)
+
+## Credits
+
+-   [react-dsfr](https://github.com/dataesr/react-dsfr)
+
+Merci à [@garronej](https://github.com/garronej) pour les astuces de mise en page :)
