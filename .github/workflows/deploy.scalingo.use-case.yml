@@ -17,8 +17,10 @@ jobs:
   dynamic-variables:
     outputs:
       node-version: ${{ steps.variables.outputs.node-version }}
-      application-name: ${{ steps.application-name.outputs.value }}
-      addon-plan-postgresql: ${{ steps.addon-plan-postgresql.outputs.value }}
+      application-name: ${{ steps.variables.outputs.application-name }}
+      addon-plan-postgresql: ${{ steps.variables.outputs.addon-plan-postgresql }}
+      package-manager: ${{ steps.variables.outputs.package-manager }}
+      package-manager-dependencies-command: ${{ steps.variables.outputs.package-manager-dependencies-command }}
 
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +39,7 @@ jobs:
       - dynamic-variables
 
     steps:
-      - name: Checkout client-application repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js

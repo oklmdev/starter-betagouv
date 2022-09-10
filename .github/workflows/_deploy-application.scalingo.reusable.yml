@@ -34,6 +34,7 @@ jobs:
         run: |
           set +e
           APP_ALREADY_EXIST=$(scalingo apps | grep -c ${{ inputs.application-name }})
+          APP_ALREADY_EXIST=$(scalingo apps | grep -c ${{ inputs.application-name }})
           set -e
           if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create ${{ inputs.application-name }}; else echo 'Error app exists already or has an invalid name'; fi
 
@@ -56,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create-app-and-environment
     steps:
-      - name: Extract back & database artifacts ['back/dist', 'database/dist', 'database/staticData']
+      - name: Extract back & database artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-bundle
