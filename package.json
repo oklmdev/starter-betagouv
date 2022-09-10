@@ -4,7 +4,7 @@
   "description": "Démarrer un projet betagouv en toute sérénité",
   "keywords": [],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -r src/assets dist",
     "build-storybook": "build-storybook",
     "cypress:open": "cypress open",
     "db": "docker compose down --remove-orphans && docker compose up -d",
@@ -14,6 +14,7 @@
     "prettier": "prettier --config=./.tooling/.prettier/.prettierrc.cjs  --write  ./src/",
     "prettier:check": "prettier --config=./.tooling/.prettier/.prettierrc.cjs --check ./src/",
     "start": "nodemon dist/index.js",
+    "start:prod": "node dist/index.js",
     "storybook": "start-storybook -p 6006",
     "test:unit": "jest --testRegex='^(().)*.spec.ts$' --runInBand",
     "test": "jest --runInBand",
