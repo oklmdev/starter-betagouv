@@ -34,9 +34,8 @@ jobs:
         run: |
           set +e
           APP_ALREADY_EXIST=$(scalingo apps | grep -c ${{ inputs.application-name }})
-          APP_ALREADY_EXIST=$(scalingo apps | grep -c ${{ inputs.application-name }})
           set -e
-          if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create ${{ inputs.application-name }}; else echo 'Error app exists already or has an invalid name'; fi
+          if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create ${{ inputs.application-name }}; else echo 'App exists already or has an invalid name'; fi
 
       - name: Generate transient ssh-keys then add the public key to the logged account for deployment
         run: |
@@ -82,7 +81,7 @@ jobs:
             "version": "1.0.0",
             "type": "module",
             "scripts": {
-               "start": "node dist/index.js",
+               "start": "node dist/index.js"
             },
             "dependencies": {
               "@dataesr/react-dsfr": "^2.3.1",
