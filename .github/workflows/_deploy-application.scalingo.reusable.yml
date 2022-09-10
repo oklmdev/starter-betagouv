@@ -60,9 +60,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-bundle
+          path: dist
+
 
       # Current artifact structure
-      # /dist
+      # |  - index.js => application entrypoint
+      # | [...] => built files and folders
 
       # Target release structure:
       # /app
