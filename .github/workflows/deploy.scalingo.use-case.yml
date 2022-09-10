@@ -1,0 +1,11 @@
+# Empty workflow for presence in /actions
+name: Déployer sur Scalingo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'I do nothing'
