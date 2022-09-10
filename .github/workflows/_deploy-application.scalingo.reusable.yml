@@ -1,0 +1,11 @@
+# Empty workflow for presence in /actions
+name: zReusable NodeJS Application Scalingo Deployer Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'I do nothing'
