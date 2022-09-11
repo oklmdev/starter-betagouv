@@ -142,7 +142,7 @@ jobs:
           OUTPUT_AS_HYBRID="${OUTPUT_AS_HYBRID//$'\n'/'%0A'}"
           OUTPUT_AS_SINGLELINE="${OUTPUT_AS_HYBRID//$'\r'/'%0D'}"
           set +e
-          echo "::set-output name=deploy-success::$(OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }} )"
+          echo "::set-output name=deploy-success::$($OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }} )"
           set -e
 
 
