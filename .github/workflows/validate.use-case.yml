@@ -28,24 +28,7 @@ env:
   package-manager-dependencies-command: 'yarn install --frozen-lockfile'
 
 jobs:
-  jq-test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
- # cat package.json | jq 'name: .name | .version | .scripts.start | .dependencies'
-      - name: Release - Generate minimalist package.json to start server express
-        run: |
-          touch generated.json
-
-          cat package.json | jq '{name, version, scripts: {start: .scripts.start}, dependencies}'
-          exit 1;
-
   dynamic-variables:
-    needs:
-      - jq-test
     outputs:
       node-version: ${{ steps.variables.outputs.node-version }}
       package-manager: ${{ steps.variables.outputs.package-manager }}

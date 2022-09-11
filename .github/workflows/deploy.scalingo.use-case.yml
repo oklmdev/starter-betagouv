@@ -55,11 +55,19 @@ jobs:
         run: |
           ${{ needs.dynamic-variables.outputs.package-manager }} build
 
+
+      - name: Minimal package.json to run build
+        run: |
+          touch filtered.json
+          cat package.json | jq '{name, version, scripts: {start: .scripts.start}, dependencies}' > filtered.json
+          mv filtered.json package.json
+
       - name: Upload build bundle as artifact
         uses: actions/upload-artifact@v3
         with:
           name: build-bundle
           path: |
+            package.json
             dist
 
   validation:
