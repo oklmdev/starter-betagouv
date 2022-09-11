@@ -71,8 +71,6 @@ jobs:
       package-manager: ${{ needs.dynamic-variables.outputs.package-manager }}
       package-manager-dependencies-command: ${{ needs.dynamic-variables.outputs.package-manager-dependencies-command }}
 
-  # TODO Better error management !
-  # Right now some steps in this job may fail silently
   deploy:
     needs:
       - dynamic-variables
