@@ -29,7 +29,7 @@ jobs:
         run: |
           echo "::set-output name=node-version::${{ env.node-version }}"
           echo "::set-output name=application-name::${{ inputs.application-name }}"
-          echo "::set-output name=addon-plan-postgresql::${{ inputs.addon-plan-postgresql }}"
+          echo "::set-output name=addon-plan-postgresql::${{ env.addon-plan-postgresql }}"
           echo "::set-output name=package-manager::${{ env.package-manager }}"
           echo "::set-output name=package-manager-dependencies-command::${{ env.package-manager-dependencies-command }}"
 
@@ -81,10 +81,13 @@ jobs:
     uses: ./.github/workflows/_deploy-application.scalingo.reusable.yml
     with:
       application-name: ${{ needs.dynamic-variables.outputs.application-name }}
-      scalingo-remote-domain-url: "git@ssh.osc-fr1.scalingo.com"
+      scalingo-remote-git-url: "git@ssh.osc-fr1.scalingo.com"
+      scalingo-deployed-domain-url: ".osc-fr1.scalingo.com"
       scalingo-ssh-host-domain: "ssh.osc-fr1.scalingo.com"
     secrets:
       SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
+
+
 
 #  setup-database-addon:
 #    needs:
