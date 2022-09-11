@@ -24,7 +24,9 @@ on:
         required: true
 
     outputs:
-      deploy-success: ${{ jobs.deploy-to-target-environment.outputs.deploy-success }}
+      deploy-success:
+        description: 'Has the deployment succeeded on scalingo'
+        value: ${{ jobs.deploy-to-target-environment.outputs.deploy-success }}
 
 jobs:
   create-app-and-environment:
