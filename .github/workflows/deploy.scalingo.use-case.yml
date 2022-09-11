@@ -70,6 +70,12 @@ jobs:
             package.json
             dist
 
+      # Current artifact / release structure
+      # - package.json => buildpack entrypoint (script 'start')
+      # /dist
+      # | - index.js => application entrypoint
+      # | [...] => built files and folders
+
   validation:
     needs:
       - dynamic-variables
