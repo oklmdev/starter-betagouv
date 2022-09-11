@@ -101,9 +101,9 @@ jobs:
           OUTPUT_AS_HYBRID="${OUTPUT_AS_HYBRID//$'\n'/'%0A'}"
           OUTPUT_AS_SINGLELINE="${OUTPUT_AS_HYBRID//$'\r'/'%0D'}"
           set +e
-          $HAS_DEPLOY_URL=$($OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }})
+          $HAS_ERROR=$($OUTPUT_AS_SINGLELINE | grep -c 'Error deploying the application' }})
           set -e
-          if [[ $HAS_DEPLOY_URL -eq 0 ]]; then exit 1; fi
+          if [[ $HAS_ERROR -eq 1 ]]; then exit 1; fi
 
 
   cleanup-deploy-keys:
