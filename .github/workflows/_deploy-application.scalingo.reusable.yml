@@ -23,11 +23,6 @@ on:
       SCALINGO_API_TOKEN:
         required: true
 
-    outputs:
-      deploy-success:
-        description: 'Has the deployment succeeded on scalingo'
-        value: ${{ jobs.deploy-to-target-environment.outputs.deploy-success }}
-
 jobs:
   create-app-and-environment:
     runs-on: ubuntu-latest
@@ -64,8 +59,6 @@ jobs:
   deploy-to-target-environment:
     runs-on: ubuntu-latest
     needs: create-app-and-environment
-    outputs:
-      deploy-success: ${{ steps.deploy.outputs.deploy-success }}
     steps:
       - name: Extract back & database artifacts
         uses: actions/download-artifact@v3
@@ -133,17 +126,16 @@ jobs:
           echo "${{ needs.create-app-and-environment.outputs.deployer-private-ssh-key }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ inputs.scalingo-ssh-host-domain }} >> ~/.ssh/known_hosts
 
-      # TODO Find a way to check on deploy result
       - name: Deploy - Push to deploy
-        id: deploy
         run: |
           OUTPUT_AS_MULTILINE=$(git push scalingo -f)
           OUTPUT_AS_HYBRID="${OUTPUT_AS_MULTILINE//'%'/'%25'}"
           OUTPUT_AS_HYBRID="${OUTPUT_AS_HYBRID//$'\n'/'%0A'}"
           OUTPUT_AS_SINGLELINE="${OUTPUT_AS_HYBRID//$'\r'/'%0D'}"
           set +e
-          echo "::set-output name=deploy-success::$($OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }} )"
+          $HAS_DEPLOY_URL=$($OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }})
           set -e
+          if [[ $HAS_DEPLOY_URL -eq 0 ]]; then exit 1; fi
 
 
   cleanup-deploy-keys:
