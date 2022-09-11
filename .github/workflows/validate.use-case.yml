@@ -49,7 +49,7 @@ jobs:
       - dynamic-variables
 
     steps:
-      - name: Checkout client-application repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js
