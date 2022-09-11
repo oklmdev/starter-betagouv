@@ -37,8 +37,8 @@ jobs:
       - name: Create the application with its specific environment if it does not exist (trimmed to the scalingo limit of 47 characters)
         run: |
           set +e
-          APP_TRIMMED=$(${{ inputs.application-name }} | grep -Eo '^.{47}')
-          APP_ALREADY_EXIST=$(scalingo apps | grep -c $APP_TRIMMED }})
+          APP_TRIMMED=$(echo ${{ inputs.application-name }} | grep -Eo '^.{47}')
+          APP_ALREADY_EXIST=$(scalingo apps | grep -c $APP_TRIMMED )
           set -e
           if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create $APP_TRIMMED; else echo 'App exists already or has an invalid name'; fi
 
