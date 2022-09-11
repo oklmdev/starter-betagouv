@@ -6,10 +6,14 @@ on:
       application-name:
         required: true
         type: string
-      scalingo-remote-domain-url:
+      scalingo-remote-git-url:
         required: false
         type: string
         default: "git@ssh.osc-fr1.scalingo.com"
+      scalingo-deployed-domain-url:
+        required: false
+        type: string
+        default: ".osc-fr1.scalingo.io"
       scalingo-ssh-host-domain:
         required: false
         type: string
@@ -113,7 +117,7 @@ jobs:
           git config --global push.autoSetupRemote true
           git init .
           git add .
-          git remote add scalingo ${{ inputs.scalingo-remote-domain-url }}:${{ inputs.application-name }}.git
+          git remote add scalingo ${{ inputs.scalingo-remote-git-url }}:${{ inputs.application-name }}.git
           git commit -m "Release bundle"
 
       - name: Set up ssh authentification to scalingo by setting the private key and known_hosts file
@@ -122,10 +126,17 @@ jobs:
           echo "${{ needs.create-app-and-environment.outputs.deployer-private-ssh-key }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ inputs.scalingo-ssh-host-domain }} >> ~/.ssh/known_hosts
 
-      # TODO Find a way to check on deploy result
       - name: Deploy - Push to deploy
         run: |
-          git push scalingo -f
+          OUTPUT_AS_MULTILINE=$(git push scalingo -f)
+          OUTPUT_AS_HYBRID="${OUTPUT_AS_MULTILINE//'%'/'%25'}"
+          OUTPUT_AS_HYBRID="${OUTPUT_AS_HYBRID//$'\n'/'%0A'}"
+          OUTPUT_AS_SINGLELINE="${OUTPUT_AS_HYBRID//$'\r'/'%0D'}"
+          set +e
+          $HAS_DEPLOY_URL=$($OUTPUT_AS_SINGLELINE | grep -c https://${{ inputs.application-name }}${{ inputs.scalingo-deployed-domain-url }})
+          set -e
+          if [[ $HAS_DEPLOY_URL -eq 0 ]]; then exit 1; fi
+
 
   cleanup-deploy-keys:
     needs: deploy-to-target-environment
