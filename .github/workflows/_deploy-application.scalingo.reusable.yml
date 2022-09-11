@@ -24,10 +24,23 @@ on:
         required: true
 
 jobs:
+  dynamic-variables:
+    outputs:
+      app-name-trimmed: ${{ steps.variables.outputs.app-name-trimmed }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Interpolated variables from inputs
+        id: variables
+        run: |
+          echo "::set-output name=node-version::app-name-trimmed=$(echo ${{ inputs.application-name }} | grep -Eo '^.{47}')"
+
   create-app-and-environment:
     runs-on: ubuntu-latest
     container:
       image: rcambonie/scalingo-cli
+    needs:
+      - dynamic-variables
     outputs:
       deployer-private-ssh-key: ${{ steps.deployer-private-ssh-key.outputs.private-key }}
     steps:
@@ -37,16 +50,15 @@ jobs:
       - name: Create the application with its specific environment if it does not exist (trimmed to the scalingo limit of 47 characters)
         run: |
           set +e
-          APP_TRIMMED=$(echo ${{ inputs.application-name }} | grep -Eo '^.{47}')
-          APP_ALREADY_EXIST=$(scalingo apps | grep -c $APP_TRIMMED )
+          APP_ALREADY_EXIST=$(scalingo apps | grep -c ${{ needs.dynamic-variables.outputs.app-name-trimmed }} )
           set -e
-          if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create $APP_TRIMMED; else echo 'App exists already or has an invalid name'; fi
+          if [[ $APP_ALREADY_EXIST -eq 0 ]]; then scalingo create ${{ needs.dynamic-variables.outputs.app-name-trimmed }}; else echo 'App exists already or has an invalid name'; fi
 
       - name: Generate transient ssh-keys then add the public key to the logged account for deployment
         run: |
           mkdir -p /home/.ssh
           ssh-keygen -q -t rsa -N '' -f /home/.ssh/id_rsa
-          scalingo keys-add ${{ inputs.application-name }} /home/.ssh/id_rsa.pub
+          scalingo keys-add ${{ needs.dynamic-variables.outputs.app-name-trimmed }} /home/.ssh/id_rsa.pub
 
       - name: Set the generate ssh private key as an output, key value will masked in logs, handling the set-output truncate multiline string behaviours (ref:https://github.community/t/set-output-truncates-multiline-strings/16852)
         id: deployer-private-ssh-key
@@ -59,7 +71,10 @@ jobs:
 
   deploy-to-target-environment:
     runs-on: ubuntu-latest
-    needs: create-app-and-environment
+    needs:
+      - create-app-and-environment
+      - dynamic-variables
+
     steps:
       - name: Extract back & database artifacts
         uses: actions/download-artifact@v3
@@ -75,7 +90,7 @@ jobs:
           git config --global push.autoSetupRemote true
           git init .
           git add .
-          git remote add scalingo ${{ inputs.scalingo-remote-git-url }}:${{ inputs.application-name }}.git
+          git remote add scalingo ${{ inputs.scalingo-remote-git-url }}:${{ needs.dynamic-variables.outputs.app-name-trimmed }}.git
           git commit -m "Release bundle"
 
       - name: Set up ssh authentification to scalingo by setting the private key and known_hosts file
@@ -97,7 +112,10 @@ jobs:
 
 
   cleanup-deploy-keys:
-    needs: deploy-to-target-environment
+    needs:
+      - deploy-to-target-environment
+      - dynamic-variables
+
     runs-on: ubuntu-latest
     container:
       image: rcambonie/scalingo-cli
@@ -106,5 +124,5 @@ jobs:
         run: scalingo login --api-token=${{ secrets.SCALINGO_API_TOKEN }}
 
       - name: Remove the transient ssh-key from logged profile
-        run: scalingo keys-remove ${{ inputs.application-name }}
+        run: scalingo keys-remove ${{ needs.dynamic-variables.outputs.app-name-trimmed }}
         continue-on-error: true
