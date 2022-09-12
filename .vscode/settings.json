@@ -15,5 +15,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": false,
   "eslint.packageManager": "yarn",
+  "workbench.editorAssociations": {
+    "BIENVENUE_GITPOD.md": "vscode.markdown.preview.editor",
+  },
   "workbench.startupEditor": "none"
 }

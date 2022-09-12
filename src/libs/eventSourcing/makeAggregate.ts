@@ -1,29 +1,33 @@
-import { AggregateId, PublishEvent, Aggregate, AggregateAction, AggregateActionDeps } from './types/Aggregate';
-import { DomainEvent } from './types/DomainEvent';
+import { AggregateId, Aggregate, AggregateAction, AggregateActionDeps, DomainEvent } from './types';
 
-export interface MakeAggregateProps<State, Actions> {
-  initialState: State;
+export interface MakeAggregateProps<AggregateState, Actions> {
+  initialState: AggregateState;
   actions: Actions;
-  buildState: (state: State, event: DomainEvent) => State;
+  buildState: (state: AggregateState, event: DomainEvent) => AggregateState;
 }
+
+/**
+ * Crée un agrégat qui peut transitionner d'un état initial vers d'autres états au travers des actions disponibles de l'agrégat.
+ * @param initialState État initial de l'agrégat
+ * @param actions Commandes disponibles pour agir sur l'état de l'agrégat
+ * @param buildState Fonction qui permet de passer d'un état à un autre en fonction d'un évènement à appliquer
+ * @returns
+ * Une fonction qui prend l'id de l'agrégat et son historique d'évènement passés et
+ * retourne l'agrégat à jour avec la liste des actions disponibles et les évènements en attente d'application sur l'agrégat.
+ */
 export const makeAggregate =
   <AggregateState, Actions extends Record<string, AggregateAction<AggregateState, any>>>({
     initialState,
     actions,
     buildState
   }: MakeAggregateProps<AggregateState, Actions>) =>
-  (aggregateId: AggregateId, history?: DomainEvent[]): Aggregate<ExtractActions<Actions>> => {
+  (aggregateId: AggregateId, history: DomainEvent[] = []): Aggregate<ExtractActions<Actions>> => {
     const pendingEvents: DomainEvent[] = [];
 
-    // Set the initial state
-    let state: AggregateState = initialState;
-
-    // Update the state by calling updateState on each event in the history
-    if (history) {
-      for (const event of history) {
-        state = buildState(state, event);
-      }
-    }
+    let state = history.reduce(
+      (state: AggregateState, event: DomainEvent): AggregateState => buildState(state, event),
+      initialState
+    );
 
     const publishEvent = <Event extends DomainEvent>(event: Event) => {
       state = buildState(state, event);
