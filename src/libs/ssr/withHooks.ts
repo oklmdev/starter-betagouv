@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 /**
  * Wrap a Component definition in React.createElement to enable hooks
@@ -7,5 +7,5 @@ import React from 'react'
  * @returns (props) => React.createElement(Component, props)
  */
 export function withHooks<ComponentProps>(Component: (props: ComponentProps) => JSX.Element) {
-  return (props: ComponentProps) => React.createElement(Component, props)
+  return (props: ComponentProps) => React.createElement(Component, props);
 }
