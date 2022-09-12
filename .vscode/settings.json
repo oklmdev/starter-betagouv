@@ -14,5 +14,6 @@
   "gitpod.openInStable.neverPrompt": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": false,
-  "eslint.packageManager": "yarn"
+  "eslint.packageManager": "yarn",
+  "workbench.startupEditor": "none"
 }

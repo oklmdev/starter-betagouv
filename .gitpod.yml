@@ -6,14 +6,13 @@ tasks:
   - before: |
       cp .env.template .env
       gp open BIENVENUE_GITPOD.md
-  - name: Dependencies et Launch
-    init: |
+  - init: |
       yarn
       yarn db
       yarn migrate
-      yarn watch
+    command: yarn watch
     openMode: split-right
-    
+
 github:
   prebuilds:
     # enable for the default branch (defaults to true)
