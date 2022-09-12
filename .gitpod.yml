@@ -6,7 +6,7 @@ tasks:
   - before: |
       cp .env.template .env
       gp open BIENVENUE_GITPOD.md
-    init: |
+  - init: |
       yarn
       yarn db
       yarn migrate
