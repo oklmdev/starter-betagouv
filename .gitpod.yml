@@ -10,10 +10,9 @@ tasks:
       yarn
       yarn db
       yarn migrate
-    command:
-      yarn watch
+    command: yarn watch
     openMode: split-right
-    
+
 github:
   prebuilds:
     # enable for the default branch (defaults to true)
