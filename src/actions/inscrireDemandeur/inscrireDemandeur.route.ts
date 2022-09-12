@@ -2,7 +2,7 @@ import z, { ZodError } from 'zod';
 import { publish } from '../../dependencies/eventStore';
 import { actionsRouter } from '../actionsRouter';
 import { createUserCredentials, isUserIdAvailable } from '../../dependencies/authn';
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { InscriptionPage } from '../../pages/inscription/InscriptionPage';
 import { DemandeurInscrit } from '../../events';
 

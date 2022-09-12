@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { pageRouter } from '../pageRouter';
 import { DemandeDetailsPage } from './DemandeDetailsPage';
 import { getDemande } from './getDemande.query';

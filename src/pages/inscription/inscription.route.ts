@@ -1,4 +1,4 @@
-import { responseAsHtml } from '../../libs/responseAsHtml';
+import { responseAsHtml } from '../../libs/ssr';
 import { pageRouter } from '../pageRouter';
 import { InscriptionPage } from './InscriptionPage';
 
