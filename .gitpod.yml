@@ -6,11 +6,11 @@ tasks:
   - before: |
       cp .env.template .env
       gp open BIENVENUE_GITPOD.md
-  - name: Dependencies et Launch
     init: |
       yarn
       yarn db
       yarn migrate
+    command:
       yarn watch
     openMode: split-right
     
