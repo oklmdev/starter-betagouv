@@ -6,7 +6,3 @@ const throwIfUndefined = (variableName: string) => {
   if (!value) throw new Error(`Expected ${variableName} to be Defined`);
   return value;
 };
-
-const AUTHN = process.env.AUTHN;
-
-export const SEED = process.env.SEED === '1';

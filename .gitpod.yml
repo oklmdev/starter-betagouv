@@ -5,11 +5,8 @@
 tasks:
   - before: |
       cp .env.template .env
-      gp open BIENVENUE_GITPOD.md
   - init: |
       yarn
-      yarn db
-      yarn migrate
     command: yarn watch
     openMode: split-right
 
@@ -39,12 +36,6 @@ ports:
     port: 6006
     onOpen: open-preview
     visibility: public
-  - name: Dev DB
-    port: 5436
-    onOpen: ignore
-  - name: Test DB
-    port: 5437
-    onOpen: ignore
 
 vscode:
   extensions:
