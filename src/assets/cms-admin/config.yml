@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: public/img
+public_folder: img
+collections:
+  - name: 'pages'
+    label: 'Pages'
+    files:
+      - label: "Page d'accueil"
+        name: 'landing'
+        file: 'src/pages/accueil/accueil.json'
+        fields:
+          - {
+              label: 'République Française / Nom du ministère',
+              name: 'ministère',
+              widget: 'text',
+              default: 'République Française'
+            }
+          - { label: 'Nom du service', name: 'nomService', widget: 'string' }
+          - { label: 'Sous titre du service', name: 'sousTitreService', widget: 'string', required: false }
+          - label: 'Liens entête'
+            name: 'liensEntête'
+            widget: 'list'
+            required: false
+            summary: '{{fields.titre}}'
+            fields:
+              - label: 'Titre'
+                name: 'titre'
+                widget: 'string'
+              - label: 'Lien'
+                name: 'url'
+                widget: 'string'
+          - label: 'Menu'
+            name: 'menu'
+            widget: 'list'
+            required: false
+            summary: '{{fields.titre}}'
+            fields:
+              - label: 'Titre'
+                name: 'titre'
+                widget: 'string'
+              - label: 'Lien'
+                name: 'url'
+                widget: 'string'
+          - { label: 'Corps', name: 'body', widget: 'markdown' }
+          - { label: 'Description en pied de page', name: 'descriptionFooter', widget: 'markdown' }
+          - label: 'Liens en pied de page'
+            name: 'liensFooter'
+            widget: 'list'
+            required: false
+            summary: '{{fields.titre}}'
+            fields:
+              - label: 'Titre'
+                name: 'titre'
+                widget: 'string'
+              - label: 'Lien'
+                name: 'url'
+                widget: 'string'
