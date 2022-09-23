@@ -1,12 +1,14 @@
 import callsites from 'callsites';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { hydrate } from 'react-dom';
 import { SessionContext } from '../../pages/_components/SessionContext';
 import { withContext } from './withContext';
 
 const isServerContext = typeof window === 'undefined';
 
-export function withBrowserBundle<ComponentProps>(Component: (props: ComponentProps) => JSX.Element) {
+export function withBrowserBundle<ComponentProps extends { children?: ReactNode }>(
+  Component: (props: ComponentProps) => JSX.Element
+) {
   // This will be executed twice
 
   if (isServerContext) {
@@ -23,7 +25,7 @@ export function withBrowserBundle<ComponentProps>(Component: (props: ComponentPr
  * @param Component
  * @returns Component with additional outerProps and componentName properties
  */
-function serverCode<ComponentProps>(Component: (props: ComponentProps) => JSX.Element) {
+function serverCode<ComponentProps extends { children?: ReactNode }>(Component: (props: ComponentProps) => JSX.Element) {
   const componentName = getComponentNameFromCallsite();
   return (props?: ComponentProps) => {
     // Call React.createElement to transform pure function to React Function Component
