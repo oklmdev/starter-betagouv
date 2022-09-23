@@ -1,7 +1,7 @@
 {
-  "name": "starter-betagouv",
-  "version": "0.0.2",
-  "description": "Démarrer un projet betagouv en toute sérénité",
+  "name": "starter-betagouv-template",
+  "version": "0.0.1",
+  "description": "Créer une landing page avec DSFR et Netlify CMS",
   "keywords": [],
   "scripts": {
     "build": "tsc && cp -r src/assets dist && yarn build:front",
@@ -22,9 +22,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "homepage": "https://github.com/oklmdev/starter-betagouv#readme",
+  "homepage": "https://github.com/oklmdev/starter-betagouv-template#readme",
   "bugs": {
-    "url": "https://github.com/oklmdev/starter-betagouv/issues"
+    "url": "https://github.com/oklmdev/starter-betagouv-template/issues"
   },
   "license": "MIT",
   "contributors": [
@@ -34,7 +34,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/oklmdev/starter-betagouv.git"
+    "url": "https://github.com/oklmdev/starter-betagouv-template.git"
   },
   "main": "src/index.ts",
   "bin": "init.js",
