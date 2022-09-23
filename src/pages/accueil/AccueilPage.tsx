@@ -3,7 +3,7 @@ import { Layout } from '../_components/layout/Layout';
 import * as React from 'react';
 import { withBrowserBundle } from '../../libs/ssr';
 
-export const AccueilPage = withBrowserBundle(() => {
+export const AccueilPage = () => {
   return (
     <Layout>
       <section className='section-blue section-main'>
@@ -73,4 +73,4 @@ export const AccueilPage = withBrowserBundle(() => {
       </div>
     </Layout>
   );
-});
+};
