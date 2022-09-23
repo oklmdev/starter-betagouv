@@ -28,10 +28,12 @@ export function responseAsHtml(
 
   response.send(
     html`
-      <html class="h-full bg-gray-100">
+      <html style="height: 100%">
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+          <link href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr/dist/dsfr.min.css" rel="stylesheet" />
           <link href="style.css" rel="stylesheet" />
           ${shouldIncludeBrowserBundle
             ? html`
@@ -40,7 +42,19 @@ export function responseAsHtml(
               `
             : ''}
         </head>
-        <body class="h-full overflow-hidden">
+        <body style="height: 100%; overflow: hidden;">
+          <script>
+            // Options disponibles à l'initialisation du DSFR
+            window.dsfr = {
+              verbose: true,
+              mode: 'runtime'
+            };
+          </script>
+          <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr/dist/dsfr/dsfr.module.min.js"></script>
+          <script
+            type="text/javascript"
+            nomodule=""
+            src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr/dist/dsfr/dsfr.nomodule.min.js"></script>
           <!-- prettier-ignore -->
           <div id="root">${ReactDOMServer.renderToString(withContext(SessionContext, session, element))}</div>
           ${shouldIncludeBrowserBundle

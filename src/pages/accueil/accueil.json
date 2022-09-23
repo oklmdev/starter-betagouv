@@ -1,0 +1,25 @@
+{
+  "ministère": "République\nFrançaise",
+  "nomService": "Nom du service",
+  "body": "## Hello world",
+  "descriptionFooter": "Hello footer",
+  "sousTitreService": "Sous titre du service",
+  "liensEntête": [
+    {
+      "titre": "Header link",
+      "url": "/nav"
+    }
+  ],
+  "menu": [
+    {
+      "titre": "Menu link",
+      "url": "http://www.example.com"
+    }
+  ],
+  "liensFooter": [
+    {
+      "titre": "Footer link",
+      "url": "/about"
+    }
+  ]
+}
