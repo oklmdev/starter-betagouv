@@ -19,7 +19,6 @@
     "prettier": "prettier --config=./.tooling/.prettier/.prettierrc.cjs  --write  ./src/",
     "prettier:check": "prettier --config=./.tooling/.prettier/.prettierrc.cjs --check ./src/",
     "start:dev": "nodemon dist/index.js",
-    "cypress:open": "cypress open",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -75,7 +74,6 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
     "concurrently": "^7.0.0",
-    "cypress": "^10.3.0",
     "jest": "^27.4.7",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
