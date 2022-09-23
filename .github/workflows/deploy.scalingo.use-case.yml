@@ -8,8 +8,8 @@ on:
         required: true
 
 env:
-  node-version: "lts/*"
-  addon-plan-postgresql: "postgresql-starter-512"
+  node-version: 'lts/*'
+  addon-plan-postgresql: 'postgresql-starter-512'
   package-manager: 'yarn'
   package-manager-dependencies-command: 'yarn install --frozen-lockfile'
 
@@ -55,7 +55,6 @@ jobs:
         run: |
           ${{ needs.dynamic-variables.outputs.package-manager }} build
 
-
       - name: Minimal package.json to run build
         run: |
           touch filtered.json
@@ -70,31 +69,18 @@ jobs:
             package.json
             dist
 
-  validation:
-    needs:
-      - dynamic-variables
-    uses: ./.github/workflows/_validation.reusable.yml
-    with:
-      node-version: ${{ needs.dynamic-variables.outputs.node-version }}
-      package-manager: ${{ needs.dynamic-variables.outputs.package-manager }}
-      package-manager-dependencies-command: ${{ needs.dynamic-variables.outputs.package-manager-dependencies-command }}
-
   deploy:
     needs:
       - dynamic-variables
       - build
-      - validation
     uses: ./.github/workflows/_deploy-application.scalingo.reusable.yml
     with:
       application-name: ${{ needs.dynamic-variables.outputs.application-name }}
-      scalingo-remote-git-url: "git@ssh.osc-fr1.scalingo.com"
-      scalingo-deployed-domain-url: ".osc-fr1.scalingo.com"
-      scalingo-ssh-host-domain: "ssh.osc-fr1.scalingo.com"
+      scalingo-remote-git-url: 'git@ssh.osc-fr1.scalingo.com'
+      scalingo-deployed-domain-url: '.osc-fr1.scalingo.com'
+      scalingo-ssh-host-domain: 'ssh.osc-fr1.scalingo.com'
     secrets:
       SCALINGO_API_TOKEN: ${{ secrets.SCALINGO_API_TOKEN }}
-
-
-
 #  setup-database-addon:
 #    needs:
 #      - dynamic-variables
