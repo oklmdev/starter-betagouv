@@ -1,0 +1,20 @@
+name: Activer Netlify CMS
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          export ESCAPED_REPO=$(printf '%s' "${{ github.repository }}" | sed 's/\//\\\0/g')
+          sed -i "s/repo: user\/repo/repo: $ESCAPED_REPO/" src/assets/cms-admin/config.yml
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Activated CMS"
+          git push
