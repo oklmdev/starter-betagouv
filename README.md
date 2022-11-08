@@ -21,6 +21,8 @@ En développant des produits au sein de betagouv, nous nous sommes rendus compte
 
 _C'est encore le début et il n'y a pas grand chose d'utilisable pour le moment. Le chantier est ouvert à toutes les contributions, propositions, idées..._
 
+**🙋 Nous concentrons actuellement nos efforts sur un POC dont l'objectif est de permettre de créer et déployer une landing page avec le thème DSFR sans coder. Je t'invite donc à aller jeter un coup d'oeil sur le repo correspondant : [https://github.com/oklmdev/starter-betagouv-template](https://github.com/oklmdev/starter-betagouv-template). 🚀** 
+
 ## Pourquoi un starter spécial betagouv ?
 
 Il existe suffisamment de points communs entre nos projets pour que nous puissions aller plus loin que les starters génériques qui sont disponibles.
@@ -112,16 +114,19 @@ Voir le fichier [LICENSE](./LICENSE) du dépot.
 
 ## Changelog
 
+**Nous avons récemment démarré un POC dont l'objectif est de permettre de créer et déployer une landing page avec le thème DSFR sans coder. Je t'invite donc à aller jeter un coup d'oeil sur le repo correspondant : [https://github.com/oklmdev/starter-betagouv-template](https://github.com/oklmdev/starter-betagouv-template).** 
+
 Nous nous retrouvons un soir par semaine pour peaufiner le positionnement, avancer lentement mais surement, discuter des choix techniques (un mélange de [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding) et [yak shaving](https://en.wiktionary.org/wiki/yak_shaving) :D ), et parfois faire un peu de code...
 
-Depuis peu, Pierre-Antoine et Clément consacrent quelques heures chaque jour pour donner un coup de boost au projet !
+Depuis peu, Pierre-Antoine consacre quelques heures chaque jour pour donner un coup de boost au projet !
 
 **En cours**
+- [ ] [POC Landing DSFR](https://github.com/oklmdev/starter-betagouv-template)
 - [ ] Tutoriel sur gitpod
-- [ ] Bundles navigateur
 
 ### Septembre 2022
 
+- [x] Bundles navigateur
 - [x] CI: lancer les linter/tests/prettier à chaque push, et créer une PR
 
 ### Aout 2022
