@@ -23,6 +23,8 @@ _C'est encore le début et il n'y a pas grand chose d'utilisable pour le moment.
 
 **🙋 Nous concentrons actuellement nos efforts sur un POC dont l'objectif est de permettre de créer et déployer une landing page avec le thème DSFR sans coder. Je t'invite donc à aller jeter un coup d'oeil sur le repo correspondant : [https://github.com/oklmdev/starter-betagouv-template](https://github.com/oklmdev/starter-betagouv-template). 🚀** 
 
+**🙋 Je t'invite également à aller découvrir le projet suivant, qui est une sous-partie de ce que nous essayons de faire ici : [https://github.com/oklmdev/persiste](https://github.com/oklmdev/persiste). 🚀** 
+
 ## Pourquoi un starter spécial betagouv ?
 
 Il existe suffisamment de points communs entre nos projets pour que nous puissions aller plus loin que les starters génériques qui sont disponibles.
